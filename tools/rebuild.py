@@ -14,7 +14,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from wa_common import load, dump  # noqa: E402
-from animals import (NS, GROUPS, ROSTER, REMOVED_ENTITIES, LAID_EGGS, ITEM_MAP, HUMANS, CLONES, CUT)  # noqa: E402
+from animals import (NS, GROUPS, ROSTER, REMOVED_ENTITIES, LAID_EGGS, ITEM_MAP, HUMANS, CLONES, CUT, ESSENTIALS, NATURAL_SPAWNING, MENU_GROUPS, MENU_OF)  # noqa: E402
 
 NF = 40  # War Engine factions: tags war_f1..war_f40 (member), war_h1..war_h40 (soldier is hostile to faction i)
 SRC_BP, SRC_RP, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
@@ -462,9 +462,9 @@ def main():
         dump(os.path.join(BP, "entities", sub, f"{short}.json"), d)
     log.append("mounts: " + ", ".join(sorted(mounts)))
 
-    # ---- spawn rules
+    # ---- spawn rules (only when natural spawning is on)
     os.makedirs(os.path.join(BP, "spawn_rules"))
-    for f in sorted(os.listdir(os.path.join(SRC_BP, "spawn_rules"))):
+    for f in (sorted(os.listdir(os.path.join(SRC_BP, "spawn_rules"))) if NATURAL_SPAWNING else []):
         d = load(os.path.join(SRC_BP, "spawn_rules", f))
         ident = d["minecraft:spawn_rules"]["description"]["identifier"].split(":", 1)[1]
         if ident == "ornitorrinco":            # the old rule named an entity that doesn't exist: platypus never spawned
@@ -702,7 +702,7 @@ def build_rp(mounts):
                 lines.append(line.rstrip("\n"))
         if f == "en_US.lang":
             lines = [f"entity.{NS}:{s}.name={ROSTER[s][6]}" for s in sorted(KEPT)]
-        for g, name in GROUPS.items():
+        for g, name in MENU_GROUPS.items():
             lines.append(f"{NS}:itemGroup.name.{g}={name}" if f == "en_US.lang" else f"{NS}:itemGroup.name.{g}={name}")
         open(os.path.join(RP, "texts", f), "w", encoding="utf-8", newline="\n").write("\n".join(lines) + "\n")
         langs.append(f[:-5])
@@ -713,7 +713,7 @@ def build_rp(mounts):
 def build_items_and_catalog():
     os.makedirs(os.path.join(BP, "items", "spawn_eggs"))
     os.makedirs(os.path.join(BP, "items", "laid_eggs"))
-    by_group = {g: [] for g in GROUPS}
+    by_group = {g: [] for g in MENU_GROUPS}
     for short in sorted(KEPT, key=lambda s: ROSTER[s][6]):
         group, role, *_rest, name = ROSTER[short]
         icon = EGG_ICONS.get(short)
@@ -722,8 +722,9 @@ def build_items_and_catalog():
             menu = {"category": "none"}
         else:
             ident, sub, label = f"{NS}:spawn_{short}", "spawn_eggs", f"{name} Spawn Egg"
-            menu = {"category": "nature", "group": f"{NS}:itemGroup.name.{group}"}
-            by_group[group].append(ident)
+            g = "essentials" if short in ESSENTIALS else MENU_OF[group]
+            menu = {"category": "nature", "group": f"{NS}:itemGroup.name.{g}"}
+            by_group[g].append(ident)
         comps = {
             "minecraft:display_name": {"value": label},
             "minecraft:entity_placer": {"entity": f"{NS}:{short}"},

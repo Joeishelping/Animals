@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_rhinoceros",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.giants"
+        "group": "worldanimals:itemGroup.name.essentials"
       }
     },
     "components": {

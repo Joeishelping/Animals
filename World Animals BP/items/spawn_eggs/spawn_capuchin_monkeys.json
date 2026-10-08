@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_capuchin_monkeys",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.primates"
+        "group": "worldanimals:itemGroup.name.small_mammals"
       }
     },
     "components": {

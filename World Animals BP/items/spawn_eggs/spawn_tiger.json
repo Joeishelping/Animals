@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_tiger",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.big_cats"
+        "group": "worldanimals:itemGroup.name.essentials"
       }
     },
     "components": {

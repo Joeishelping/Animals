@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_crocodile",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.reptiles"
+        "group": "worldanimals:itemGroup.name.essentials"
       }
     },
     "components": {

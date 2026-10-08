@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_ballena",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.marine_mammals"
+        "group": "worldanimals:itemGroup.name.sea_life"
       }
     },
     "components": {

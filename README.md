@@ -1,34 +1,30 @@
-# World Animals v2.2 (cleaned up)
+# World Animals v2.3 (cleaned up)
 
 A cleaned-up rebuild of the World Animals add-on (originally by ArathNido): animals only, sorted by type, with
 smarter hunting, and tamed animals that fight on your side in [War Engine](https://github.com/Joeishelping/Minecraft-War-Mod).
 
-Install `dist/World_Animals_v2_2.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
+Install `dist/World_Animals_v2_3.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
 replaces the old version, because it keeps the same pack IDs. Remove the old **[Structure generation]** pack from
 the world: it's gone.
 
 ## Spawn eggs, by type
 
-66 animals, in the creative menu's **Nature** tab, in 16 collapsible groups:
+66 animals, in the creative menu's **Nature** tab (after Minecraft's own groups), in 8 collapsible groups.
+**Essentials** comes first, with the animals you reach for most:
 
 | Group | Animals |
 |---|---|
-| Birds of Prey | Eagle, Vulture |
-| Water Birds | Duck, Flamingo, Pelican, Seagull, Stork |
-| Land & Tropical Birds | Blue Jay, Dove, Toucan, Turkey |
-| Penguins & Flightless Birds | African Penguin, Blue Penguin, Emperor Penguin, Kiwi, Ostrich |
-| Big Cats | Caracal, Cougar, Leopard, Lion, Panther, Snow Leopard, Tiger, White Lion, White Tiger |
-| Bears & Hyenas | Black Bear, Brown Bear, Hyena |
-| Elephants & Giants | African Elephant, Asian Elephant, Giraffe, Hippopotamus, Mammoth, Rhino |
-| Grazers & Hoofed Animals | Buffalo, Deer, Kangaroo, Wild Boar, Zebra |
-| Small Mammals | Hedgehog, Platypus, Raccoon, Rat, Red Panda, Squirrel |
-| Primates | Capuchin Monkey, Chimpanzee, Gorilla |
-| Reptiles & Turtles | Crocodile, Iguana, Komodo Dragon |
-| Snakes | Coral Snake, Scarlet Kingsnake, Snake |
-| Sharks | Great White Shark, Hammerhead Shark, Tiger Shark |
-| Whales, Dolphins & Seals | Orca, Seal, Whale |
-| Fish, Rays, Crabs & Jellyfish | Crab, Jellyfish, Stingray, Swordfish |
+| Essentials | African Elephant, Brown Bear, Buffalo, Crocodile, Deer, Eagle, Emperor Penguin, Giraffe, Gorilla, Great White Shark, Hippopotamus, Lion, Orca, Rhino, Tiger, Zebra |
+| Birds | African Penguin, Blue Jay, Blue Penguin, Dove, Duck, Flamingo, Kiwi, Ostrich, Pelican, Seagull, Stork, Toucan, Turkey, Vulture |
+| Big Cats | Caracal, Cougar, Leopard, Panther, Snow Leopard, White Lion, White Tiger |
+| Wild Mammals | Asian Elephant, Black Bear, Hyena, Kangaroo, Mammoth, Wild Boar |
+| Small Mammals & Primates | Capuchin Monkey, Chimpanzee, Hedgehog, Platypus, Raccoon, Rat, Red Panda, Squirrel |
+| Reptiles & Snakes | Coral Snake, Iguana, Komodo Dragon, Scarlet Kingsnake, Snake |
+| Sea Life | Crab, Hammerhead Shark, Jellyfish, Seal, Stingray, Swordfish, Tiger Shark, Whale |
 | Insects & Bugs | Butterfly, Firefly |
+
+**No natural spawning**: animals only appear from eggs (and from breeding and laid eggs). Set
+`NATURAL_SPAWNING = True` in `tools/animals.py` and rebuild to bring the original spawn rules back.
 
 Blue Crab and Blue Iguana are color variants of the Crab and Iguana. Laid eggs (duck, turkey, ostrich, penguins)
 still drop from the parents and hatch, but they aren't in the menu.
@@ -50,8 +46,8 @@ still drop from the parents and hatch, but they aren't in the menu.
 
 ## How they behave
 
-- **Dangerous predators** hunt prey **and** attack people (players, villagers, illagers, War Engine soldiers) who
-  come close: Lion, White Lion, Tiger, White Tiger, Leopard, Panther, Brown Bear, Hyena, Hippopotamus, Crocodile,
+- **Dangerous predators** hunt prey **and** attack people (players, villagers, illagers) who come close. They
+  leave War Engine soldiers alone unless a soldier hurts them: Lion, White Lion, Tiger, White Tiger, Leopard, Panther, Brown Bear, Hyena, Hippopotamus, Crocodile,
   Komodo Dragon, Snake, Coral Snake, Great White Shark, Tiger Shark.
 - **Hunters** go after their prey but leave people alone unless hurt: Cougar, Snow Leopard, Caracal, Black Bear,
   Chimpanzee (hunts capuchins), Eagle, Pelican, Seagull, Seal, Orca, Hammerhead, Swordfish, Scarlet Kingsnake (eats

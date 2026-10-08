@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_black_bear",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.bears_hyenas"
+        "group": "worldanimals:itemGroup.name.wild_mammals"
       }
     },
     "components": {

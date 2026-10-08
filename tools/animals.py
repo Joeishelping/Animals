@@ -11,6 +11,7 @@ Roles
 NS = "worldanimals"
 
 GROUPS = {
+    "essentials": "Essentials",
     "birds_of_prey": "Birds of Prey",
     "water_birds": "Water Birds",
     "land_birds": "Land & Tropical Birds",
@@ -39,7 +40,36 @@ FISH = ["fish", "squid", "lantern_fish", "shrimp"]
 MARINE = ["seal", "dolphin", "pink_dolphin", "penguin", "turtle", "emperor_penguin", "penguin_african", "blue_penguin"]
 SHARKS = ["shark", "white_shark", "tiger_shark", "hammerhead_shark"]
 SNAKES = ["snake", "snake_coral"]
-HUMANS = ["player", "villager", "wandering_trader", "illager", "war_soldier"]
+# wild animals go for people, not War Engine soldiers (they still fight back if a soldier hurts them)
+HUMANS = ["player", "villager", "wandering_trader", "illager"]
+
+# the first group in the creative menu: the animals you reach for most
+ESSENTIALS = ["lion", "tiger", "african_elephant", "gorilla", "white_shark", "bear", "crocodile", "rhinoceros",
+              "giraffe", "zebra", "hippopotamus", "orca", "eagle", "emperor_penguin", "deer", "buffalo"]
+
+# creative menu groups (after Essentials): the roster groups folded into a few categories
+MENU_GROUPS = {
+    "essentials": "Essentials",
+    "birds": "Birds",
+    "big_cats": "Big Cats",
+    "wild_mammals": "Wild Mammals",
+    "small_mammals": "Small Mammals & Primates",
+    "reptiles": "Reptiles & Snakes",
+    "sea_life": "Sea Life",
+    "bugs": "Insects & Bugs",
+}
+MENU_OF = {
+    "birds_of_prey": "birds", "water_birds": "birds", "land_birds": "birds", "flightless_birds": "birds",
+    "big_cats": "big_cats",
+    "bears_hyenas": "wild_mammals", "giants": "wild_mammals", "grazers": "wild_mammals",
+    "small_mammals": "small_mammals", "primates": "small_mammals",
+    "reptiles": "reptiles", "snakes": "reptiles",
+    "sharks": "sea_life", "marine_mammals": "sea_life", "fish": "sea_life", "shellfish": "sea_life",
+    "bugs": "bugs",
+}
+
+# natural spawning: off. Spawn them from the eggs.
+NATURAL_SPAWNING = False
 
 # id: (group, role, prey, humans range, attack damage, tame food, display name)
 ROSTER = {

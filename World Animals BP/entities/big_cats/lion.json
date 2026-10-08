@@ -229,11 +229,6 @@
             "test": "is_family",
             "subject": "other",
             "value": "illager"
-           },
-           {
-            "test": "is_family",
-            "subject": "other",
-            "value": "war_soldier"
            }
           ]
          }

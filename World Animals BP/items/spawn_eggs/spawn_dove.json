@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_dove",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.land_birds"
+        "group": "worldanimals:itemGroup.name.birds"
       }
     },
     "components": {
