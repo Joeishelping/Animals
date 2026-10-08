@@ -1,0 +1,25 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "worldanimals:laid_real_penguin_egg",
+      "menu_category": {
+        "category": "none"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Penguin Egg"
+      },
+      "minecraft:entity_placer": {
+        "entity": "worldanimals:real_penguin_egg"
+      },
+      "minecraft:max_stack_size": 16,
+      "minecraft:icon": {
+        "textures": {
+          "default": "real_penguin_egg"
+        }
+      }
+    }
+  }
+}

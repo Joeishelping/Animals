@@ -37,7 +37,7 @@
         }
       ],
       "render_controllers": [
-        "controller.render.new_lion.default",
+        "controller.render.wa_big_cat.default",
         "controller.render.new_lion.saddle"
       ],
       "enable_attachables": true,

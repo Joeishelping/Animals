@@ -11,13 +11,22 @@ Roles
 NS = "worldanimals"
 
 GROUPS = {
-    "birds": "Birds",
+    "birds_of_prey": "Birds of Prey",
+    "water_birds": "Water Birds",
+    "land_birds": "Land & Tropical Birds",
+    "flightless_birds": "Penguins & Flightless Birds",
     "big_cats": "Big Cats",
-    "large_mammals": "Large Mammals",
+    "bears_hyenas": "Bears & Hyenas",
+    "giants": "Elephants & Giants",
+    "grazers": "Grazers & Hoofed Animals",
     "small_mammals": "Small Mammals",
     "primates": "Primates",
-    "reptiles": "Reptiles",
-    "sea_life": "Sea Life",
+    "reptiles": "Reptiles & Turtles",
+    "snakes": "Snakes",
+    "sharks": "Sharks",
+    "marine_mammals": "Whales, Dolphins & Seals",
+    "fish": "Fish, Rays & Jellyfish",
+    "shellfish": "Crabs & Shellfish",
     "bugs": "Insects & Bugs",
 }
 
@@ -27,7 +36,7 @@ SMALL = ["chicken", "rabbit", "frog", "parrot", "rat", "squirrel", "duck", "turk
 MID = ["sheep", "pig", "goat", "deer", "wild_boar", "kangaroo", "capuchin_monkeys", "flamingo"]
 BIG = ["cow", "horse", "donkey", "mule", "llama", "camel", "zebra", "buffalo", "giraffe", "ostrich"]
 FISH = ["fish", "squid", "lantern_fish", "shrimp"]
-MARINE = ["seal", "dolphin", "turtle", "emperor_penguin", "penguin_african", "blue_penguin"]
+MARINE = ["seal", "dolphin", "pink_dolphin", "penguin", "turtle", "emperor_penguin", "penguin_african", "blue_penguin"]
 SHARKS = ["shark", "white_shark", "tiger_shark", "hammerhead_shark"]
 SNAKES = ["snake", "snake_coral"]
 HUMANS = ["player", "villager", "wandering_trader", "illager", "war_soldier"]
@@ -35,22 +44,22 @@ HUMANS = ["player", "villager", "wandering_trader", "illager", "war_soldier"]
 # id: (group, role, prey, humans range, attack damage, tame food, display name)
 ROSTER = {
     # ---- birds
-    "dove": ("birds", "passive", [], 0, 0, "minecraft:wheat_seeds", "Dove"),
-    "eagle": ("birds", "hunter", ["rabbit", "rat", "squirrel", "fish"], 0, 4, "minecraft:chicken", "Eagle"),
-    "seagull": ("birds", "hunter", ["fish", "shrimp"], 0, 2, "minecraft:cod", "Seagull"),
-    "pelican": ("birds", "hunter", ["fish"], 0, 2, "minecraft:cod", "Pelican"),
-    "stork": ("birds", "passive", [], 0, 0, "minecraft:cod", "Stork"),
-    "turkey": ("birds", "passive", [], 0, 0, "minecraft:wheat_seeds", "Turkey"),
-    "vulture": ("birds", "passive", [], 0, 0, "minecraft:rotten_flesh", "Vulture"),
-    "cyanocitta_cristata": ("birds", "passive", [], 0, 0, "minecraft:wheat_seeds", "Blue Jay"),
-    "tucan": ("birds", "passive", [], 0, 0, "minecraft:melon_slice", "Toucan"),
-    "flamingo": ("birds", "passive", [], 0, 0, "minecraft:cod", "Flamingo"),
-    "duck": ("birds", "passive", [], 0, 0, "minecraft:wheat_seeds", "Duck"),
-    "kiwi": ("birds", "passive", [], 0, 0, "minecraft:wheat_seeds", "Kiwi"),
-    "ostrich": ("birds", "defensive", [], 0, 5, "minecraft:wheat", "Ostrich"),
-    "emperor_penguin": ("birds", "passive", [], 0, 0, "minecraft:cod", "Emperor Penguin"),
-    "penguin_african": ("birds", "passive", [], 0, 0, "minecraft:cod", "African Penguin"),
-    "blue_penguin": ("birds", "passive", [], 0, 0, "minecraft:cod", "Blue Penguin"),
+    "dove": ("land_birds", "passive", [], 0, 0, "minecraft:wheat_seeds", "Dove"),
+    "eagle": ("birds_of_prey", "hunter", ["rabbit", "rat", "squirrel", "fish"], 0, 4, "minecraft:chicken", "Eagle"),
+    "seagull": ("water_birds", "hunter", ["fish", "shrimp"], 0, 2, "minecraft:cod", "Seagull"),
+    "pelican": ("water_birds", "hunter", ["fish"], 0, 2, "minecraft:cod", "Pelican"),
+    "stork": ("water_birds", "passive", [], 0, 0, "minecraft:cod", "Stork"),
+    "turkey": ("land_birds", "passive", [], 0, 0, "minecraft:wheat_seeds", "Turkey"),
+    "vulture": ("birds_of_prey", "passive", [], 0, 0, "minecraft:rotten_flesh", "Vulture"),
+    "cyanocitta_cristata": ("land_birds", "passive", [], 0, 0, "minecraft:wheat_seeds", "Blue Jay"),
+    "tucan": ("land_birds", "passive", [], 0, 0, "minecraft:melon_slice", "Toucan"),
+    "flamingo": ("water_birds", "passive", [], 0, 0, "minecraft:cod", "Flamingo"),
+    "duck": ("water_birds", "passive", [], 0, 0, "minecraft:wheat_seeds", "Duck"),
+    "kiwi": ("flightless_birds", "passive", [], 0, 0, "minecraft:wheat_seeds", "Kiwi"),
+    "ostrich": ("flightless_birds", "defensive", [], 0, 5, "minecraft:wheat", "Ostrich"),
+    "emperor_penguin": ("flightless_birds", "passive", [], 0, 0, "minecraft:cod", "Emperor Penguin"),
+    "penguin_african": ("flightless_birds", "passive", [], 0, 0, "minecraft:cod", "African Penguin"),
+    "blue_penguin": ("flightless_birds", "passive", [], 0, 0, "minecraft:cod", "Blue Penguin"),
     # ---- big cats
     "lion": ("big_cats", "apex", SMALL + MID + BIG, 10, 8, "minecraft:beef", "Lion"),
     "white_lion": ("big_cats", "apex", SMALL + MID + BIG, 10, 8, "minecraft:beef", "White Lion"),
@@ -62,20 +71,20 @@ ROSTER = {
     "snow_leopard": ("big_cats", "hunter", SMALL + MID, 0, 6, "minecraft:mutton", "Snow Leopard"),
     "caracal": ("big_cats", "hunter", SMALL, 0, 4, "minecraft:chicken", "Caracal"),
     # ---- large mammals
-    "african_elephant": ("large_mammals", "defensive", [], 0, 10, "minecraft:hay_block", "African Elephant"),
-    "asian_elephant": ("large_mammals", "defensive", [], 0, 10, "minecraft:hay_block", "Asian Elephant"),
-    "mammoth": ("large_mammals", "defensive", [], 0, 12, "minecraft:hay_block", "Mammoth"),
-    "giraffe": ("large_mammals", "defensive", [], 0, 4, "minecraft:apple", "Giraffe"),
-    "zebra": ("large_mammals", "defensive", [], 0, 3, "minecraft:wheat", "Zebra"),
-    "buffalo": ("large_mammals", "defensive", [], 0, 6, "minecraft:wheat", "Buffalo"),
-    "rhinoceros": ("large_mammals", "defensive", [], 0, 9, "minecraft:wheat", "Rhino"),
-    "deer": ("large_mammals", "passive", [], 0, 0, "minecraft:apple", "Deer"),
-    "kangaroo": ("large_mammals", "defensive", [], 0, 4, "minecraft:wheat", "Kangaroo"),
-    "wild_boar": ("large_mammals", "defensive", [], 0, 4, "minecraft:carrot", "Wild Boar"),
-    "hippopotamus": ("large_mammals", "apex", [], 8, 9, "minecraft:melon_slice", "Hippopotamus"),
-    "bear": ("large_mammals", "apex", ["fish", "deer", "wild_boar", "sheep", "pig", "rabbit"], 8, 7, "minecraft:salmon", "Brown Bear"),
-    "black_bear": ("large_mammals", "hunter", ["fish", "rabbit", "rat", "squirrel"], 0, 5, "minecraft:sweet_berries", "Black Bear"),
-    "hyenas": ("large_mammals", "apex", SMALL + MID + ["zebra"], 8, 5, "minecraft:beef", "Hyena"),
+    "african_elephant": ("giants", "defensive", [], 0, 10, "minecraft:hay_block", "African Elephant"),
+    "asian_elephant": ("giants", "defensive", [], 0, 10, "minecraft:hay_block", "Asian Elephant"),
+    "mammoth": ("giants", "defensive", [], 0, 12, "minecraft:hay_block", "Mammoth"),
+    "giraffe": ("giants", "defensive", [], 0, 4, "minecraft:apple", "Giraffe"),
+    "zebra": ("grazers", "defensive", [], 0, 3, "minecraft:wheat", "Zebra"),
+    "buffalo": ("grazers", "defensive", [], 0, 6, "minecraft:wheat", "Buffalo"),
+    "rhinoceros": ("giants", "defensive", [], 0, 9, "minecraft:wheat", "Rhino"),
+    "deer": ("grazers", "passive", [], 0, 0, "minecraft:apple", "Deer"),
+    "kangaroo": ("grazers", "defensive", [], 0, 4, "minecraft:wheat", "Kangaroo"),
+    "wild_boar": ("grazers", "defensive", [], 0, 4, "minecraft:carrot", "Wild Boar"),
+    "hippopotamus": ("giants", "apex", [], 8, 9, "minecraft:melon_slice", "Hippopotamus"),
+    "bear": ("bears_hyenas", "apex", ["fish", "deer", "wild_boar", "sheep", "pig", "rabbit"], 8, 7, "minecraft:salmon", "Brown Bear"),
+    "black_bear": ("bears_hyenas", "hunter", ["fish", "rabbit", "rat", "squirrel"], 0, 5, "minecraft:sweet_berries", "Black Bear"),
+    "hyenas": ("bears_hyenas", "apex", SMALL + MID + ["zebra"], 8, 5, "minecraft:beef", "Hyena"),
     # ---- small mammals
     "red_panda": ("small_mammals", "passive", [], 0, 0, "minecraft:sweet_berries", "Red Panda"),
     "raccoon": ("small_mammals", "passive", [], 0, 0, "minecraft:sweet_berries", "Raccoon"),
@@ -91,29 +100,34 @@ ROSTER = {
     "crocodile": ("reptiles", "apex", MID + BIG + FISH, 12, 9, "minecraft:chicken", "Crocodile"),
     "komodo_dragon": ("reptiles", "apex", SMALL + MID + ["buffalo"], 10, 7, "minecraft:chicken", "Komodo Dragon"),
     "iguana": ("reptiles", "passive", [], 0, 0, "minecraft:sweet_berries", "Iguana"),
-    "snake": ("reptiles", "apex", SMALL, 4, 3, "minecraft:rabbit", "Snake"),
-    "snake_coral": ("reptiles", "apex", SMALL, 4, 3, "minecraft:rabbit", "Coral Snake"),
-    "snake_scarlet": ("reptiles", "hunter", SNAKES + ["rat", "frog"], 0, 2, "minecraft:rabbit", "Scarlet Kingsnake"),
+    "snake": ("snakes", "apex", SMALL, 4, 3, "minecraft:rabbit", "Snake"),
+    "snake_coral": ("snakes", "apex", SMALL, 4, 3, "minecraft:rabbit", "Coral Snake"),
+    "snake_scarlet": ("snakes", "hunter", SNAKES + ["rat", "frog"], 0, 2, "minecraft:rabbit", "Scarlet Kingsnake"),
     # ---- sea life
-    "shark": ("sea_life", "apex", FISH + ["seal", "dolphin", "turtle"], 12, 7, "minecraft:cod", "Shark"),
-    "white_shark": ("sea_life", "apex", FISH + MARINE, 14, 9, "minecraft:cod", "Great White Shark"),
-    "tiger_shark": ("sea_life", "apex", FISH + ["seal", "dolphin", "turtle"], 12, 8, "minecraft:cod", "Tiger Shark"),
-    "hammerhead_shark": ("sea_life", "hunter", FISH + ["stingray"], 0, 6, "minecraft:cod", "Hammerhead Shark"),
-    "orca": ("sea_life", "hunter", FISH + MARINE + SHARKS, 0, 10, "minecraft:salmon", "Orca"),
-    "ballena": ("sea_life", "passive", [], 0, 0, "minecraft:cod", "Whale"),
-    "swordfish": ("sea_life", "hunter", FISH, 0, 5, "minecraft:cod", "Swordfish"),
-    "stingray": ("sea_life", "defensive", [], 0, 3, "minecraft:cod", "Stingray"),
-    "jellyfish_wa": ("sea_life", "defensive", [], 0, 2, "minecraft:cod", "Jellyfish"),
-    "lantern_fish": ("sea_life", "passive", [], 0, 0, "minecraft:cod", "Lanternfish"),
-    "shrimp": ("sea_life", "passive", [], 0, 0, "minecraft:kelp", "Shrimp"),
-    "clam": ("sea_life", "passive", [], 0, 0, "minecraft:kelp", "Clam"),
-    "crab": ("sea_life", "defensive", [], 0, 2, "minecraft:kelp", "Crab"),
-    "seal": ("sea_life", "hunter", FISH, 0, 3, "minecraft:cod", "Seal"),
+    "shark": ("sharks", "apex", FISH + ["seal", "dolphin", "turtle"], 12, 7, "minecraft:cod", "Shark"),
+    "white_shark": ("sharks", "apex", FISH + MARINE, 14, 9, "minecraft:cod", "Great White Shark"),
+    "tiger_shark": ("sharks", "apex", FISH + ["seal", "dolphin", "turtle"], 12, 8, "minecraft:cod", "Tiger Shark"),
+    "hammerhead_shark": ("sharks", "hunter", FISH + ["stingray"], 0, 6, "minecraft:cod", "Hammerhead Shark"),
+    "orca": ("marine_mammals", "hunter", FISH + MARINE + SHARKS, 0, 10, "minecraft:salmon", "Orca"),
+    "ballena": ("marine_mammals", "passive", [], 0, 0, "minecraft:cod", "Whale"),
+    "swordfish": ("fish", "hunter", FISH, 0, 5, "minecraft:cod", "Swordfish"),
+    "stingray": ("fish", "defensive", [], 0, 3, "minecraft:cod", "Stingray"),
+    "jellyfish_wa": ("fish", "defensive", [], 0, 2, "minecraft:cod", "Jellyfish"),
+    "lantern_fish": ("fish", "passive", [], 0, 0, "minecraft:cod", "Lanternfish"),
+    "shrimp": ("shellfish", "passive", [], 0, 0, "minecraft:kelp", "Shrimp"),
+    "clam": ("shellfish", "passive", [], 0, 0, "minecraft:kelp", "Clam"),
+    "crab": ("shellfish", "defensive", [], 0, 2, "minecraft:kelp", "Crab"),
+    "seal": ("marine_mammals", "hunter", FISH, 0, 3, "minecraft:cod", "Seal"),
     # ---- insects & bugs
     "ant": ("bugs", "defensive", [], 0, 1, "minecraft:sugar", "Ant"),
     "butterfly": ("bugs", "passive", [], 0, 0, "minecraft:sugar", "Butterfly"),
     "lucienaga": ("bugs", "passive", [], 0, 0, "minecraft:sugar", "Firefly"),
     "snail": ("bugs", "passive", [], 0, 0, "minecraft:kelp", "Snail"),
+    # ---- restored: in the original pack
+    "penguin": ("flightless_birds", "passive", [], 0, 0, "minecraft:cod", "Penguin"),
+    "hyenas_2": ("bears_hyenas", "apex", SMALL + MID + ["zebra"], 8, 5, "minecraft:beef", "Gray Hyena"),
+    "land_turtle": ("reptiles", "passive", [], 0, 0, "minecraft:melon_slice", "Land Turtle"),
+    "pink_dolphin": ("marine_mammals", "hunter", FISH, 0, 3, "minecraft:cod", "Pink Dolphin"),
     # ---- laid eggs (hatch into the animal; given by the parents, not in the creative menu)
     "duck_egg": (None, "egg", [], 0, 0, None, "Duck Egg"),
     "turkey_egg": (None, "egg", [], 0, 0, None, "Turkey Egg"),
@@ -121,19 +135,19 @@ ROSTER = {
     "african_penguin_egg": (None, "egg", [], 0, 0, None, "African Penguin Egg"),
     "blue_penguin_egg": (None, "egg", [], 0, 0, None, "Blue Penguin Egg"),
     "emperor_penguin_egg": (None, "egg", [], 0, 0, None, "Emperor Penguin Egg"),
+    "real_penguin_egg": (None, "egg", [], 0, 0, None, "Penguin Egg"),
 }
 
 # removed on purpose
 REMOVED_ENTITIES = {
     "camel": "removed by request",
-    "pink_dolphin": "vanilla has the Dolphin",
-    "land_turtle": "vanilla has the Turtle",
-    "penguin": "generic scarf penguin; the three real penguin species stay",
-    "real_penguin_egg": "egg of the removed generic penguin",
     "village_ice": "not an animal (trader village)",
     "village_wild": "not an animal (trader village)",
     "bag_items": "the stork's loot bag (dropped diamonds/netherite)",
 }
+
+# animals the original pack had a model and textures for but no behaviour file: built from a sibling
+CLONES = {"hyenas_2": "hyenas"}
 
 # which parent lays which egg item
 LAID_EGGS = {
@@ -143,6 +157,7 @@ LAID_EGGS = {
     "african_penguin_egg": "penguin_african",
     "blue_penguin_egg": "blue_penguin",
     "emperor_penguin_egg": "emperor_penguin",
+    "real_penguin_egg": "penguin",
 }
 
 # custom items of the old pack -> vanilla item (anything else custom is dropped)

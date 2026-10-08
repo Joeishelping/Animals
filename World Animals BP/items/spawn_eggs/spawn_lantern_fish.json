@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_lantern_fish",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.sea_life"
+        "group": "worldanimals:itemGroup.name.fish"
       }
     },
     "components": {

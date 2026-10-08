@@ -6,6 +6,7 @@ Kept for the record (and to redo the cleanup if the original pack is updated). A
 repo are the source of truth; edit them directly.
 """
 import copy
+import json
 import os
 import re
 import shutil
@@ -13,7 +14,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from wa_common import load, dump  # noqa: E402
-from animals import (NS, GROUPS, ROSTER, REMOVED_ENTITIES, LAID_EGGS, ITEM_MAP, HUMANS)  # noqa: E402
+from animals import (NS, GROUPS, ROSTER, REMOVED_ENTITIES, LAID_EGGS, ITEM_MAP, HUMANS, CLONES)  # noqa: E402
 
 NF = 40  # War Engine factions: tags war_f1..war_f40 (member), war_h1..war_h40 (soldier is hostile to faction i)
 SRC_BP, SRC_RP, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
@@ -251,6 +252,8 @@ def prune_events(ent):
 
 def build_entity(path, short):
     d = load(path)
+    if short in CLONES:                      # same behaviour as its sibling, under its own id
+        d = json.loads(json.dumps(d).replace(f'"{NS}:{CLONES[short]}"', f'"{NS}:{short}"'))
     group, role, prey, humans, dmg, tame_food, _name = ROSTER[short]
     d = clean(d, tame_food)
     fix_item_names(d)
@@ -360,6 +363,8 @@ def main():
             d = load(os.path.join(root, f))
             ident = d["minecraft:entity"]["description"]["identifier"].split(":", 1)[1]
             ent_src[ident] = os.path.join(root, f)
+    for clone, sibling in CLONES.items():
+        ent_src[clone] = ent_src[sibling]
     missing = KEPT - set(ent_src)
     assert not missing, missing
     mounts = set()
@@ -383,6 +388,10 @@ def main():
             d["minecraft:spawn_rules"]["description"]["identifier"] = f"{NS}:{ident}"
         if ident in KEPT:
             dump(os.path.join(BP, "spawn_rules", f"{ident}.json"), d)
+            for clone, sibling in CLONES.items():
+                if sibling == ident:
+                    c = json.loads(json.dumps(d).replace(f'"{NS}:{sibling}"', f'"{NS}:{clone}"'))
+                    dump(os.path.join(BP, "spawn_rules", f"{clone}.json"), c)
         else:
             log.append(f"spawn rule dropped: {ident}")
 
@@ -392,14 +401,19 @@ def main():
         for f in files:
             for m in re.finditer(r'"(loot_tables/[^"]+\.json)"', open(os.path.join(root, f)).read()):
                 used.add(m.group(1))
+    feather = [("minecraft:feather", 0, 2), ("minecraft:chicken", 0, 1)]
+    hide = [("minecraft:leather", 0, 2)]
     generic = {
-        "birds": [("minecraft:feather", 0, 2), ("minecraft:chicken", 0, 1)],
-        "big_cats": [("minecraft:leather", 0, 2)],
-        "large_mammals": [("minecraft:leather", 0, 2), ("minecraft:beef", 1, 2)],
+        "birds_of_prey": feather, "water_birds": feather, "land_birds": feather, "flightless_birds": feather,
+        "big_cats": hide, "bears_hyenas": hide,
+        "giants": [("minecraft:leather", 0, 2), ("minecraft:beef", 1, 2)],
+        "grazers": [("minecraft:leather", 0, 2), ("minecraft:beef", 1, 2)],
         "small_mammals": [("minecraft:rabbit_hide", 0, 1)],
         "primates": [("minecraft:leather", 0, 1)],
         "reptiles": [("minecraft:leather", 0, 1)],
-        "sea_life": [("minecraft:cod", 0, 2)],
+        "snakes": [("minecraft:string", 0, 1)],
+        "sharks": [("minecraft:cod", 0, 2)], "marine_mammals": [("minecraft:cod", 0, 2)],
+        "fish": [("minecraft:cod", 0, 2)], "shellfish": [("minecraft:cod", 0, 1)],
         "bugs": [],
     }
     for lt in sorted(used):
@@ -445,6 +459,7 @@ def walk_strings(o):
 
 
 EGG_ICONS = {}
+BIG_CAT_RC = set()
 
 
 def build_rp(mounts):
@@ -460,6 +475,12 @@ def build_rp(mounts):
             continue
         if "spawn_egg" in desc and "texture" in desc["spawn_egg"]:
             EGG_ICONS[short] = desc["spawn_egg"]["texture"]
+        rcs = desc.get("render_controllers", [])
+        if "controller.render.new_lion.default" in rcs and "female_lion" not in desc.get("textures", {}):
+            # single-texture cats borrowed the lion's controller, which only draws the body while variant == 0
+            desc["render_controllers"] = ["controller.render.wa_big_cat.default" if r == "controller.render.new_lion.default"
+                                          else r for r in rcs]
+            BIG_CAT_RC.add(short)
         refs |= set(walk_strings(desc))
         dump(os.path.join(RP, "entity", f"{short}.json"), d)
 
@@ -491,6 +512,12 @@ def build_rp(mounts):
                     refs.update(walk_strings(d))
         return kept
 
+    if BIG_CAT_RC:
+        os.makedirs(os.path.join(RP, "render_controllers"), exist_ok=True)
+        dump(os.path.join(RP, "render_controllers", "wa_big_cat.json"), {"format_version": "1.8.0", "render_controllers": {
+            "controller.render.wa_big_cat.default": {
+                "geometry": "Geometry.default", "materials": [{"*": "Material.default"}], "textures": ["Texture.default"]}}})
+        log.append("own render controller: " + ", ".join(sorted(BIG_CAT_RC)))
     keep_json_dir("animation_controllers", "animation_controllers")
     keep_json_dir("render_controllers", "render_controllers")
     keep_json_dir("animations", "animations")

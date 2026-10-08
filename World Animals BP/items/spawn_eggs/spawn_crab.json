@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_crab",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.sea_life"
+        "group": "worldanimals:itemGroup.name.shellfish"
       }
     },
     "components": {

@@ -1,28 +1,39 @@
-# World Animals v2 (cleaned up)
+# World Animals v2.1 (cleaned up)
 
 A cleaned-up rebuild of the World Animals add-on (originally by ArathNido): animals only, sorted by type, with
 smarter hunting, and tamed animals that fight on your side in [War Engine](https://github.com/Joeishelping/Minecraft-War-Mod).
 
-Install `dist/World_Animals_v2_0.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
+Install `dist/World_Animals_v2_1.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
 replaces the old version, because it keeps the same pack IDs. Remove the old **[Structure generation]** pack from
 the world: it's gone.
 
 ## Spawn eggs, by type
 
-All eggs are in the creative menu's **Nature** tab, in eight collapsible groups:
+All 76 animals from the original pack are in. Their eggs are in the creative menu's **Nature** tab, in 17
+collapsible groups:
 
 | Group | Animals |
 |---|---|
-| Birds | African Penguin, Blue Jay, Blue Penguin, Dove, Duck, Eagle, Emperor Penguin, Flamingo, Kiwi, Ostrich, Pelican, Seagull, Stork, Toucan, Turkey, Vulture |
+| Birds of Prey | Eagle, Vulture |
+| Water Birds | Duck, Flamingo, Pelican, Seagull, Stork |
+| Land & Tropical Birds | Blue Jay, Dove, Toucan, Turkey |
+| Penguins & Flightless Birds | African Penguin, Blue Penguin, Emperor Penguin, Kiwi, Ostrich, Penguin |
 | Big Cats | Caracal, Cougar, Leopard, Lion, Panther, Snow Leopard, Tiger, White Lion, White Tiger |
-| Large Mammals | African Elephant, Asian Elephant, Black Bear, Brown Bear, Buffalo, Deer, Giraffe, Hippopotamus, Hyena, Kangaroo, Mammoth, Rhino, Wild Boar, Zebra |
+| Bears & Hyenas | Black Bear, Brown Bear, Gray Hyena, Hyena |
+| Elephants & Giants | African Elephant, Asian Elephant, Giraffe, Hippopotamus, Mammoth, Rhino |
+| Grazers & Hoofed Animals | Buffalo, Deer, Kangaroo, Wild Boar, Zebra |
 | Small Mammals | Hedgehog, Platypus, Raccoon, Rat, Red Panda, Squirrel |
 | Primates | Capuchin Monkey, Chimpanzee, Gorilla |
-| Reptiles | Coral Snake, Crocodile, Iguana, Komodo Dragon, Scarlet Kingsnake, Snake |
-| Sea Life | Clam, Crab, Great White Shark, Hammerhead Shark, Jellyfish, Lanternfish, Orca, Seal, Shark, Shrimp, Stingray, Swordfish, Tiger Shark, Whale |
+| Reptiles & Turtles | Crocodile, Iguana, Komodo Dragon, Land Turtle |
+| Snakes | Coral Snake, Scarlet Kingsnake, Snake |
+| Sharks | Great White Shark, Hammerhead Shark, Shark, Tiger Shark |
+| Whales, Dolphins & Seals | Orca, Pink Dolphin, Seal, Whale |
+| Fish, Rays & Jellyfish | Jellyfish, Lanternfish, Stingray, Swordfish |
+| Crabs & Shellfish | Clam, Crab, Shrimp |
 | Insects & Bugs | Ant, Butterfly, Firefly, Snail |
 
-Laid eggs (duck, turkey, ostrich, penguins) still drop from the parents and hatch, but they aren't in the menu.
+Blue Crab and Blue Iguana are color variants of the Crab and Iguana. Laid eggs (duck, turkey, ostrich, penguins)
+still drop from the parents and hatch, but they aren't in the menu.
 
 ## How they behave
 
@@ -73,8 +84,7 @@ carry the `war_mount` family, which **War Engine v9.3** treats like a horse (Mou
 
 ## What was removed
 
-- Camels; Pink Dolphin (vanilla has the Dolphin); Land Turtle (vanilla has the Turtle); the generic scarf Penguin
-  (the three real penguin species stay).
+- Camels (only leftover names; the original had no camel model).
 - The trader villages, the stork's loot bag (it dropped diamonds and netherite), and the structure pack (palms,
   bananas, ruby/citrine ores).
 - Every item and block: gems, armour and tools, swordfish/shark/pearl weapons, scarves, astronaut suits, butterfly
@@ -82,6 +92,11 @@ carry the `war_mount` family, which **War Engine v9.3** treats like a horse (Mou
   vanilla saddle, and drops are vanilla (leather, feathers, meat, cod).
 
 ## Fixed along the way
+
+- Gray Hyena had a model and textures but no behavior file, so it never existed in game. It now behaves like the
+  Hyena.
+- Cougar, Leopard, Panther, Snow Leopard, Tiger and White Tiger used the Lion's render controller, which only draws
+  the body while `variant == 0`. They now have their own, which always draws it.
 
 - White Lion never loaded (its file was missing a closing brace).
 - Platypus never spawned naturally (its spawn rule named an entity that doesn't exist).

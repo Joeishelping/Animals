@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_kiwi",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.birds"
+        "group": "worldanimals:itemGroup.name.flightless_birds"
       }
     },
     "components": {
