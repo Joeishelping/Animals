@@ -4829,6 +4829,39 @@
       "deals_damage": true
      }
     }
+   },
+   "wa:hostile": {
+    "minecraft:type_family": {
+     "family": [
+      "african_elephant",
+      "worldanimals",
+      "wa_giants",
+      "war_mount",
+      "mob",
+      "monster"
+     ]
+    },
+    "minecraft:environment_sensor": {
+     "triggers": [
+      {
+       "filters": {
+        "any_of": [
+         {
+          "test": "has_target",
+          "subject": "self",
+          "value": false
+         },
+         {
+          "test": "has_component",
+          "subject": "self",
+          "value": "minecraft:is_tamed"
+         }
+        ]
+       },
+       "event": "wa:hostile_off"
+      }
+     ]
+    }
    }
   },
   "components": {
@@ -4978,22 +5011,7 @@
     "track_target": true
    },
    "minecraft:on_target_acquired": {
-    "filters": {
-     "all_of": [
-      {
-       "test": "is_family",
-       "subject": "target",
-       "value": "wolf"
-      },
-      {
-       "test": "has_component",
-       "subject": "target",
-       "operator": "!=",
-       "value": "minecraft:is_tamed"
-      }
-     ]
-    },
-    "event": "minecraft:mad_at_wolf",
+    "event": "wa:target_acquired_1",
     "target": "self"
    },
    "minecraft:on_target_escape": {
@@ -6444,7 +6462,8 @@
    "minecraft:on_tame": {
     "remove": {
      "component_groups": [
-      "minecraft:african_elephant_wild"
+      "minecraft:african_elephant_wild",
+      "wa:hostile"
      ]
     },
     "add": {
@@ -6610,6 +6629,53 @@
       "minecraft:citrine_armor"
      ]
     }
+   },
+   "wa:hostile_on": {
+    "sequence": [
+     {
+      "filters": {
+       "test": "has_component",
+       "subject": "self",
+       "value": "minecraft:is_tamed",
+       "operator": "!="
+      },
+      "add": {
+       "component_groups": [
+        "wa:hostile"
+       ]
+      }
+     }
+    ]
+   },
+   "wa:hostile_off": {
+    "remove": {
+     "component_groups": [
+      "wa:hostile"
+     ]
+    }
+   },
+   "wa:target_acquired_1": {
+    "sequence": [
+     {
+      "filters": {
+       "test": "has_component",
+       "subject": "self",
+       "value": "minecraft:is_tamed",
+       "operator": "!="
+      },
+      "add": {
+       "component_groups": [
+        "wa:hostile"
+       ]
+      }
+     },
+     {
+      "trigger": {
+       "event": "minecraft:mad_at_wolf",
+       "target": "self"
+      }
+     }
+    ]
    }
   }
  }

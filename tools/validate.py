@@ -99,12 +99,14 @@ for ident, (p, d) in entities.items():
     if ident.replace(NS, NS + "spawn_") not in items and not any(
             i[1]["minecraft:item"]["components"].get("minecraft:entity_placer", {}).get("entity") == ident for i in items.values()):
         errors.append(f"{rp}: no egg item places {ident}")
-    fams = set()
     for path, v in walk(ent):
-        if path and path[-1] == "family" and isinstance(v, list):
-            fams |= set(v)
-    if "monster" in fams:
-        errors.append(f"{rp}: has the monster family (War Engine soldiers would shoot it on sight)")
+        if path and path[-1] == "family" and isinstance(v, list) and "monster" in v and "wa:hostile" not in path:
+            errors.append(f"{rp}: monster family outside wa:hostile (War Engine soldiers would shoot it on sight)")
+    gs = ent.get("component_groups", {})
+    tames = any(b.get("minecraft:tameable", {}).get("probability", 1) > 0
+                for b in [ent.get("components", {})] + list(gs.values()) if "minecraft:tameable" in b)
+    if "/eggs/" not in rp and not (tames and any("minecraft:is_tamed" in g for g in gs.values())):
+        errors.append(f"{rp}: cannot be tamed")
 
 # ---- loot tables
 for p in files(os.path.join(BP, "loot_tables")):

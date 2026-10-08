@@ -1,10 +1,6 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.ant.sit": {
-      "loop": true,
-      "bones": {}
-    },
     "animation.crab.attack": {
       "loop": true,
       "bones": {}

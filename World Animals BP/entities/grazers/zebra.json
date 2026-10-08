@@ -2585,6 +2585,10 @@
        }
       }
      ]
+    },
+    "minecraft:tameable": {
+     "probability": 0.0,
+     "tame_items": "minecraft:barrier"
     }
    },
    "minecraft:zebra_unchested": {},
@@ -2638,6 +2642,38 @@
       "cause": "all",
       "deals_damage": true
      }
+    }
+   },
+   "wa:hostile": {
+    "minecraft:type_family": {
+     "family": [
+      "zebra",
+      "worldanimals",
+      "wa_grazers",
+      "mob",
+      "monster"
+     ]
+    },
+    "minecraft:environment_sensor": {
+     "triggers": [
+      {
+       "filters": {
+        "any_of": [
+         {
+          "test": "has_target",
+          "subject": "self",
+          "value": false
+         },
+         {
+          "test": "has_component",
+          "subject": "self",
+          "value": "minecraft:is_tamed"
+         }
+        ]
+       },
+       "event": "wa:hostile_off"
+      }
+     ]
     }
    }
   },
@@ -2772,22 +2808,7 @@
     }
    },
    "minecraft:on_target_acquired": {
-    "filters": {
-     "all_of": [
-      {
-       "test": "is_family",
-       "subject": "target",
-       "value": "wolf"
-      },
-      {
-       "test": "has_component",
-       "subject": "target",
-       "operator": "!=",
-       "value": "minecraft:is_tamed"
-      }
-     ]
-    },
-    "event": "minecraft:mad_at_wolf",
+    "event": "wa:target_acquired_1",
     "target": "self"
    },
    "minecraft:on_target_escape": {
@@ -4024,6 +4045,14 @@
       "max_dist": 32
      }
     ]
+   },
+   "minecraft:tameable": {
+    "probability": 0.33,
+    "tame_items": "minecraft:wheat",
+    "tame_event": {
+     "event": "minecraft:on_tame",
+     "target": "self"
+    }
    }
   },
   "events": {
@@ -4249,7 +4278,8 @@
    "minecraft:on_tame": {
     "remove": {
      "component_groups": [
-      "minecraft:zebra_wild"
+      "minecraft:zebra_wild",
+      "wa:hostile"
      ]
     },
     "add": {
@@ -4314,6 +4344,53 @@
       "minecraft:zebra_chested"
      ]
     }
+   },
+   "wa:hostile_on": {
+    "sequence": [
+     {
+      "filters": {
+       "test": "has_component",
+       "subject": "self",
+       "value": "minecraft:is_tamed",
+       "operator": "!="
+      },
+      "add": {
+       "component_groups": [
+        "wa:hostile"
+       ]
+      }
+     }
+    ]
+   },
+   "wa:hostile_off": {
+    "remove": {
+     "component_groups": [
+      "wa:hostile"
+     ]
+    }
+   },
+   "wa:target_acquired_1": {
+    "sequence": [
+     {
+      "filters": {
+       "test": "has_component",
+       "subject": "self",
+       "value": "minecraft:is_tamed",
+       "operator": "!="
+      },
+      "add": {
+       "component_groups": [
+        "wa:hostile"
+       ]
+      }
+     },
+     {
+      "trigger": {
+       "event": "minecraft:mad_at_wolf",
+       "target": "self"
+      }
+     }
+    ]
    }
   }
  }

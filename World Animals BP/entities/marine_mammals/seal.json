@@ -106,7 +106,7 @@
      }
     },
     "minecraft:on_target_acquired": {
-     "event": "minecraft:become_angry",
+     "event": "wa:target_acquired_1",
      "target": "self"
     },
     "minecraft:behavior.nearest_attackable_target": {
@@ -2634,6 +2634,38 @@
       }
      ]
     }
+   },
+   "wa:hostile": {
+    "minecraft:type_family": {
+     "family": [
+      "seal",
+      "worldanimals",
+      "wa_marine_mammals",
+      "mob",
+      "monster"
+     ]
+    },
+    "minecraft:environment_sensor": {
+     "triggers": [
+      {
+       "filters": {
+        "any_of": [
+         {
+          "test": "has_target",
+          "subject": "self",
+          "value": false
+         },
+         {
+          "test": "has_component",
+          "subject": "self",
+          "value": "minecraft:is_tamed"
+         }
+        ]
+       },
+       "event": "wa:hostile_off"
+      }
+     ]
+    }
    }
   },
   "components": {
@@ -3985,6 +4017,10 @@
       "max_dist": 32
      }
     ]
+   },
+   "minecraft:on_target_acquired": {
+    "event": "wa:hostile_on",
+    "target": "self"
    }
   },
   "events": {
@@ -4025,7 +4061,11 @@
     ]
    },
    "minecraft:entity_born": {
-    "remove": {},
+    "remove": {
+     "component_groups": [
+      "wa:hostile"
+     ]
+    },
     "add": {
      "component_groups": [
       "minecraft:seal_baby",
@@ -4077,7 +4117,8 @@
    "minecraft:on_tame": {
     "remove": {
      "component_groups": [
-      "minecraft:seal_wild"
+      "minecraft:seal_wild",
+      "wa:hostile"
      ]
     },
     "add": {
@@ -4122,6 +4163,53 @@
       "minecraft:seal_chested"
      ]
     }
+   },
+   "wa:hostile_on": {
+    "sequence": [
+     {
+      "filters": {
+       "test": "has_component",
+       "subject": "self",
+       "value": "minecraft:is_tamed",
+       "operator": "!="
+      },
+      "add": {
+       "component_groups": [
+        "wa:hostile"
+       ]
+      }
+     }
+    ]
+   },
+   "wa:hostile_off": {
+    "remove": {
+     "component_groups": [
+      "wa:hostile"
+     ]
+    }
+   },
+   "wa:target_acquired_1": {
+    "sequence": [
+     {
+      "filters": {
+       "test": "has_component",
+       "subject": "self",
+       "value": "minecraft:is_tamed",
+       "operator": "!="
+      },
+      "add": {
+       "component_groups": [
+        "wa:hostile"
+       ]
+      }
+     },
+     {
+      "trigger": {
+       "event": "minecraft:become_angry",
+       "target": "self"
+      }
+     }
+    ]
    }
   }
  }

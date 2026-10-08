@@ -213,6 +213,10 @@
             "mob",
             "worldanimals_pet"
           ]
+        },
+        "minecraft:tameable": {
+          "probability": 0.0,
+          "tame_items": "minecraft:barrier"
         }
       },
       "minecraft:deer_unchested": {},
@@ -441,6 +445,14 @@
       "minecraft:pushable": {
         "is_pushable": true,
         "is_pushable_by_piston": true
+      },
+      "minecraft:tameable": {
+        "probability": 0.33,
+        "tame_items": "minecraft:apple",
+        "tame_event": {
+          "event": "minecraft:on_tame",
+          "target": "self"
+        }
       }
     },
     "events": {

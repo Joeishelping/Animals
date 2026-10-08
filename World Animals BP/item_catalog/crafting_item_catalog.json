@@ -50,8 +50,7 @@
               "worldanimals:spawn_blue_penguin",
               "worldanimals:spawn_emperor_penguin",
               "worldanimals:spawn_kiwi",
-              "worldanimals:spawn_ostrich",
-              "worldanimals:spawn_penguin"
+              "worldanimals:spawn_ostrich"
             ]
           },
           {
@@ -79,7 +78,6 @@
             "items": [
               "worldanimals:spawn_black_bear",
               "worldanimals:spawn_bear",
-              "worldanimals:spawn_hyenas_2",
               "worldanimals:spawn_hyenas"
             ]
           },
@@ -143,8 +141,7 @@
             "items": [
               "worldanimals:spawn_crocodile",
               "worldanimals:spawn_iguana",
-              "worldanimals:spawn_komodo_dragon",
-              "worldanimals:spawn_land_turtle"
+              "worldanimals:spawn_komodo_dragon"
             ]
           },
           {
@@ -166,7 +163,6 @@
             "items": [
               "worldanimals:spawn_white_shark",
               "worldanimals:spawn_hammerhead_shark",
-              "worldanimals:spawn_shark",
               "worldanimals:spawn_tiger_shark"
             ]
           },
@@ -177,44 +173,30 @@
             },
             "items": [
               "worldanimals:spawn_orca",
-              "worldanimals:spawn_pink_dolphin",
               "worldanimals:spawn_seal",
               "worldanimals:spawn_ballena"
             ]
           },
           {
             "group_identifier": {
-              "icon": "worldanimals:spawn_jellyfish_wa",
+              "icon": "worldanimals:spawn_crab",
               "name": "worldanimals:itemGroup.name.fish"
             },
             "items": [
+              "worldanimals:spawn_crab",
               "worldanimals:spawn_jellyfish_wa",
-              "worldanimals:spawn_lantern_fish",
               "worldanimals:spawn_stingray",
               "worldanimals:spawn_swordfish"
             ]
           },
           {
             "group_identifier": {
-              "icon": "worldanimals:spawn_clam",
-              "name": "worldanimals:itemGroup.name.shellfish"
-            },
-            "items": [
-              "worldanimals:spawn_clam",
-              "worldanimals:spawn_crab",
-              "worldanimals:spawn_shrimp"
-            ]
-          },
-          {
-            "group_identifier": {
-              "icon": "worldanimals:spawn_ant",
+              "icon": "worldanimals:spawn_butterfly",
               "name": "worldanimals:itemGroup.name.bugs"
             },
             "items": [
-              "worldanimals:spawn_ant",
               "worldanimals:spawn_butterfly",
-              "worldanimals:spawn_lucienaga",
-              "worldanimals:spawn_snail"
+              "worldanimals:spawn_lucienaga"
             ]
           }
         ]

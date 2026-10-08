@@ -25,7 +25,7 @@ GROUPS = {
     "snakes": "Snakes",
     "sharks": "Sharks",
     "marine_mammals": "Whales, Dolphins & Seals",
-    "fish": "Fish, Rays & Jellyfish",
+    "fish": "Fish, Rays, Crabs & Jellyfish",
     "shellfish": "Crabs & Shellfish",
     "bugs": "Insects & Bugs",
 }
@@ -116,7 +116,7 @@ ROSTER = {
     "lantern_fish": ("fish", "passive", [], 0, 0, "minecraft:cod", "Lanternfish"),
     "shrimp": ("shellfish", "passive", [], 0, 0, "minecraft:kelp", "Shrimp"),
     "clam": ("shellfish", "passive", [], 0, 0, "minecraft:kelp", "Clam"),
-    "crab": ("shellfish", "defensive", [], 0, 2, "minecraft:kelp", "Crab"),
+    "crab": ("fish", "defensive", [], 0, 2, "minecraft:kelp", "Crab"),
     "seal": ("marine_mammals", "hunter", FISH, 0, 3, "minecraft:cod", "Seal"),
     # ---- insects & bugs
     "ant": ("bugs", "defensive", [], 0, 1, "minecraft:sugar", "Ant"),
@@ -136,6 +136,21 @@ ROSTER = {
     "blue_penguin_egg": (None, "egg", [], 0, 0, None, "Blue Penguin Egg"),
     "emperor_penguin_egg": (None, "egg", [], 0, 0, None, "Emperor Penguin Egg"),
     "real_penguin_egg": (None, "egg", [], 0, 0, None, "Penguin Egg"),
+}
+
+# cut as filler (they stay in ROSTER so putting one back is just deleting its line here)
+CUT = {
+    "penguin": "generic scarf penguin; African, Blue and Emperor penguins stay",
+    "real_penguin_egg": "egg of the generic penguin",
+    "hyenas_2": "Gray Hyena is a recolor of the Hyena",
+    "pink_dolphin": "vanilla has the Dolphin",
+    "land_turtle": "vanilla has the Turtle",
+    "shark": "generic shark; Great White, Tiger and Hammerhead stay",
+    "clam": "just sits there",
+    "shrimp": "tiny, does nothing",
+    "snail": "tiny, does nothing",
+    "ant": "tiny, does nothing",
+    "lantern_fish": "tiny, does nothing",
 }
 
 # removed on purpose

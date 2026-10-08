@@ -1,71 +1,93 @@
-# World Animals v2.1 (cleaned up)
+# World Animals v2.2 (cleaned up)
 
 A cleaned-up rebuild of the World Animals add-on (originally by ArathNido): animals only, sorted by type, with
 smarter hunting, and tamed animals that fight on your side in [War Engine](https://github.com/Joeishelping/Minecraft-War-Mod).
 
-Install `dist/World_Animals_v2_1.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
+Install `dist/World_Animals_v2_2.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
 replaces the old version, because it keeps the same pack IDs. Remove the old **[Structure generation]** pack from
 the world: it's gone.
 
 ## Spawn eggs, by type
 
-All 76 animals from the original pack are in. Their eggs are in the creative menu's **Nature** tab, in 17
-collapsible groups:
+66 animals, in the creative menu's **Nature** tab, in 16 collapsible groups:
 
 | Group | Animals |
 |---|---|
 | Birds of Prey | Eagle, Vulture |
 | Water Birds | Duck, Flamingo, Pelican, Seagull, Stork |
 | Land & Tropical Birds | Blue Jay, Dove, Toucan, Turkey |
-| Penguins & Flightless Birds | African Penguin, Blue Penguin, Emperor Penguin, Kiwi, Ostrich, Penguin |
+| Penguins & Flightless Birds | African Penguin, Blue Penguin, Emperor Penguin, Kiwi, Ostrich |
 | Big Cats | Caracal, Cougar, Leopard, Lion, Panther, Snow Leopard, Tiger, White Lion, White Tiger |
-| Bears & Hyenas | Black Bear, Brown Bear, Gray Hyena, Hyena |
+| Bears & Hyenas | Black Bear, Brown Bear, Hyena |
 | Elephants & Giants | African Elephant, Asian Elephant, Giraffe, Hippopotamus, Mammoth, Rhino |
 | Grazers & Hoofed Animals | Buffalo, Deer, Kangaroo, Wild Boar, Zebra |
 | Small Mammals | Hedgehog, Platypus, Raccoon, Rat, Red Panda, Squirrel |
 | Primates | Capuchin Monkey, Chimpanzee, Gorilla |
-| Reptiles & Turtles | Crocodile, Iguana, Komodo Dragon, Land Turtle |
+| Reptiles & Turtles | Crocodile, Iguana, Komodo Dragon |
 | Snakes | Coral Snake, Scarlet Kingsnake, Snake |
-| Sharks | Great White Shark, Hammerhead Shark, Shark, Tiger Shark |
-| Whales, Dolphins & Seals | Orca, Pink Dolphin, Seal, Whale |
-| Fish, Rays & Jellyfish | Jellyfish, Lanternfish, Stingray, Swordfish |
-| Crabs & Shellfish | Clam, Crab, Shrimp |
-| Insects & Bugs | Ant, Butterfly, Firefly, Snail |
+| Sharks | Great White Shark, Hammerhead Shark, Tiger Shark |
+| Whales, Dolphins & Seals | Orca, Seal, Whale |
+| Fish, Rays, Crabs & Jellyfish | Crab, Jellyfish, Stingray, Swordfish |
+| Insects & Bugs | Butterfly, Firefly |
 
 Blue Crab and Blue Iguana are color variants of the Crab and Iguana. Laid eggs (duck, turkey, ostrich, penguins)
 still drop from the parents and hatch, but they aren't in the menu.
+
+### Cut as filler (say the word and any of them comes back)
+
+| Animal | Why |
+|---|---|
+| Penguin | generic scarf penguin; African, Blue and Emperor penguins stay |
+| Gray Hyena | Gray Hyena is a recolor of the Hyena |
+| Pink Dolphin | vanilla has the Dolphin |
+| Land Turtle | vanilla has the Turtle |
+| Shark | generic shark; Great White, Tiger and Hammerhead stay |
+| Clam | just sits there |
+| Shrimp | tiny, does nothing |
+| Snail | tiny, does nothing |
+| Ant | tiny, does nothing |
+| Lanternfish | tiny, does nothing |
 
 ## How they behave
 
 - **Dangerous predators** hunt prey **and** attack people (players, villagers, illagers, War Engine soldiers) who
   come close: Lion, White Lion, Tiger, White Tiger, Leopard, Panther, Brown Bear, Hyena, Hippopotamus, Crocodile,
-  Komodo Dragon, Snake, Coral Snake, Shark, Great White Shark, Tiger Shark.
+  Komodo Dragon, Snake, Coral Snake, Great White Shark, Tiger Shark.
 - **Hunters** go after their prey but leave people alone unless hurt: Cougar, Snow Leopard, Caracal, Black Bear,
   Chimpanzee (hunts capuchins), Eagle, Pelican, Seagull, Seal, Orca, Hammerhead, Swordfish, Scarlet Kingsnake (eats
   other snakes).
 - **Defensive animals** fight back when hurt: elephants, mammoth, rhino, buffalo, giraffe, zebra, kangaroo, wild
-  boar, ostrich, gorilla, hedgehog, platypus, crab, stingray, jellyfish, ant. Herd animals call the herd.
+  boar, ostrich, gorilla, hedgehog, platypus, crab, stingray, jellyfish. Herd animals call the herd.
 - Everything else is passive.
+- **Soldiers fight back.** War Engine soldiers only react to mobs of the `monster` family, so an animal carries
+  `monster` while it is attacking something (and soldiers within 9 blocks of it shoot), and drops it once it has
+  no target. A tamed animal never has it, so your own soldiers never shoot your pets.
 - Prey is real prey: zebras, deer, buffalo, sheep, pigs, cows, horses, rabbits, chickens, fish, squid, seals... by
   predator. Predators never hunt anyone's **tamed** animals, and babies don't hunt.
 
 ## Tamed animals and War Engine factions
 
-Tame with a vanilla item (the old collar and other custom items are gone):
+**Every animal can be tamed**, with a vanilla item (the old collar and other custom items are gone). The ones the
+original never let you tame take a few tries (1 in 3):
 
-| Animal | Tame with |
+| Tame with | Animals |
 |---|---|
-| Lion, White Lion, Tiger, White Tiger, Leopard, Panther, Cougar | beef |
-| Snow Leopard | mutton |
-| Caracal, Crocodile, Komodo Dragon | chicken |
-| African / Asian Elephant, Mammoth | hay bale |
-| Rhino, Ostrich | wheat |
-| Giraffe | apple |
-| Gorilla, Chimpanzee, Capuchin Monkey, Toucan | melon slice |
-| Penguins, Seal, Platypus | cod |
-| Hedgehog, Iguana, Raccoon, Red Panda | sweet berries |
-| Blue Jay, Dove, Kiwi, Rat | wheat seeds |
-| Scarlet Kingsnake | rabbit |
+| apple | Deer, Giraffe |
+| beef | Cougar, Hyena, Leopard, Lion, Panther, Tiger, White Lion, White Tiger |
+| carrot | Wild Boar |
+| chicken | Caracal, Crocodile, Eagle, Komodo Dragon |
+| cod | African Penguin, Blue Penguin, Emperor Penguin, Flamingo, Great White Shark, Hammerhead Shark, Jellyfish, Pelican, Platypus, Seagull, Seal, Stingray, Stork, Swordfish, Tiger Shark, Whale |
+| hay block | African Elephant, Asian Elephant, Mammoth |
+| kelp | Crab |
+| melon slice | Capuchin Monkey, Chimpanzee, Gorilla, Hippopotamus, Toucan |
+| mutton | Snow Leopard |
+| rabbit | Coral Snake, Scarlet Kingsnake, Snake |
+| rotten flesh | Vulture |
+| salmon | Brown Bear, Orca |
+| sugar | Butterfly, Firefly |
+| sweet berries | Black Bear, Hedgehog, Iguana, Raccoon, Red Panda |
+| wheat | Buffalo, Kangaroo, Ostrich, Rhino, Zebra |
+| wheat seeds | Blue Jay, Dove, Duck, Kiwi, Rat, Squirrel, Turkey |
 
 A tamed animal belongs to your War Engine faction (it takes the same `war_f<n>` tag as you, kept in sync while you
 are online):

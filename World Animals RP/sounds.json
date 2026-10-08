@@ -174,23 +174,6 @@
         ],
         "volume": 1.0
       },
-      "worldanimals:hyenas_2": {
-        "volume": 1.0,
-        "pitch": [
-          0.8,
-          1.2
-        ],
-        "events": {
-          "ambient": "mob.hyenas.idle",
-          "hurt": "mob.hyenas.hurt",
-          "death": "mob.hyenas.death",
-          "step": {
-            "sound": "mob.chicken.step",
-            "volume": 0.15,
-            "pitch": 1.0
-          }
-        }
-      },
       "worldanimals:hyenas": {
         "volume": 1.0,
         "pitch": [
@@ -223,17 +206,6 @@
             "volume": 0.15,
             "pitch": 1.0
           }
-        }
-      },
-      "worldanimals:snail": {
-        "volume": 1.0,
-        "pitch": [
-          0.8,
-          1.2
-        ],
-        "events": {
-          "hurt": "mob.slime.small",
-          "death": "mob.slime.small"
         }
       },
       "worldanimals:dove": {
@@ -413,27 +385,6 @@
           }
         }
       },
-      "worldanimals:shrimp": {
-        "volume": 1.0,
-        "pitch": [
-          0.8,
-          1.2
-        ],
-        "events": {
-          "hurt": "mob.fish.hurt",
-          "hurt.in.water": "mob.fish.hurt",
-          "flop": {
-            "sound": "mob.fish.flop",
-            "volume": 1.0,
-            "pitch": 1.0
-          },
-          "step": {
-            "sound": "mob.fish.step",
-            "volume": 0.15,
-            "pitch": 1.0
-          }
-        }
-      },
       "worldanimals:hammerhead_shark": {
         "volume": 1.0,
         "pitch": [
@@ -557,56 +508,6 @@
           "step": {
             "sound": "mob.fish.step",
             "volume": 0.15,
-            "pitch": 1.0
-          }
-        }
-      },
-      "worldanimals:shark": {
-        "volume": 1.0,
-        "pitch": [
-          0.8,
-          1.2
-        ],
-        "events": {
-          "hurt": "mob.fish.hurt",
-          "hurt.in.water": "mob.fish.hurt",
-          "flop": {
-            "sound": "mob.fish.flop",
-            "volume": 1.0,
-            "pitch": 1.0
-          },
-          "step": {
-            "sound": "mob.fish.step",
-            "volume": 0.15,
-            "pitch": 1.0
-          }
-        }
-      },
-      "worldanimals:pink_dolphin": {
-        "volume": 1.0,
-        "pitch": [
-          0.8,
-          1.2
-        ],
-        "events": {
-          "ambient": "mob.dolphin.idle",
-          "hurt": "mob.dolphin.hurt",
-          "death": "mob.dolphin.death",
-          "breathe": "mob.dolphin.blowhole",
-          "attack": "mob.dolphin.attack",
-          "splash": "mob.dolphin.splash",
-          "swim": "mob.dolphin.swim",
-          "ambient.in.water": "mob.dolphin.idle_water",
-          "hurt.in.water": "mob.dolphin.hurt",
-          "death.in.water": "mob.dolphin.death",
-          "jump": {
-            "sound": "mob.dolphin.jump",
-            "volume": 0.7,
-            "pitch": 1.0
-          },
-          "eat": {
-            "sound": "mob.dolphin.eat",
-            "volume": 0.7,
             "pitch": 1.0
           }
         }
@@ -758,18 +659,6 @@
         }
       },
       "worldanimals:penguin_african": {
-        "volume": 1.0,
-        "pitch": [
-          0.8,
-          1.2
-        ],
-        "events": {
-          "ambient": "mob.penguin.idle",
-          "hurt": "mob.penguin.hurt",
-          "death": "mob.penguin.death"
-        }
-      },
-      "worldanimals:penguin": {
         "volume": 1.0,
         "pitch": [
           0.8,

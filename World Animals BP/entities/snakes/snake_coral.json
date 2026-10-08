@@ -1,1724 +1,4261 @@
 {
-  "format_version": "1.16.0",
-  "minecraft:entity": {
-    "description": {
-      "identifier": "worldanimals:snake_coral",
-      "is_spawnable": false,
-      "is_summonable": true,
-      "is_experimental": false
+ "format_version": "1.16.0",
+ "minecraft:entity": {
+  "description": {
+   "identifier": "worldanimals:snake_coral",
+   "is_spawnable": false,
+   "is_summonable": true,
+   "is_experimental": false
+  },
+  "component_groups": {
+   "minecraft:spider_neutral": {
+    "minecraft:environment_sensor": {
+     "triggers": {
+      "filters": {
+       "test": "is_brightness",
+       "operator": "<",
+       "value": 0.49
+      },
+      "event": "minecraft:become_hostile"
+     }
     },
-    "component_groups": {
-      "minecraft:spider_neutral": {
-        "minecraft:environment_sensor": {
-          "triggers": {
-            "filters": {
-              "test": "is_brightness",
-              "operator": "<",
-              "value": 0.49
-            },
-            "event": "minecraft:become_hostile"
-          }
-        },
-        "minecraft:on_target_acquired": {
-          "event": "minecraft:become_angry"
-        }
-      },
-      "minecraft:spider_hostile": {
-        "minecraft:environment_sensor": {
-          "triggers": {
-            "filters": {
-              "test": "is_brightness",
-              "operator": ">",
-              "value": 0.49
-            },
-            "event": "minecraft:become_neutral"
-          }
-        },
-        "minecraft:behavior.leap_at_target": {
-          "priority": 4,
-          "yd": 0.4,
-          "must_be_on_ground": false
-        },
-        "minecraft:behavior.melee_attack": {
-          "priority": 3,
-          "track_target": true,
-          "random_stop_interval": 100,
-          "reach_multiplier": 0.8
-        }
-      },
-      "minecraft:spider_angry": {
-        "minecraft:angry": {
-          "duration": 10,
-          "duration_delta": 3,
-          "calm_event": {
-            "event": "minecraft:on_calm",
-            "target": "self"
-          }
-        },
-        "minecraft:behavior.leap_at_target": {
-          "priority": 4,
-          "yd": 0.4,
-          "must_be_on_ground": false
-        },
-        "minecraft:behavior.melee_attack": {
-          "priority": 3,
-          "track_target": true,
-          "reach_multiplier": 1.4
-        }
-      },
-      "minecraft:spider_poison_easy": {
-        "minecraft:attack": {
-          "damage": 6,
-          "effect_name": "poison",
-          "effect_duration": 0
-        }
-      },
-      "minecraft:spider_poison_normal": {
-        "minecraft:attack": {
-          "damage": 6,
-          "effect_name": "poison",
-          "effect_duration": 7
-        }
-      },
-      "minecraft:spider_poison_hard": {
-        "minecraft:attack": {
-          "damage": 6,
-          "effect_name": "poison",
-          "effect_duration": 15
-        }
-      }
-    },
-    "components": {
-      "minecraft:experience_reward": {
-        "on_death": "query.last_hit_by_player ? 5 : 0"
-      },
-      "minecraft:type_family": {
-        "family": [
-          "snake_coral",
-          "worldanimals",
-          "wa_snakes",
-          "mob"
-        ]
-      },
-      "minecraft:breathable": {
-        "total_supply": 15,
-        "suffocate_time": 0
-      },
-      "minecraft:nameable": {},
-      "minecraft:loot": {
-        "table": "loot_tables/entities/reptils.json"
-      },
-      "minecraft:collision_box": {
-        "width": 1.5,
-        "height": 0.3
-      },
-      "minecraft:health": {
-        "value": 25,
-        "max": 25
-      },
-      "minecraft:hurt_on_condition": {
-        "damage_conditions": [
-          {
-            "filters": {
-              "test": "in_lava",
-              "subject": "self",
-              "operator": "==",
-              "value": true
-            },
-            "cause": "lava",
-            "damage_per_tick": 4
-          }
-        ]
-      },
-      "minecraft:movement": {
-        "value": 0.3
-      },
-      "minecraft:underwater_movement": {
-        "value": 0.55
-      },
-      "minecraft:navigation.generic": {
-        "is_amphibious": true,
-        "can_path_over_water": true,
-        "can_swim": true,
-        "can_walk": true,
-        "can_breach": false,
-        "can_jump": false
-      },
-      "minecraft:movement.basic": {},
-      "minecraft:jump.static": {},
-      "minecraft:can_climb": {},
-      "minecraft:behavior.float": {
-        "priority": 1
-      },
-      "minecraft:scale": {
-        "value": 0.5
-      },
-      "minecraft:behavior.mount_pathing": {
-        "priority": 5,
-        "speed_multiplier": 1.25,
-        "target_dist": 0.0,
-        "track_target": true
-      },
-      "minecraft:behavior.random_stroll": {
-        "priority": 6,
-        "speed_multiplier": 0.8
-      },
-      "minecraft:behavior.look_at_player": {
-        "priority": 7,
-        "look_distance": 6.0,
-        "probability": 0.02
-      },
-      "minecraft:behavior.random_look_around": {
-        "priority": 7
-      },
-      "minecraft:physics": {},
-      "minecraft:pushable": {
-        "is_pushable": true,
-        "is_pushable_by_piston": true
-      },
-      "minecraft:behavior.hurt_by_target": {
-        "priority": 1,
-        "alert_same_type": false,
-        "entity_types": [
-          {
-            "filters": {
-              "none_of": [
-                {
-                  "any_of": [
-                    {
-                      "any_of": [
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f1"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f1"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f2"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f2"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f3"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f3"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f4"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f4"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f5"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f5"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f6"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f6"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f7"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f7"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f8"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f8"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f9"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f9"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f10"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f10"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f11"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f11"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f12"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f12"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f13"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f13"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f14"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f14"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f15"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f15"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f16"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f16"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f17"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f17"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f18"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f18"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f19"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f19"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f20"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f20"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f21"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f21"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f22"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f22"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f23"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f23"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f24"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f24"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f25"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f25"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f26"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f26"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f27"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f27"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f28"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f28"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f29"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f29"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f30"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f30"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f31"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f31"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f32"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f32"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f33"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f33"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f34"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f34"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f35"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f35"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f36"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f36"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f37"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f37"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f38"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f38"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f39"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f39"
-                            }
-                          ]
-                        },
-                        {
-                          "all_of": [
-                            {
-                              "test": "has_tag",
-                              "subject": "self",
-                              "value": "war_f40"
-                            },
-                            {
-                              "test": "has_tag",
-                              "subject": "other",
-                              "value": "war_f40"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "all_of": [
-                        {
-                          "any_of": [
-                            {
-                              "test": "is_family",
-                              "subject": "other",
-                              "value": "war_soldier"
-                            },
-                            {
-                              "test": "is_family",
-                              "subject": "other",
-                              "value": "war_hound"
-                            }
-                          ]
-                        },
-                        {
-                          "any_of": [
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f1"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h1",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f2"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h2",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f3"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h3",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f4"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h4",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f5"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h5",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f6"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h6",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f7"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h7",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f8"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h8",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f9"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h9",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f10"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h10",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f11"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h11",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f12"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h12",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f13"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h13",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f14"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h14",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f15"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h15",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f16"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h16",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f17"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h17",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f18"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h18",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f19"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h19",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f20"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h20",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f21"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h21",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f22"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h22",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f23"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h23",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f24"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h24",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f25"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h25",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f26"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h26",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f27"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h27",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f28"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h28",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f29"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h29",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f30"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h30",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f31"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h31",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f32"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h32",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f33"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h33",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f34"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h34",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f35"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h35",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f36"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h36",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f37"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h37",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f38"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h38",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f39"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h39",
-                                  "operator": "!="
-                                }
-                              ]
-                            },
-                            {
-                              "all_of": [
-                                {
-                                  "test": "has_tag",
-                                  "subject": "self",
-                                  "value": "war_f40"
-                                },
-                                {
-                                  "test": "has_tag",
-                                  "subject": "other",
-                                  "value": "war_h40",
-                                  "operator": "!="
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            "max_dist": 32
-          }
-        ]
-      },
-      "minecraft:behavior.nearest_attackable_target": {
-        "priority": 3,
-        "must_see": true,
-        "reselect_targets": true,
-        "attack_interval": 4,
-        "must_see_forget_duration": 6.0,
-        "entity_types": [
-          {
-            "filters": {
-              "all_of": [
-                {
-                  "all_of": [
-                    {
-                      "test": "is_baby",
-                      "subject": "self",
-                      "value": false
-                    },
-                    {
-                      "test": "has_component",
-                      "subject": "self",
-                      "value": "minecraft:is_tamed",
-                      "operator": "!="
-                    }
-                  ]
-                },
-                {
-                  "any_of": [
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "player"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "villager"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "wandering_trader"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "illager"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "war_soldier"
-                    }
-                  ]
-                }
-              ]
-            },
-            "max_dist": 4
-          },
-          {
-            "filters": {
-              "all_of": [
-                {
-                  "all_of": [
-                    {
-                      "test": "is_baby",
-                      "subject": "self",
-                      "value": false
-                    },
-                    {
-                      "test": "has_component",
-                      "subject": "self",
-                      "value": "minecraft:is_tamed",
-                      "operator": "!="
-                    }
-                  ]
-                },
-                {
-                  "any_of": [
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "chicken"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "rabbit"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "frog"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "parrot"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "rat"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "squirrel"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "duck"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "turkey"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "kiwi"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "raccoon"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "erizo"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "dove"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "cyanocitta_cristata"
-                    },
-                    {
-                      "test": "is_family",
-                      "subject": "other",
-                      "value": "tucan"
-                    }
-                  ]
-                },
-                {
-                  "test": "has_component",
-                  "subject": "other",
-                  "value": "minecraft:is_tamed",
-                  "operator": "!="
-                },
-                {
-                  "test": "is_family",
-                  "subject": "other",
-                  "value": "worldanimals_pet",
-                  "operator": "!="
-                }
-              ]
-            },
-            "max_dist": 16
-          }
-        ]
-      }
-    },
-    "events": {
-      "minecraft:entity_spawned": {
-        "randomize": [
-          {
-            "weight": 1,
-            "add": {
-              "component_groups": [
-                "minecraft:spider_angry"
-              ]
-            }
-          }
-        ]
-      },
-      "minecraft:become_hostile": {
-        "sequence": [
-          {
-            "remove": {
-              "component_groups": [
-                "minecraft:spider_neutral"
-              ]
-            },
-            "add": {
-              "component_groups": [
-                "minecraft:spider_hostile"
-              ]
-            }
-          },
-          {
-            "filters": {
-              "test": "is_difficulty",
-              "value": "easy"
-            },
-            "remove": {
-              "component_groups": [
-                "minecraft:spider_poison_hard",
-                "minecraft:spider_poison_normal"
-              ]
-            },
-            "add": {
-              "component_groups": [
-                "minecraft:spider_poison_easy"
-              ]
-            }
-          },
-          {
-            "filters": {
-              "test": "is_difficulty",
-              "value": "normal"
-            },
-            "remove": {
-              "component_groups": [
-                "minecraft:spider_poison_easy",
-                "minecraft:spider_poison_hard"
-              ]
-            },
-            "add": {
-              "component_groups": [
-                "minecraft:spider_poison_normal"
-              ]
-            }
-          },
-          {
-            "filters": {
-              "test": "is_difficulty",
-              "value": "hard"
-            },
-            "remove": {
-              "component_groups": [
-                "minecraft:spider_poison_easy",
-                "minecraft:spider_poison_normal"
-              ]
-            },
-            "add": {
-              "component_groups": [
-                "minecraft:spider_poison_hard"
-              ]
-            }
-          }
-        ]
-      },
-      "minecraft:become_neutral": {
-        "remove": {
-          "component_groups": [
-            "minecraft:spider_hostile"
-          ]
-        },
-        "add": {
-          "component_groups": [
-            "minecraft:spider_neutral"
-          ]
-        }
-      },
-      "minecraft:become_angry": {
-        "sequence": [
-          {
-            "remove": {
-              "component_groups": [
-                "minecraft:spider_neutral"
-              ]
-            },
-            "add": {
-              "component_groups": [
-                "minecraft:spider_angry"
-              ]
-            }
-          },
-          {
-            "filters": {
-              "test": "is_difficulty",
-              "value": "easy"
-            },
-            "remove": {
-              "component_groups": [
-                "minecraft:spider_poison_hard",
-                "minecraft:spider_poison_normal"
-              ]
-            },
-            "add": {
-              "component_groups": [
-                "minecraft:spider_poison_easy"
-              ]
-            }
-          },
-          {
-            "filters": {
-              "test": "is_difficulty",
-              "value": "normal"
-            },
-            "remove": {
-              "component_groups": [
-                "minecraft:spider_poison_easy",
-                "minecraft:spider_poison_hard"
-              ]
-            },
-            "add": {
-              "component_groups": [
-                "minecraft:spider_poison_normal"
-              ]
-            }
-          },
-          {
-            "filters": {
-              "test": "is_difficulty",
-              "value": "hard"
-            },
-            "remove": {
-              "component_groups": [
-                "minecraft:spider_poison_easy",
-                "minecraft:spider_poison_normal"
-              ]
-            },
-            "add": {
-              "component_groups": [
-                "minecraft:spider_poison_hard"
-              ]
-            }
-          }
-        ]
-      },
-      "minecraft:on_calm": {
-        "remove": {
-          "component_groups": [
-            "minecraft:spider_angry"
-          ]
-        },
-        "add": {
-          "component_groups": [
-            "minecraft:spider_neutral"
-          ]
-        }
-      }
+    "minecraft:on_target_acquired": {
+     "event": "wa:target_acquired_1",
+     "target": "self"
     }
+   },
+   "minecraft:spider_hostile": {
+    "minecraft:environment_sensor": {
+     "triggers": {
+      "filters": {
+       "test": "is_brightness",
+       "operator": ">",
+       "value": 0.49
+      },
+      "event": "minecraft:become_neutral"
+     }
+    },
+    "minecraft:behavior.leap_at_target": {
+     "priority": 4,
+     "yd": 0.4,
+     "must_be_on_ground": false
+    },
+    "minecraft:behavior.melee_attack": {
+     "priority": 3,
+     "track_target": true,
+     "random_stop_interval": 100,
+     "reach_multiplier": 0.8
+    }
+   },
+   "minecraft:spider_angry": {
+    "minecraft:angry": {
+     "duration": 10,
+     "duration_delta": 3,
+     "calm_event": {
+      "event": "minecraft:on_calm",
+      "target": "self"
+     }
+    },
+    "minecraft:behavior.leap_at_target": {
+     "priority": 4,
+     "yd": 0.4,
+     "must_be_on_ground": false
+    },
+    "minecraft:behavior.melee_attack": {
+     "priority": 3,
+     "track_target": true,
+     "reach_multiplier": 1.4
+    }
+   },
+   "minecraft:spider_poison_easy": {
+    "minecraft:attack": {
+     "damage": 6,
+     "effect_name": "poison",
+     "effect_duration": 0
+    }
+   },
+   "minecraft:spider_poison_normal": {
+    "minecraft:attack": {
+     "damage": 6,
+     "effect_name": "poison",
+     "effect_duration": 7
+    }
+   },
+   "minecraft:spider_poison_hard": {
+    "minecraft:attack": {
+     "damage": 6,
+     "effect_name": "poison",
+     "effect_duration": 15
+    }
+   },
+   "wa:tame": {
+    "minecraft:is_tamed": {},
+    "minecraft:tameable": {
+     "probability": 0.0,
+     "tame_items": "minecraft:barrier"
+    },
+    "minecraft:type_family": {
+     "family": [
+      "snake_coral",
+      "worldanimals",
+      "wa_snakes",
+      "mob",
+      "worldanimals_pet"
+     ]
+    },
+    "minecraft:sittable": {},
+    "minecraft:behavior.stay_while_sitting": {
+     "priority": 2
+    },
+    "minecraft:behavior.follow_owner": {
+     "priority": 6,
+     "speed_multiplier": 1.0,
+     "start_distance": 10,
+     "stop_distance": 2
+    },
+    "minecraft:leashable": {
+     "soft_distance": 4.0,
+     "hard_distance": 6.0,
+     "max_distance": 10.0
+    },
+    "minecraft:behavior.owner_hurt_by_target": {
+     "priority": 1,
+     "entity_types": [
+      {
+       "filters": {
+        "none_of": [
+         {
+          "any_of": [
+           {
+            "any_of": [
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f1"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f1"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f2"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f2"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f3"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f3"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f4"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f4"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f5"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f5"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f6"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f6"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f7"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f7"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f8"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f8"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f9"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f9"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f10"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f10"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f11"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f11"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f12"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f12"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f13"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f13"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f14"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f14"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f15"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f15"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f16"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f16"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f17"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f17"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f18"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f18"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f19"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f19"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f20"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f20"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f21"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f21"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f22"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f22"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f23"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f23"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f24"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f24"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f25"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f25"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f26"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f26"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f27"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f27"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f28"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f28"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f29"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f29"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f30"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f30"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f31"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f31"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f32"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f32"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f33"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f33"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f34"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f34"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f35"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f35"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f36"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f36"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f37"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f37"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f38"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f38"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f39"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f39"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f40"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f40"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "all_of": [
+             {
+              "any_of": [
+               {
+                "test": "is_family",
+                "subject": "other",
+                "value": "war_soldier"
+               },
+               {
+                "test": "is_family",
+                "subject": "other",
+                "value": "war_hound"
+               }
+              ]
+             },
+             {
+              "any_of": [
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f1"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h1",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f2"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h2",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f3"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h3",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f4"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h4",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f5"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h5",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f6"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h6",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f7"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h7",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f8"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h8",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f9"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h9",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f10"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h10",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f11"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h11",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f12"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h12",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f13"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h13",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f14"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h14",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f15"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h15",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f16"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h16",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f17"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h17",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f18"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h18",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f19"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h19",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f20"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h20",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f21"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h21",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f22"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h22",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f23"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h23",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f24"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h24",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f25"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h25",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f26"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h26",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f27"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h27",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f28"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h28",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f29"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h29",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f30"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h30",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f31"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h31",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f32"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h32",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f33"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h33",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f34"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h34",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f35"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h35",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f36"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h36",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f37"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h37",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f38"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h38",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f39"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h39",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f40"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h40",
+                  "operator": "!="
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    },
+    "minecraft:behavior.owner_hurt_target": {
+     "priority": 2,
+     "entity_types": [
+      {
+       "filters": {
+        "none_of": [
+         {
+          "any_of": [
+           {
+            "any_of": [
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f1"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f1"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f2"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f2"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f3"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f3"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f4"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f4"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f5"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f5"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f6"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f6"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f7"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f7"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f8"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f8"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f9"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f9"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f10"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f10"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f11"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f11"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f12"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f12"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f13"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f13"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f14"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f14"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f15"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f15"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f16"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f16"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f17"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f17"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f18"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f18"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f19"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f19"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f20"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f20"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f21"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f21"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f22"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f22"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f23"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f23"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f24"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f24"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f25"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f25"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f26"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f26"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f27"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f27"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f28"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f28"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f29"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f29"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f30"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f30"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f31"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f31"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f32"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f32"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f33"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f33"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f34"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f34"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f35"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f35"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f36"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f36"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f37"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f37"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f38"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f38"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f39"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f39"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f40"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f40"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "all_of": [
+             {
+              "any_of": [
+               {
+                "test": "is_family",
+                "subject": "other",
+                "value": "war_soldier"
+               },
+               {
+                "test": "is_family",
+                "subject": "other",
+                "value": "war_hound"
+               }
+              ]
+             },
+             {
+              "any_of": [
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f1"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h1",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f2"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h2",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f3"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h3",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f4"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h4",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f5"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h5",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f6"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h6",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f7"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h7",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f8"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h8",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f9"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h9",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f10"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h10",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f11"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h11",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f12"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h12",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f13"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h13",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f14"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h14",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f15"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h15",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f16"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h16",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f17"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h17",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f18"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h18",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f19"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h19",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f20"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h20",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f21"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h21",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f22"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h22",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f23"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h23",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f24"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h24",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f25"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h25",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f26"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h26",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f27"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h27",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f28"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h28",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f29"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h29",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f30"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h30",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f31"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h31",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f32"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h32",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f33"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h33",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f34"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h34",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f35"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h35",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f36"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h36",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f37"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h37",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f38"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h38",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f39"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h39",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f40"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h40",
+                  "operator": "!="
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   },
+   "wa:hostile": {
+    "minecraft:type_family": {
+     "family": [
+      "snake_coral",
+      "worldanimals",
+      "wa_snakes",
+      "mob",
+      "monster"
+     ]
+    },
+    "minecraft:environment_sensor": {
+     "triggers": [
+      {
+       "filters": {
+        "any_of": [
+         {
+          "test": "has_target",
+          "subject": "self",
+          "value": false
+         },
+         {
+          "test": "has_component",
+          "subject": "self",
+          "value": "minecraft:is_tamed"
+         }
+        ]
+       },
+       "event": "wa:hostile_off"
+      }
+     ]
+    }
+   }
+  },
+  "components": {
+   "minecraft:experience_reward": {
+    "on_death": "query.last_hit_by_player ? 5 : 0"
+   },
+   "minecraft:type_family": {
+    "family": [
+     "snake_coral",
+     "worldanimals",
+     "wa_snakes",
+     "mob"
+    ]
+   },
+   "minecraft:breathable": {
+    "total_supply": 15,
+    "suffocate_time": 0
+   },
+   "minecraft:nameable": {},
+   "minecraft:loot": {
+    "table": "loot_tables/entities/reptils.json"
+   },
+   "minecraft:collision_box": {
+    "width": 1.5,
+    "height": 0.3
+   },
+   "minecraft:health": {
+    "value": 25,
+    "max": 25
+   },
+   "minecraft:hurt_on_condition": {
+    "damage_conditions": [
+     {
+      "filters": {
+       "test": "in_lava",
+       "subject": "self",
+       "operator": "==",
+       "value": true
+      },
+      "cause": "lava",
+      "damage_per_tick": 4
+     }
+    ]
+   },
+   "minecraft:movement": {
+    "value": 0.3
+   },
+   "minecraft:underwater_movement": {
+    "value": 0.55
+   },
+   "minecraft:navigation.generic": {
+    "is_amphibious": true,
+    "can_path_over_water": true,
+    "can_swim": true,
+    "can_walk": true,
+    "can_breach": false,
+    "can_jump": false
+   },
+   "minecraft:movement.basic": {},
+   "minecraft:jump.static": {},
+   "minecraft:can_climb": {},
+   "minecraft:behavior.float": {
+    "priority": 1
+   },
+   "minecraft:scale": {
+    "value": 0.5
+   },
+   "minecraft:behavior.mount_pathing": {
+    "priority": 5,
+    "speed_multiplier": 1.25,
+    "target_dist": 0.0,
+    "track_target": true
+   },
+   "minecraft:behavior.random_stroll": {
+    "priority": 6,
+    "speed_multiplier": 0.8
+   },
+   "minecraft:behavior.look_at_player": {
+    "priority": 7,
+    "look_distance": 6.0,
+    "probability": 0.02
+   },
+   "minecraft:behavior.random_look_around": {
+    "priority": 7
+   },
+   "minecraft:physics": {},
+   "minecraft:pushable": {
+    "is_pushable": true,
+    "is_pushable_by_piston": true
+   },
+   "minecraft:behavior.hurt_by_target": {
+    "priority": 1,
+    "alert_same_type": false,
+    "entity_types": [
+     {
+      "filters": {
+       "none_of": [
+        {
+         "any_of": [
+          {
+           "any_of": [
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f1"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f1"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f2"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f2"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f3"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f3"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f4"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f4"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f5"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f5"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f6"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f6"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f7"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f7"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f8"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f8"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f9"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f9"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f10"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f10"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f11"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f11"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f12"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f12"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f13"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f13"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f14"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f14"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f15"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f15"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f16"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f16"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f17"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f17"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f18"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f18"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f19"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f19"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f20"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f20"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f21"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f21"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f22"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f22"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f23"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f23"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f24"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f24"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f25"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f25"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f26"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f26"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f27"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f27"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f28"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f28"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f29"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f29"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f30"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f30"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f31"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f31"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f32"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f32"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f33"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f33"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f34"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f34"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f35"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f35"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f36"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f36"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f37"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f37"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f38"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f38"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f39"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f39"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f40"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f40"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "all_of": [
+            {
+             "any_of": [
+              {
+               "test": "is_family",
+               "subject": "other",
+               "value": "war_soldier"
+              },
+              {
+               "test": "is_family",
+               "subject": "other",
+               "value": "war_hound"
+              }
+             ]
+            },
+            {
+             "any_of": [
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f1"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h1",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f2"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h2",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f3"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h3",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f4"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h4",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f5"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h5",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f6"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h6",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f7"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h7",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f8"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h8",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f9"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h9",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f10"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h10",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f11"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h11",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f12"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h12",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f13"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h13",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f14"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h14",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f15"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h15",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f16"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h16",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f17"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h17",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f18"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h18",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f19"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h19",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f20"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h20",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f21"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h21",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f22"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h22",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f23"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h23",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f24"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h24",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f25"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h25",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f26"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h26",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f27"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h27",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f28"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h28",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f29"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h29",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f30"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h30",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f31"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h31",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f32"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h32",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f33"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h33",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f34"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h34",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f35"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h35",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f36"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h36",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f37"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h37",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f38"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h38",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f39"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h39",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f40"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h40",
+                 "operator": "!="
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      "max_dist": 32
+     }
+    ]
+   },
+   "minecraft:behavior.nearest_attackable_target": {
+    "priority": 3,
+    "must_see": true,
+    "reselect_targets": true,
+    "attack_interval": 4,
+    "must_see_forget_duration": 6.0,
+    "entity_types": [
+     {
+      "filters": {
+       "all_of": [
+        {
+         "all_of": [
+          {
+           "test": "is_baby",
+           "subject": "self",
+           "value": false
+          },
+          {
+           "test": "has_component",
+           "subject": "self",
+           "value": "minecraft:is_tamed",
+           "operator": "!="
+          }
+         ]
+        },
+        {
+         "any_of": [
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "player"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "villager"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "wandering_trader"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "illager"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "war_soldier"
+          }
+         ]
+        }
+       ]
+      },
+      "max_dist": 4
+     },
+     {
+      "filters": {
+       "all_of": [
+        {
+         "all_of": [
+          {
+           "test": "is_baby",
+           "subject": "self",
+           "value": false
+          },
+          {
+           "test": "has_component",
+           "subject": "self",
+           "value": "minecraft:is_tamed",
+           "operator": "!="
+          }
+         ]
+        },
+        {
+         "any_of": [
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "chicken"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "rabbit"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "frog"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "parrot"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "rat"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "squirrel"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "duck"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "turkey"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "kiwi"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "raccoon"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "erizo"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "dove"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "cyanocitta_cristata"
+          },
+          {
+           "test": "is_family",
+           "subject": "other",
+           "value": "tucan"
+          }
+         ]
+        },
+        {
+         "test": "has_component",
+         "subject": "other",
+         "value": "minecraft:is_tamed",
+         "operator": "!="
+        },
+        {
+         "test": "is_family",
+         "subject": "other",
+         "value": "worldanimals_pet",
+         "operator": "!="
+        }
+       ]
+      },
+      "max_dist": 16
+     }
+    ]
+   },
+   "minecraft:tameable": {
+    "probability": 0.33,
+    "tame_items": "minecraft:rabbit",
+    "tame_event": {
+     "event": "wa:on_tame",
+     "target": "self"
+    }
+   },
+   "minecraft:on_target_acquired": {
+    "event": "wa:hostile_on",
+    "target": "self"
+   }
+  },
+  "events": {
+   "minecraft:entity_spawned": {
+    "randomize": [
+     {
+      "weight": 1,
+      "add": {
+       "component_groups": [
+        "minecraft:spider_angry"
+       ]
+      }
+     }
+    ]
+   },
+   "minecraft:become_hostile": {
+    "sequence": [
+     {
+      "remove": {
+       "component_groups": [
+        "minecraft:spider_neutral"
+       ]
+      },
+      "add": {
+       "component_groups": [
+        "minecraft:spider_hostile"
+       ]
+      }
+     },
+     {
+      "filters": {
+       "test": "is_difficulty",
+       "value": "easy"
+      },
+      "remove": {
+       "component_groups": [
+        "minecraft:spider_poison_hard",
+        "minecraft:spider_poison_normal"
+       ]
+      },
+      "add": {
+       "component_groups": [
+        "minecraft:spider_poison_easy"
+       ]
+      }
+     },
+     {
+      "filters": {
+       "test": "is_difficulty",
+       "value": "normal"
+      },
+      "remove": {
+       "component_groups": [
+        "minecraft:spider_poison_easy",
+        "minecraft:spider_poison_hard"
+       ]
+      },
+      "add": {
+       "component_groups": [
+        "minecraft:spider_poison_normal"
+       ]
+      }
+     },
+     {
+      "filters": {
+       "test": "is_difficulty",
+       "value": "hard"
+      },
+      "remove": {
+       "component_groups": [
+        "minecraft:spider_poison_easy",
+        "minecraft:spider_poison_normal"
+       ]
+      },
+      "add": {
+       "component_groups": [
+        "minecraft:spider_poison_hard"
+       ]
+      }
+     }
+    ]
+   },
+   "minecraft:become_neutral": {
+    "remove": {
+     "component_groups": [
+      "minecraft:spider_hostile"
+     ]
+    },
+    "add": {
+     "component_groups": [
+      "minecraft:spider_neutral"
+     ]
+    }
+   },
+   "minecraft:become_angry": {
+    "sequence": [
+     {
+      "remove": {
+       "component_groups": [
+        "minecraft:spider_neutral"
+       ]
+      },
+      "add": {
+       "component_groups": [
+        "minecraft:spider_angry"
+       ]
+      }
+     },
+     {
+      "filters": {
+       "test": "is_difficulty",
+       "value": "easy"
+      },
+      "remove": {
+       "component_groups": [
+        "minecraft:spider_poison_hard",
+        "minecraft:spider_poison_normal"
+       ]
+      },
+      "add": {
+       "component_groups": [
+        "minecraft:spider_poison_easy"
+       ]
+      }
+     },
+     {
+      "filters": {
+       "test": "is_difficulty",
+       "value": "normal"
+      },
+      "remove": {
+       "component_groups": [
+        "minecraft:spider_poison_easy",
+        "minecraft:spider_poison_hard"
+       ]
+      },
+      "add": {
+       "component_groups": [
+        "minecraft:spider_poison_normal"
+       ]
+      }
+     },
+     {
+      "filters": {
+       "test": "is_difficulty",
+       "value": "hard"
+      },
+      "remove": {
+       "component_groups": [
+        "minecraft:spider_poison_easy",
+        "minecraft:spider_poison_normal"
+       ]
+      },
+      "add": {
+       "component_groups": [
+        "minecraft:spider_poison_hard"
+       ]
+      }
+     }
+    ]
+   },
+   "minecraft:on_calm": {
+    "remove": {
+     "component_groups": [
+      "minecraft:spider_angry"
+     ]
+    },
+    "add": {
+     "component_groups": [
+      "minecraft:spider_neutral"
+     ]
+    }
+   },
+   "wa:on_tame": {
+    "add": {
+     "component_groups": [
+      "wa:tame"
+     ]
+    },
+    "remove": {
+     "component_groups": [
+      "wa:hostile"
+     ]
+    }
+   },
+   "wa:hostile_on": {
+    "sequence": [
+     {
+      "filters": {
+       "test": "has_component",
+       "subject": "self",
+       "value": "minecraft:is_tamed",
+       "operator": "!="
+      },
+      "add": {
+       "component_groups": [
+        "wa:hostile"
+       ]
+      }
+     }
+    ]
+   },
+   "wa:hostile_off": {
+    "remove": {
+     "component_groups": [
+      "wa:hostile"
+     ]
+    }
+   },
+   "wa:target_acquired_1": {
+    "sequence": [
+     {
+      "filters": {
+       "test": "has_component",
+       "subject": "self",
+       "value": "minecraft:is_tamed",
+       "operator": "!="
+      },
+      "add": {
+       "component_groups": [
+        "wa:hostile"
+       ]
+      }
+     },
+     {
+      "trigger": {
+       "event": "minecraft:become_angry",
+       "target": "self"
+      }
+     }
+    ]
+   }
   }
+ }
 }

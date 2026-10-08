@@ -14,7 +14,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from wa_common import load, dump  # noqa: E402
-from animals import (NS, GROUPS, ROSTER, REMOVED_ENTITIES, LAID_EGGS, ITEM_MAP, HUMANS, CLONES)  # noqa: E402
+from animals import (NS, GROUPS, ROSTER, REMOVED_ENTITIES, LAID_EGGS, ITEM_MAP, HUMANS, CLONES, CUT)  # noqa: E402
 
 NF = 40  # War Engine factions: tags war_f1..war_f40 (member), war_h1..war_h40 (soldier is hostile to faction i)
 SRC_BP, SRC_RP, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
@@ -22,7 +22,7 @@ BP = os.path.join(OUT, "World Animals BP")
 RP = os.path.join(OUT, "World Animals RP")
 log = []
 
-KEPT = set(ROSTER)
+KEPT = set(ROSTER) - set(CUT)
 JUNK_FAMILIES = {"monster", "undead", "polarbear", "polarsnail", "cavespider", "arthropod", "pig", "zombie", "animal",
                  "shark", "skeleton", "lightweight"}
 
@@ -332,6 +332,90 @@ def build_entity(path, short):
         del ent["events"][ename]
     prune_events(ent)
 
+    events = ent.setdefault("events", {})
+    base_fams = base["minecraft:type_family"]["family"]
+
+    # every animal can be tamed: the ones the original pack never let you tame get a simple tamed state
+    if not tame_groups and tame_food:
+        base["minecraft:tameable"] = {"probability": 0.33, "tame_items": tame_food,
+                                      "tame_event": {"event": "wa:on_tame", "target": "self"}}
+        tg = {
+            "minecraft:is_tamed": {},
+            "minecraft:tameable": {"probability": 0.0, "tame_items": "minecraft:barrier"},   # no re-taming
+            "minecraft:type_family": {"family": base_fams + ["worldanimals_pet"]},
+            "minecraft:sittable": {},
+            "minecraft:behavior.stay_while_sitting": {"priority": 2},
+            "minecraft:behavior.follow_owner": {"priority": 6, "speed_multiplier": 1.0, "start_distance": 10,
+                                                "stop_distance": 2},
+        }
+        if "minecraft:leashable" not in base:
+            tg["minecraft:leashable"] = {"soft_distance": 4.0, "hard_distance": 6.0, "max_distance": 10.0}
+        if fights:
+            tg["minecraft:behavior.owner_hurt_by_target"] = {"priority": 1, "entity_types": [{"filters": NOT_ALLY}]}
+            tg["minecraft:behavior.owner_hurt_target"] = {"priority": 2, "entity_types": [{"filters": NOT_ALLY}]}
+            if dmg >= 4:
+                tg["minecraft:behavior.nearest_attackable_target"] = tame_targets()
+        groups["wa:tame"] = tg
+        events["wa:on_tame"] = {"add": {"component_groups": ["wa:tame"]}}
+        tame_groups = [tg]
+        log.append(f"tameable now: {short}")
+
+    # tamed states the original never let you reach (no taming component at all): hook one up
+    can_tame = any(blk.get("minecraft:tameable", {}).get("probability", 1) > 0 for blk in blocks(ent)
+                   if "minecraft:tameable" in blk)
+    if tame_groups and not can_tame and tame_food:
+        ev = "minecraft:on_tame" if "minecraft:on_tame" in events else "wa:on_tame"
+        if ev == "wa:on_tame":
+            events[ev] = {"add": {"component_groups": [n for n, g in groups.items() if g in tame_groups][:1]}}
+        base["minecraft:tameable"] = {"probability": 0.33, "tame_items": tame_food,
+                                      "tame_event": {"event": ev, "target": "self"}}
+        for g in tame_groups:
+            g["minecraft:tameable"] = {"probability": 0.0, "tame_items": "minecraft:barrier"}
+        log.append(f"tameable now (tamed state existed): {short}")
+
+    # War Engine soldiers only notice mobs of the "monster" family: an animal is one while it is attacking
+    # something (so soldiers it goes for can fight back), never while tamed, and stops being one with no target
+    if fights:
+        sensor = copy.deepcopy(base.get("minecraft:environment_sensor", {"triggers": []}))
+        trig = sensor.get("triggers", [])
+        trig = [trig] if isinstance(trig, dict) else list(trig)
+        trig.append({"filters": {"any_of": [t("has_target", "self", False),
+                                            t("has_component", "self", "minecraft:is_tamed")]},
+                     "event": "wa:hostile_off"})
+        sensor["triggers"] = trig
+        groups["wa:hostile"] = {"minecraft:type_family": {"family": base_fams + ["monster"]},
+                                "minecraft:environment_sensor": sensor}
+        on = {"filters": t("has_component", "self", "minecraft:is_tamed", "!="), "add": {"component_groups": ["wa:hostile"]}}
+        events["wa:hostile_on"] = {"sequence": [on]}
+        events["wa:hostile_off"] = {"remove": {"component_groups": ["wa:hostile"]}}
+        n = 0
+        for blk in blocks(ent):
+            ota = blk.get("minecraft:on_target_acquired")
+            if ota and ota.get("event"):
+                n += 1
+                name = f"wa:target_acquired_{n}"
+                events[name] = {"sequence": [copy.deepcopy(on), {"trigger": {"event": ota["event"],
+                                                                              "target": ota.get("target", "self")}}]}
+                blk["minecraft:on_target_acquired"] = {"event": name, "target": "self"}
+        if "minecraft:on_target_acquired" not in base:
+            base["minecraft:on_target_acquired"] = {"event": "wa:hostile_on", "target": "self"}
+        # taming always clears it
+        tame_names = {n for n, g in groups.items() if g in tame_groups}
+
+        def clear_on_tame(o):
+            if isinstance(o, dict):
+                add = o.get("add", {}).get("component_groups", []) if isinstance(o.get("add"), dict) else []
+                if set(add) & tame_names:
+                    rm = o.setdefault("remove", {}).setdefault("component_groups", [])
+                    if "wa:hostile" not in rm:
+                        rm.append("wa:hostile")
+                for v in o.values():
+                    clear_on_tame(v)
+            elif isinstance(o, list):
+                for v in o:
+                    clear_on_tame(v)
+        clear_on_tame(events)
+
     # loot: point missing tables at a simple one for the group
     for blk in blocks(ent):
         lt = blk.get("minecraft:loot")
@@ -389,7 +473,7 @@ def main():
         if ident in KEPT:
             dump(os.path.join(BP, "spawn_rules", f"{ident}.json"), d)
             for clone, sibling in CLONES.items():
-                if sibling == ident:
+                if sibling == ident and clone in KEPT:
                     c = json.loads(json.dumps(d).replace(f'"{NS}:{sibling}"', f'"{NS}:{clone}"'))
                     dump(os.path.join(BP, "spawn_rules", f"{clone}.json"), c)
         else:
