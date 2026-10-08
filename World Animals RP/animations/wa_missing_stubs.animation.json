@@ -1,0 +1,93 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.ant.sit": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.crab.attack": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.duck_v2.no_fly": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.eagle.attack": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.flamingo.attack": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.flamingo.no_fly": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.flamingo.water": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.hippopotamus.celebrate": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.hippopotamus.sit": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.kiwi.idle": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.ostrich_egg.idle": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.pelican_v2.idle": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.penguin_egg.idle": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.seagull.attack": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.seagull.on_water": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.seagull.walk": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.squirrel.setup": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.stork.attack": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.vulture.attack": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.wild_boar_v2.celebrate": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.wild_boar_v2.sit": {
+      "loop": true,
+      "bones": {}
+    },
+    "animation.zebra.setup": {
+      "loop": true,
+      "bones": {}
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "worldanimals:spawn_white_lion",
+      "menu_category": {
+        "category": "nature",
+        "group": "worldanimals:itemGroup.name.big_cats"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "White Lion Spawn Egg"
+      },
+      "minecraft:entity_placer": {
+        "entity": "worldanimals:white_lion"
+      },
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": {
+        "textures": {
+          "default": "egg_lion"
+        }
+      }
+    }
+  }
+}

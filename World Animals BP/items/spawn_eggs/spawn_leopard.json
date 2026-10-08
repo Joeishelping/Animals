@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "worldanimals:spawn_leopard",
+      "menu_category": {
+        "category": "nature",
+        "group": "worldanimals:itemGroup.name.big_cats"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Leopard Spawn Egg"
+      },
+      "minecraft:entity_placer": {
+        "entity": "worldanimals:leopard"
+      },
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": {
+        "textures": {
+          "default": "egg_leopard"
+        }
+      }
+    }
+  }
+}

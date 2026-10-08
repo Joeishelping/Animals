@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "worldanimals:spawn_seagull",
+      "menu_category": {
+        "category": "nature",
+        "group": "worldanimals:itemGroup.name.birds"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Seagull Spawn Egg"
+      },
+      "minecraft:entity_placer": {
+        "entity": "worldanimals:seagull"
+      },
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": {
+        "textures": {
+          "default": "egg_seagull"
+        }
+      }
+    }
+  }
+}

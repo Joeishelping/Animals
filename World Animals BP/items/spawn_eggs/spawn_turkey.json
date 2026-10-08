@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "worldanimals:spawn_turkey",
+      "menu_category": {
+        "category": "nature",
+        "group": "worldanimals:itemGroup.name.birds"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Turkey Spawn Egg"
+      },
+      "minecraft:entity_placer": {
+        "entity": "worldanimals:turkey"
+      },
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": {
+        "textures": {
+          "default": "egg_turkey"
+        }
+      }
+    }
+  }
+}
