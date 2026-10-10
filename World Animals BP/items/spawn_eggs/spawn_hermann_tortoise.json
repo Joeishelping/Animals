@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "worldanimals:spawn_hermann_tortoise",
+      "menu_category": {
+        "category": "nature",
+        "group": "worldanimals:itemGroup.name.reptiles"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Hermann's Tortoise Spawn Egg"
+      },
+      "minecraft:entity_placer": {
+        "entity": "worldanimals:hermann_tortoise"
+      },
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": {
+        "textures": {
+          "default": "wa_egg_hermann_tortoise"
+        }
+      }
+    }
+  }
+}

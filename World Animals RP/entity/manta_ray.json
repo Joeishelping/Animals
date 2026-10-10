@@ -1,0 +1,35 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "worldanimals:manta_ray",
+      "materials": {
+        "default": "dolphin"
+      },
+      "textures": {
+        "default": "textures/entity/wa_species/manta_ray/default"
+      },
+      "geometry": {
+        "default": "geometry.stingray"
+      },
+      "animations": {
+        "move": "animation.stingray.idle"
+      },
+      "animation_controllers": [
+        {
+          "general": "controller.animation.dolphin.general"
+        }
+      ],
+      "render_controllers": [
+        "controller.render.dolphin"
+      ],
+      "spawn_egg": {
+        "texture": "wa_egg_manta_ray",
+        "texture_index": 0
+      },
+      "scripts": {
+        "scale": "2.2"
+      }
+    }
+  }
+}

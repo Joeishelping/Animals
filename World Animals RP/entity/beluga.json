@@ -1,0 +1,43 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "worldanimals:beluga",
+      "materials": {
+        "default": "dolphin"
+      },
+      "textures": {
+        "default": "textures/entity/wa_species/beluga/default"
+      },
+      "geometry": {
+        "default": "geometry.orca"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.attack = Math.sin(variable.attack_time * 38.17);"
+        ],
+        "scale": "0.8"
+      },
+      "animations": {
+        "setup": "animation.orca.idle",
+        "attack": "animation.orca.attack",
+        "walk": "animation.orca.walk"
+      },
+      "animation_controllers": [
+        {
+          "attack": "controller.animation.animals.attack"
+        },
+        {
+          "move": "controller.animation.llama.move"
+        }
+      ],
+      "render_controllers": [
+        "controller.render.dolphin"
+      ],
+      "spawn_egg": {
+        "texture": "wa_egg_beluga",
+        "texture_index": 0
+      }
+    }
+  }
+}

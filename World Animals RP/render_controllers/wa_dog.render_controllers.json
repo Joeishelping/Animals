@@ -1,0 +1,25 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.wa_dog": {
+      "arrays": {
+        "textures": {
+          "Array.coat": [
+            "Texture.v0",
+            "Texture.v1",
+            "Texture.v2"
+          ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Array.coat[query.variant]"
+      ]
+    }
+  }
+}

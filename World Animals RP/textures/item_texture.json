@@ -2,6 +2,57 @@
   "resource_pack_name": "World Animals",
   "texture_name": "atlas.items",
   "texture_data": {
+    "wa_egg_german_shepherd": {
+      "textures": "textures/items/wa_eggs/german_shepherd"
+    },
+    "wa_egg_toy_poodle": {
+      "textures": "textures/items/wa_eggs/toy_poodle"
+    },
+    "wa_egg_chihuahua": {
+      "textures": "textures/items/wa_eggs/chihuahua"
+    },
+    "wa_egg_shiba_inu": {
+      "textures": "textures/items/wa_eggs/shiba_inu"
+    },
+    "wa_egg_airedale_terrier": {
+      "textures": "textures/items/wa_eggs/airedale_terrier"
+    },
+    "wa_egg_golden_retriever": {
+      "textures": "textures/items/wa_eggs/golden_retriever"
+    },
+    "wa_egg_labrador": {
+      "textures": "textures/items/wa_eggs/labrador"
+    },
+    "wa_egg_siberian_husky": {
+      "textures": "textures/items/wa_eggs/siberian_husky"
+    },
+    "wa_egg_beagle": {
+      "textures": "textures/items/wa_eggs/beagle"
+    },
+    "wa_egg_dachshund": {
+      "textures": "textures/items/wa_eggs/dachshund"
+    },
+    "wa_egg_dalmatian": {
+      "textures": "textures/items/wa_eggs/dalmatian"
+    },
+    "wa_egg_border_collie": {
+      "textures": "textures/items/wa_eggs/border_collie"
+    },
+    "wa_egg_rottweiler": {
+      "textures": "textures/items/wa_eggs/rottweiler"
+    },
+    "wa_egg_korean_jindo": {
+      "textures": "textures/items/wa_eggs/korean_jindo"
+    },
+    "wa_egg_doberman": {
+      "textures": "textures/items/wa_eggs/doberman"
+    },
+    "wa_egg_coyote": {
+      "textures": "textures/items/wa_eggs/coyote"
+    },
+    "wa_egg_fennec_fox": {
+      "textures": "textures/items/wa_eggs/fennec_fox"
+    },
     "egg_african_elephant": {
       "textures": "textures/items/egg_african_elephant"
     },
@@ -175,6 +226,66 @@
     },
     "egg_zebra": {
       "textures": "textures/items/egg_zebra"
+    },
+    "wa_egg_american_alligator": {
+      "textures": "textures/items/wa_eggs/american_alligator"
+    },
+    "wa_egg_american_bison": {
+      "textures": "textures/items/wa_eggs/american_bison"
+    },
+    "wa_egg_beluga": {
+      "textures": "textures/items/wa_eggs/beluga"
+    },
+    "wa_egg_cheetah": {
+      "textures": "textures/items/wa_eggs/cheetah"
+    },
+    "wa_egg_hermann_tortoise": {
+      "textures": "textures/items/wa_eggs/hermann_tortoise"
+    },
+    "wa_egg_indian_peafowl": {
+      "textures": "textures/items/wa_eggs/indian_peafowl"
+    },
+    "wa_egg_king_cobra": {
+      "textures": "textures/items/wa_eggs/king_cobra"
+    },
+    "wa_egg_manta_ray": {
+      "textures": "textures/items/wa_eggs/manta_ray"
+    },
+    "wa_egg_moose": {
+      "textures": "textures/items/wa_eggs/moose"
+    },
+    "wa_egg_okapi": {
+      "textures": "textures/items/wa_eggs/okapi"
+    },
+    "wa_egg_opossum": {
+      "textures": "textures/items/wa_eggs/opossum"
+    },
+    "wa_egg_pallas_cat": {
+      "textures": "textures/items/wa_eggs/pallas_cat"
+    },
+    "wa_egg_przewalski_horse": {
+      "textures": "textures/items/wa_eggs/przewalski_horse"
+    },
+    "wa_egg_rattlesnake": {
+      "textures": "textures/items/wa_eggs/rattlesnake"
+    },
+    "wa_egg_red_crowned_crane": {
+      "textures": "textures/items/wa_eggs/red_crowned_crane"
+    },
+    "wa_egg_saker_falcon": {
+      "textures": "textures/items/wa_eggs/saker_falcon"
+    },
+    "wa_egg_skunk": {
+      "textures": "textures/items/wa_eggs/skunk"
+    },
+    "wa_egg_warthog": {
+      "textures": "textures/items/wa_eggs/warthog"
+    },
+    "wa_egg_whale_shark": {
+      "textures": "textures/items/wa_eggs/whale_shark"
+    },
+    "wa_falconry_glove": {
+      "textures": "textures/items/wa_falconry_glove"
     }
   }
 }

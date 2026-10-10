@@ -10,6 +10,8 @@
 // The game doesn't tell scripts who owns a tamed animal once the taming component is gone, so the owner is saved
 // on the animal (`wa:owner`) when a player tames it, and copied to babies born from tamed parents.
 import { world, system } from "@minecraft/server";
+import "./falconry.js";
+import "./dogs.js";
 
 const NS = "worldanimals:";
 const NF = 40;

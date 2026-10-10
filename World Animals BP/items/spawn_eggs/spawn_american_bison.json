@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "worldanimals:spawn_american_bison",
+      "menu_category": {
+        "category": "nature",
+        "group": "worldanimals:itemGroup.name.grazers"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "American Bison Spawn Egg"
+      },
+      "minecraft:entity_placer": {
+        "entity": "worldanimals:american_bison"
+      },
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": {
+        "textures": {
+          "default": "wa_egg_american_bison"
+        }
+      }
+    }
+  }
+}

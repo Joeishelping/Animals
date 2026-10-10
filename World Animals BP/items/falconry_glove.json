@@ -1,0 +1,30 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "worldanimals:falconry_glove",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Falconry Glove"
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "wa_falconry_glove"
+        }
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:use_modifiers": {
+        "use_duration": 0.05,
+        "movement_modifier": 1.0
+      },
+      "minecraft:cooldown": {
+        "category": "wa_falconry",
+        "duration": 0.75
+      }
+    }
+  }
+}

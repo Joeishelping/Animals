@@ -1,0 +1,51 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "worldanimals:saker_falcon",
+      "materials": {
+        "default": "slime"
+      },
+      "textures": {
+        "default": "textures/entity/wa_species/saker_falcon/default"
+      },
+      "geometry": {
+        "default": "geometry.eagle"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.attack = Math.sin(variable.attack_time * 38.17);"
+        ],
+        "scale": "0.6"
+      },
+      "animations": {
+        "loop": "animation.eagle.idle",
+        "attack": "animation.eagle.attack",
+        "walk": "animation.eagle.walk",
+        "fly": "animation.eagle.fly"
+      },
+      "animation_controllers": [
+        {
+          "attack": "controller.animation.animals.attack"
+        },
+        {
+          "loop": "controller.animation.loop"
+        },
+        {
+          "walk": "controller.animation.birds.walk"
+        },
+        {
+          "fly": "controller.animation.pelican.fly"
+        }
+      ],
+      "render_controllers": [
+        "controller.render.default"
+      ],
+      "enable_attachables": true,
+      "spawn_egg": {
+        "texture": "wa_egg_saker_falcon",
+        "texture_index": 0
+      }
+    }
+  }
+}

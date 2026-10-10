@@ -1,0 +1,44 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "worldanimals:beagle",
+      "materials": {
+        "default": "wolf"
+      },
+      "textures": {
+        "default": "textures/entity/wa_dogs/beagle_0",
+        "v0": "textures/entity/wa_dogs/beagle_0",
+        "v1": "textures/entity/wa_dogs/beagle_0",
+        "v2": "textures/entity/wa_dogs/beagle_0"
+      },
+      "geometry": {
+        "default": "geometry.wa_dog_beagle"
+      },
+      "scripts": {
+        "scale": "0.7",
+        "animate": [
+          "move",
+          "look"
+        ]
+      },
+      "animations": {
+        "walk": "animation.wa_dog.walk",
+        "wag": "animation.wa_dog.wag",
+        "sit": "animation.wa_dog.sit",
+        "baby": "animation.wa_dog.baby",
+        "look_at_target": "animation.common.look_at_target",
+        "move": "controller.animation.wa_dog.move",
+        "look": "controller.animation.wa_dog.look"
+      },
+      "render_controllers": [
+        "controller.render.wa_dog"
+      ],
+      "spawn_egg": {
+        "texture": "wa_egg_beagle",
+        "texture_index": 0
+      },
+      "enable_attachables": false
+    }
+  }
+}

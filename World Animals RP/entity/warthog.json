@@ -1,0 +1,55 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "worldanimals:warthog",
+      "materials": {
+        "default": "slime"
+      },
+      "textures": {
+        "default": "textures/entity/wa_species/warthog/default"
+      },
+      "geometry": {
+        "default": "geometry.wild_boar_v2"
+      },
+      "animations": {
+        "setup": "animation.wild_boar_v2.idle",
+        "look_at_target": "animation.common.look_at_target",
+        "walk": "animation.wild_boar_v2.walk",
+        "attack": "animation.wild_boar_v2.attack",
+        "casting": "animation.wild_boar_v2.celebrate",
+        "celebrating": "animation.wild_boar_v2.celebrate",
+        "riding.legs": "animation.wild_boar_v2.celebrate",
+        "wolf_sitting": "animation.wild_boar_v2.sit"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.attack = Math.sin(variable.attack_time * 38.17);"
+        ],
+        "scale": "0.95"
+      },
+      "animation_controllers": [
+        {
+          "wolf_sitting": "controller.animation.wolf.sitting"
+        },
+        {
+          "move": "controller.animation.llama.move"
+        },
+        {
+          "attack": "controller.animation.animals.attack"
+        },
+        {
+          "general": "controller.animation.subaru_duck.general"
+        }
+      ],
+      "render_controllers": [
+        "controller.render.dolphin"
+      ],
+      "enable_attachables": true,
+      "spawn_egg": {
+        "texture": "wa_egg_warthog",
+        "texture_index": 0
+      }
+    }
+  }
+}

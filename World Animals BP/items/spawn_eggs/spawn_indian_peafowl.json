@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "worldanimals:spawn_indian_peafowl",
+      "menu_category": {
+        "category": "nature",
+        "group": "worldanimals:itemGroup.name.land_birds"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Indian Peafowl (Peacock) Spawn Egg"
+      },
+      "minecraft:entity_placer": {
+        "entity": "worldanimals:indian_peafowl"
+      },
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": {
+        "textures": {
+          "default": "wa_egg_indian_peafowl"
+        }
+      }
+    }
+  }
+}

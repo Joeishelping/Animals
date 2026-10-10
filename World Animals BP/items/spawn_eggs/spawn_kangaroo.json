@@ -5,7 +5,7 @@
       "identifier": "worldanimals:spawn_kangaroo",
       "menu_category": {
         "category": "nature",
-        "group": "worldanimals:itemGroup.name.wild_mammals"
+        "group": "worldanimals:itemGroup.name.grazers"
       }
     },
     "components": {

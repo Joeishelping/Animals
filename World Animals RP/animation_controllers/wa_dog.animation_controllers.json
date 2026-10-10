@@ -1,0 +1,45 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.wa_dog.move": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "animations": [
+            "walk",
+            "wag"
+          ],
+          "transitions": [
+            {
+              "sitting": "query.is_sitting"
+            }
+          ]
+        },
+        "sitting": {
+          "animations": [
+            "sit",
+            "wag"
+          ],
+          "transitions": [
+            {
+              "default": "!query.is_sitting"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.wa_dog.look": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "animations": [
+            "look_at_target",
+            {
+              "baby": "query.is_baby"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

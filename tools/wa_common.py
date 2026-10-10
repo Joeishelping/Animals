@@ -1,6 +1,7 @@
 """Shared helpers for the World Animals tooling: a lenient JSON reader (the original
 pack has comments, trailing commas and one file with a missing brace) and a stable writer."""
 import json
+import os
 import re
 
 
@@ -68,6 +69,7 @@ def load(path):
 
 
 def dump(path, data):
+    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
     with open(path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(data, f, indent=1 if len(json.dumps(data)) > 40000 else 2, ensure_ascii=False)
         f.write("\n")

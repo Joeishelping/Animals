@@ -44,29 +44,38 @@ SNAKES = ["snake", "snake_coral"]
 HUMANS = ["player", "villager", "wandering_trader", "illager"]
 
 # the first group in the creative menu: the animals you reach for most
-ESSENTIALS = ["lion", "tiger", "african_elephant", "gorilla", "white_shark", "bear", "crocodile", "rhinoceros",
+ESSENTIALS = ["lion", "moose", "tiger", "african_elephant", "gorilla", "white_shark", "bear", "crocodile", "rhinoceros",
               "giraffe", "zebra", "hippopotamus", "orca", "eagle", "emperor_penguin", "deer", "buffalo"]
 
 # creative menu groups (after Essentials): the roster groups folded into a few categories
 MENU_GROUPS = {
     "essentials": "Essentials",
-    "birds": "Birds",
-    "big_cats": "Big Cats",
-    "wild_mammals": "Wild Mammals",
+    "dogs": "Dogs",
+    "big_cats": "Big & Wild Cats",
+    "bears_canids": "Bears, Wild Dogs & Hyenas",
+    "grazers": "Hoofed Animals & Giants",
     "small_mammals": "Small Mammals & Primates",
-    "reptiles": "Reptiles & Snakes",
+    "water_birds": "Water Birds & Penguins",
+    "land_birds": "Land Birds & Birds of Prey",
+    "reptiles": "Crocodiles, Lizards & Turtles",
+    "snakes": "Snakes",
     "sea_life": "Sea Life",
     "bugs": "Insects & Bugs",
 }
 MENU_OF = {
-    "birds_of_prey": "birds", "water_birds": "birds", "land_birds": "birds", "flightless_birds": "birds",
-    "big_cats": "big_cats",
-    "bears_hyenas": "wild_mammals", "giants": "wild_mammals", "grazers": "wild_mammals",
+    "birds_of_prey": "land_birds", "water_birds": "water_birds", "land_birds": "land_birds",
+    "flightless_birds": "water_birds", "seabirds": "water_birds", "songbirds": "land_birds", "game_birds": "land_birds",
+    "big_cats": "big_cats", "wild_cats": "big_cats",
+    "bears_hyenas": "bears_canids", "bears": "bears_canids", "wild_canids": "bears_canids",
+    "giants": "grazers", "grazers": "grazers", "cattle": "grazers", "horses": "grazers", "pigs": "grazers",
+    "deer": "grazers", "antelopes": "grazers",
     "small_mammals": "small_mammals", "primates": "small_mammals",
-    "reptiles": "reptiles", "snakes": "reptiles",
-    "sharks": "sea_life", "marine_mammals": "sea_life", "fish": "sea_life", "shellfish": "sea_life",
-    "bugs": "bugs",
+    "reptiles": "reptiles", "crocodilians": "reptiles", "lizards": "reptiles", "snakes": "snakes",
+    "sharks": "sea_life", "fish": "sea_life", "shellfish": "sea_life",
+    "marine_mammals": "sea_life", "whales": "sea_life",
+    "bugs": "bugs", "dogs": "dogs",
 }
+MENU_FOR = {"kiwi": "land_birds", "ostrich": "land_birds"}
 
 # natural spawning: off. Spawn them from the eggs.
 NATURAL_SPAWNING = False

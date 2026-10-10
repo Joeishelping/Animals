@@ -1,0 +1,336 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "worldanimals:fennec_fox",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "component_groups": {
+      "wa:v0": {
+        "minecraft:variant": {
+          "value": 0
+        }
+      },
+      "wa:baby": {
+        "minecraft:is_baby": {},
+        "minecraft:scale": {
+          "value": 0.5
+        },
+        "minecraft:ageable": {
+          "duration": 1200,
+          "feed_items": [
+            "minecraft:beef",
+            "minecraft:chicken",
+            "minecraft:porkchop",
+            "minecraft:mutton"
+          ],
+          "grow_up": {
+            "event": "minecraft:ageable_grow_up",
+            "target": "self"
+          }
+        },
+        "minecraft:behavior.follow_parent": {
+          "priority": 6,
+          "speed_multiplier": 1.1
+        }
+      },
+      "wa:adult": {
+        "minecraft:behavior.breed": {
+          "priority": 5,
+          "speed_multiplier": 1.0
+        },
+        "minecraft:breedable": {
+          "require_tame": true,
+          "breeds_with": {
+            "mate_type": "worldanimals:fennec_fox",
+            "baby_type": "worldanimals:fennec_fox",
+            "breed_event": {
+              "event": "minecraft:entity_born",
+              "target": "baby"
+            }
+          },
+          "breed_items": [
+            "minecraft:beef",
+            "minecraft:chicken",
+            "minecraft:porkchop",
+            "minecraft:mutton",
+            "minecraft:cooked_beef",
+            "minecraft:cooked_chicken"
+          ]
+        }
+      },
+      "wa:wild": {
+        "minecraft:tameable": {
+          "probability": 0.2,
+          "tame_items": "minecraft:sweet_berries",
+          "tame_event": {
+            "event": "minecraft:on_tame",
+            "target": "self"
+          }
+        }
+      },
+      "wa:tame": {
+        "minecraft:is_tamed": {},
+        "minecraft:health": {
+          "value": 16,
+          "max": 16
+        },
+        "minecraft:attack": {
+          "damage": 2
+        },
+        "minecraft:sittable": {},
+        "minecraft:behavior.follow_owner": {
+          "priority": 6,
+          "speed_multiplier": 1.1,
+          "start_distance": 10,
+          "stop_distance": 2
+        },
+        "minecraft:behavior.beg": {
+          "priority": 9,
+          "look_distance": 8,
+          "look_time": [
+            2,
+            4
+          ],
+          "items": [
+            "minecraft:bone",
+            "minecraft:beef",
+            "minecraft:cooked_beef",
+            "minecraft:chicken",
+            "minecraft:cooked_chicken"
+          ]
+        },
+        "minecraft:type_family": {
+          "family": [
+            "fennec_fox",
+            "worldanimals",
+            "wa_wild_canids",
+            "mob",
+            "worldanimals_pet"
+          ]
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "fennec_fox",
+          "worldanimals",
+          "wa_wild_canids",
+          "mob"
+        ]
+      },
+      "minecraft:health": {
+        "value": 9,
+        "max": 9
+      },
+      "minecraft:collision_box": {
+        "width": 0.27,
+        "height": 0.383
+      },
+      "minecraft:movement": {
+        "value": 0.3
+      },
+      "minecraft:navigation.walk": {
+        "can_path_over_water": true,
+        "avoid_damage_blocks": true
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:jump.static": {},
+      "minecraft:can_climb": {},
+      "minecraft:physics": {},
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
+      "minecraft:nameable": {},
+      "minecraft:leashable": {
+        "soft_distance": 4.0,
+        "hard_distance": 6.0,
+        "max_distance": 10.0
+      },
+      "minecraft:balloonable": {},
+      "minecraft:ambient_sound_interval": {
+        "value": 10.0,
+        "range": 20.0,
+        "event_name": "ambient"
+      },
+      "minecraft:attack": {
+        "damage": 2
+      },
+      "minecraft:healable": {
+        "items": [
+          {
+            "item": "minecraft:beef",
+            "heal_amount": 3
+          },
+          {
+            "item": "minecraft:cooked_beef",
+            "heal_amount": 8
+          },
+          {
+            "item": "minecraft:chicken",
+            "heal_amount": 2
+          },
+          {
+            "item": "minecraft:cooked_chicken",
+            "heal_amount": 6
+          },
+          {
+            "item": "minecraft:porkchop",
+            "heal_amount": 3
+          },
+          {
+            "item": "minecraft:cooked_porkchop",
+            "heal_amount": 8
+          },
+          {
+            "item": "minecraft:mutton",
+            "heal_amount": 2
+          },
+          {
+            "item": "minecraft:cooked_mutton",
+            "heal_amount": 6
+          },
+          {
+            "item": "minecraft:rabbit",
+            "heal_amount": 3
+          },
+          {
+            "item": "minecraft:cooked_rabbit",
+            "heal_amount": 5
+          },
+          {
+            "item": "minecraft:rotten_flesh",
+            "heal_amount": 4
+          }
+        ]
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/wa_wild_canids.json"
+      },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:behavior.stay_while_sitting": {
+        "priority": 3
+      },
+      "minecraft:behavior.leap_at_target": {
+        "priority": 4,
+        "target_dist": 0.4
+      },
+      "minecraft:behavior.melee_attack": {
+        "priority": 5
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 8,
+        "speed_multiplier": 1.0
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 9,
+        "look_distance": 6,
+        "probability": 0.02
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 10
+      },
+      "minecraft:behavior.panic": {
+        "priority": 12,
+        "speed_multiplier": 1.0
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "sequence": [
+          {
+            "randomize": [
+              {
+                "weight": 9,
+                "add": {
+                  "component_groups": [
+                    "wa:adult",
+                    "wa:wild"
+                  ]
+                }
+              },
+              {
+                "weight": 1,
+                "add": {
+                  "component_groups": [
+                    "wa:baby",
+                    "wa:wild"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "randomize": [
+              {
+                "weight": 1,
+                "add": {
+                  "component_groups": [
+                    "wa:v0"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "minecraft:entity_born": {
+        "sequence": [
+          {
+            "add": {
+              "component_groups": [
+                "wa:baby",
+                "wa:tame"
+              ]
+            }
+          },
+          {
+            "randomize": [
+              {
+                "weight": 1,
+                "add": {
+                  "component_groups": [
+                    "wa:v0"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "minecraft:ageable_grow_up": {
+        "remove": {
+          "component_groups": [
+            "wa:baby"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "wa:adult"
+          ]
+        }
+      },
+      "minecraft:on_tame": {
+        "remove": {
+          "component_groups": [
+            "wa:wild"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "wa:tame"
+          ]
+        }
+      }
+    }
+  }
+}

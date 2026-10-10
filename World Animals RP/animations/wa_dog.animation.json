@@ -1,0 +1,125 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.wa_dog.walk": {
+      "loop": true,
+      "bones": {
+        "leg0": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 38.17) * 70 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "leg1": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 38.17 + 180) * 70 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "leg2": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 38.17 + 180) * 70 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "leg3": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 38.17) * 70 * query.modified_move_speed",
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "animation.wa_dog.wag": {
+      "loop": true,
+      "bones": {
+        "tail": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * (query.is_tamed ? 900 : 300)) * (query.is_tamed ? 25 : 8)",
+            0
+          ]
+        }
+      }
+    },
+    "animation.wa_dog.sit": {
+      "loop": true,
+      "bones": {
+        "body": {
+          "rotation": [
+            -20,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            -2,
+            0
+          ]
+        },
+        "upperBody": {
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        },
+        "head": {
+          "position": [
+            0,
+            1,
+            0
+          ]
+        },
+        "leg0": {
+          "rotation": [
+            -80,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            -2,
+            -2
+          ]
+        },
+        "leg1": {
+          "rotation": [
+            -80,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            -2,
+            -2
+          ]
+        },
+        "tail": {
+          "rotation": [
+            45,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            -3,
+            0
+          ]
+        }
+      }
+    },
+    "animation.wa_dog.baby": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "scale": 1.35
+        }
+      }
+    }
+  }
+}

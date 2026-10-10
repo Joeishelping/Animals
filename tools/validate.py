@@ -123,7 +123,7 @@ for ident, (p, d) in items.items():
         errors.append(f"{os.path.relpath(p, ROOT)}: icon {ic} not in item_texture.json")
     if not ic:
         notes.append(f"{ident}: no icon")
-    if c.get("minecraft:entity_placer", {}).get("entity") not in entities:
+    if "minecraft:entity_placer" in c and c["minecraft:entity_placer"].get("entity") not in entities:
         errors.append(f"{os.path.relpath(p, ROOT)}: places unknown entity")
 for k, v in item_tex.items():
     tex = v["textures"] if isinstance(v["textures"], str) else v["textures"][0]

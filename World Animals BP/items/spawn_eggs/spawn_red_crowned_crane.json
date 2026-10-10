@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "worldanimals:spawn_red_crowned_crane",
+      "menu_category": {
+        "category": "nature",
+        "group": "worldanimals:itemGroup.name.water_birds"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "Red-crowned Crane Spawn Egg"
+      },
+      "minecraft:entity_placer": {
+        "entity": "worldanimals:red_crowned_crane"
+      },
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": {
+        "textures": {
+          "default": "wa_egg_red_crowned_crane"
+        }
+      }
+    }
+  }
+}

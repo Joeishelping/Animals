@@ -23,6 +23,7 @@
               "worldanimals:spawn_white_shark",
               "worldanimals:spawn_hippopotamus",
               "worldanimals:spawn_lion",
+              "worldanimals:spawn_moose",
               "worldanimals:spawn_orca",
               "worldanimals:spawn_rhinoceros",
               "worldanimals:spawn_tiger",
@@ -31,24 +32,25 @@
           },
           {
             "group_identifier": {
-              "icon": "worldanimals:spawn_penguin_african",
-              "name": "worldanimals:itemGroup.name.birds"
+              "icon": "worldanimals:spawn_airedale_terrier",
+              "name": "worldanimals:itemGroup.name.dogs"
             },
             "items": [
-              "worldanimals:spawn_penguin_african",
-              "worldanimals:spawn_cyanocitta_cristata",
-              "worldanimals:spawn_blue_penguin",
-              "worldanimals:spawn_dove",
-              "worldanimals:spawn_duck",
-              "worldanimals:spawn_flamingo",
-              "worldanimals:spawn_kiwi",
-              "worldanimals:spawn_ostrich",
-              "worldanimals:spawn_pelican",
-              "worldanimals:spawn_seagull",
-              "worldanimals:spawn_stork",
-              "worldanimals:spawn_tucan",
-              "worldanimals:spawn_turkey",
-              "worldanimals:spawn_vulture"
+              "worldanimals:spawn_airedale_terrier",
+              "worldanimals:spawn_beagle",
+              "worldanimals:spawn_border_collie",
+              "worldanimals:spawn_chihuahua",
+              "worldanimals:spawn_dachshund",
+              "worldanimals:spawn_dalmatian",
+              "worldanimals:spawn_doberman",
+              "worldanimals:spawn_german_shepherd",
+              "worldanimals:spawn_golden_retriever",
+              "worldanimals:spawn_korean_jindo",
+              "worldanimals:spawn_labrador",
+              "worldanimals:spawn_rottweiler",
+              "worldanimals:spawn_shiba_inu",
+              "worldanimals:spawn_siberian_husky",
+              "worldanimals:spawn_toy_poodle"
             ]
           },
           {
@@ -58,8 +60,10 @@
             },
             "items": [
               "worldanimals:spawn_caracal",
+              "worldanimals:spawn_cheetah",
               "worldanimals:spawn_cougar",
               "worldanimals:spawn_leopard",
+              "worldanimals:spawn_pallas_cat",
               "worldanimals:spawn_panther",
               "worldanimals:spawn_snow_leopard",
               "worldanimals:spawn_white_lion",
@@ -68,15 +72,29 @@
           },
           {
             "group_identifier": {
-              "icon": "worldanimals:spawn_asian_elephant",
-              "name": "worldanimals:itemGroup.name.wild_mammals"
+              "icon": "worldanimals:spawn_black_bear",
+              "name": "worldanimals:itemGroup.name.bears_canids"
             },
             "items": [
-              "worldanimals:spawn_asian_elephant",
               "worldanimals:spawn_black_bear",
-              "worldanimals:spawn_hyenas",
+              "worldanimals:spawn_coyote",
+              "worldanimals:spawn_fennec_fox",
+              "worldanimals:spawn_hyenas"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "worldanimals:spawn_american_bison",
+              "name": "worldanimals:itemGroup.name.grazers"
+            },
+            "items": [
+              "worldanimals:spawn_american_bison",
+              "worldanimals:spawn_asian_elephant",
               "worldanimals:spawn_kangaroo",
               "worldanimals:spawn_mammoth",
+              "worldanimals:spawn_okapi",
+              "worldanimals:spawn_przewalski_horse",
+              "worldanimals:spawn_warthog",
               "worldanimals:spawn_wild_boar"
             ]
           },
@@ -89,40 +107,90 @@
               "worldanimals:spawn_capuchin_monkeys",
               "worldanimals:spawn_chimpanzee",
               "worldanimals:spawn_erizo",
+              "worldanimals:spawn_opossum",
               "worldanimals:spawn_ornitorrinco_original",
               "worldanimals:spawn_raccoon",
               "worldanimals:spawn_rat",
               "worldanimals:spawn_red_panda",
+              "worldanimals:spawn_skunk",
               "worldanimals:spawn_squirrel"
             ]
           },
           {
             "group_identifier": {
-              "icon": "worldanimals:spawn_snake_coral",
+              "icon": "worldanimals:spawn_penguin_african",
+              "name": "worldanimals:itemGroup.name.water_birds"
+            },
+            "items": [
+              "worldanimals:spawn_penguin_african",
+              "worldanimals:spawn_blue_penguin",
+              "worldanimals:spawn_duck",
+              "worldanimals:spawn_flamingo",
+              "worldanimals:spawn_pelican",
+              "worldanimals:spawn_red_crowned_crane",
+              "worldanimals:spawn_seagull",
+              "worldanimals:spawn_stork"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "worldanimals:spawn_cyanocitta_cristata",
+              "name": "worldanimals:itemGroup.name.land_birds"
+            },
+            "items": [
+              "worldanimals:spawn_cyanocitta_cristata",
+              "worldanimals:spawn_dove",
+              "worldanimals:spawn_indian_peafowl",
+              "worldanimals:spawn_kiwi",
+              "worldanimals:spawn_ostrich",
+              "worldanimals:spawn_saker_falcon",
+              "worldanimals:spawn_tucan",
+              "worldanimals:spawn_turkey",
+              "worldanimals:spawn_vulture"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "worldanimals:spawn_american_alligator",
               "name": "worldanimals:itemGroup.name.reptiles"
             },
             "items": [
-              "worldanimals:spawn_snake_coral",
+              "worldanimals:spawn_american_alligator",
+              "worldanimals:spawn_hermann_tortoise",
               "worldanimals:spawn_iguana",
-              "worldanimals:spawn_komodo_dragon",
+              "worldanimals:spawn_komodo_dragon"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "worldanimals:spawn_snake_coral",
+              "name": "worldanimals:itemGroup.name.snakes"
+            },
+            "items": [
+              "worldanimals:spawn_snake_coral",
+              "worldanimals:spawn_king_cobra",
+              "worldanimals:spawn_rattlesnake",
               "worldanimals:spawn_snake_scarlet",
               "worldanimals:spawn_snake"
             ]
           },
           {
             "group_identifier": {
-              "icon": "worldanimals:spawn_crab",
+              "icon": "worldanimals:spawn_beluga",
               "name": "worldanimals:itemGroup.name.sea_life"
             },
             "items": [
+              "worldanimals:spawn_beluga",
               "worldanimals:spawn_crab",
               "worldanimals:spawn_hammerhead_shark",
               "worldanimals:spawn_jellyfish_wa",
+              "worldanimals:spawn_manta_ray",
               "worldanimals:spawn_seal",
               "worldanimals:spawn_stingray",
               "worldanimals:spawn_swordfish",
               "worldanimals:spawn_tiger_shark",
-              "worldanimals:spawn_ballena"
+              "worldanimals:spawn_ballena",
+              "worldanimals:spawn_whale_shark"
             ]
           },
           {

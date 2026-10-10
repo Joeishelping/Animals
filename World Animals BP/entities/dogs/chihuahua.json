@@ -1,0 +1,4022 @@
+{
+ "format_version": "1.20.0",
+ "minecraft:entity": {
+  "description": {
+   "identifier": "worldanimals:chihuahua",
+   "is_spawnable": false,
+   "is_summonable": true
+  },
+  "component_groups": {
+   "wa:v0": {
+    "minecraft:variant": {
+     "value": 0
+    }
+   },
+   "wa:baby": {
+    "minecraft:is_baby": {},
+    "minecraft:scale": {
+     "value": 0.5
+    },
+    "minecraft:ageable": {
+     "duration": 1200,
+     "feed_items": [
+      "minecraft:beef",
+      "minecraft:chicken",
+      "minecraft:porkchop",
+      "minecraft:mutton"
+     ],
+     "grow_up": {
+      "event": "minecraft:ageable_grow_up",
+      "target": "self"
+     }
+    },
+    "minecraft:behavior.follow_parent": {
+     "priority": 6,
+     "speed_multiplier": 1.1
+    }
+   },
+   "wa:adult": {
+    "minecraft:behavior.breed": {
+     "priority": 5,
+     "speed_multiplier": 1.0
+    },
+    "minecraft:breedable": {
+     "require_tame": true,
+     "breeds_with": {
+      "mate_type": "worldanimals:chihuahua",
+      "baby_type": "worldanimals:chihuahua",
+      "breed_event": {
+       "event": "minecraft:entity_born",
+       "target": "baby"
+      }
+     },
+     "breed_items": [
+      "minecraft:beef",
+      "minecraft:chicken",
+      "minecraft:porkchop",
+      "minecraft:mutton",
+      "minecraft:cooked_beef",
+      "minecraft:cooked_chicken"
+     ]
+    }
+   },
+   "wa:wild": {
+    "minecraft:tameable": {
+     "probability": 0.33,
+     "tame_items": "minecraft:bone",
+     "tame_event": {
+      "event": "minecraft:on_tame",
+      "target": "self"
+     }
+    },
+    "minecraft:behavior.avoid_mob_type": {
+     "priority": 4,
+     "entity_types": [
+      {
+       "filters": {
+        "test": "is_family",
+        "subject": "other",
+        "value": "wolf"
+       },
+       "max_dist": 8,
+       "walk_speed_multiplier": 1.2,
+       "sprint_speed_multiplier": 1.4
+      }
+     ]
+    }
+   },
+   "wa:tame": {
+    "minecraft:is_tamed": {},
+    "minecraft:health": {
+     "value": 16,
+     "max": 16
+    },
+    "minecraft:attack": {
+     "damage": 1
+    },
+    "minecraft:sittable": {},
+    "minecraft:behavior.follow_owner": {
+     "priority": 6,
+     "speed_multiplier": 1.1,
+     "start_distance": 10,
+     "stop_distance": 2
+    },
+    "minecraft:behavior.beg": {
+     "priority": 9,
+     "look_distance": 8,
+     "look_time": [
+      2,
+      4
+     ],
+     "items": [
+      "minecraft:bone",
+      "minecraft:beef",
+      "minecraft:cooked_beef",
+      "minecraft:chicken",
+      "minecraft:cooked_chicken"
+     ]
+    },
+    "minecraft:type_family": {
+     "family": [
+      "chihuahua",
+      "worldanimals",
+      "wa_dogs",
+      "mob",
+      "worldanimals_pet"
+     ]
+    },
+    "minecraft:behavior.owner_hurt_by_target": {
+     "priority": 1,
+     "entity_types": [
+      {
+       "filters": {
+        "none_of": [
+         {
+          "any_of": [
+           {
+            "any_of": [
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f1"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f1"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f2"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f2"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f3"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f3"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f4"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f4"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f5"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f5"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f6"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f6"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f7"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f7"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f8"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f8"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f9"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f9"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f10"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f10"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f11"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f11"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f12"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f12"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f13"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f13"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f14"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f14"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f15"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f15"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f16"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f16"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f17"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f17"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f18"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f18"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f19"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f19"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f20"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f20"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f21"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f21"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f22"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f22"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f23"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f23"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f24"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f24"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f25"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f25"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f26"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f26"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f27"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f27"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f28"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f28"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f29"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f29"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f30"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f30"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f31"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f31"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f32"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f32"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f33"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f33"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f34"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f34"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f35"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f35"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f36"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f36"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f37"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f37"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f38"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f38"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f39"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f39"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f40"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f40"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "all_of": [
+             {
+              "any_of": [
+               {
+                "test": "is_family",
+                "subject": "other",
+                "value": "war_soldier"
+               },
+               {
+                "test": "is_family",
+                "subject": "other",
+                "value": "war_hound"
+               }
+              ]
+             },
+             {
+              "any_of": [
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f1"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h1",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f2"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h2",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f3"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h3",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f4"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h4",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f5"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h5",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f6"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h6",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f7"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h7",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f8"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h8",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f9"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h9",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f10"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h10",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f11"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h11",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f12"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h12",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f13"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h13",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f14"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h14",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f15"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h15",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f16"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h16",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f17"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h17",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f18"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h18",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f19"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h19",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f20"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h20",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f21"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h21",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f22"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h22",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f23"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h23",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f24"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h24",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f25"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h25",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f26"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h26",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f27"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h27",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f28"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h28",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f29"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h29",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f30"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h30",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f31"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h31",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f32"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h32",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f33"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h33",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f34"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h34",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f35"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h35",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f36"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h36",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f37"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h37",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f38"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h38",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f39"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h39",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f40"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h40",
+                  "operator": "!="
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    },
+    "minecraft:behavior.owner_hurt_target": {
+     "priority": 2,
+     "entity_types": [
+      {
+       "filters": {
+        "none_of": [
+         {
+          "any_of": [
+           {
+            "any_of": [
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f1"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f1"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f2"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f2"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f3"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f3"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f4"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f4"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f5"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f5"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f6"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f6"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f7"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f7"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f8"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f8"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f9"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f9"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f10"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f10"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f11"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f11"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f12"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f12"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f13"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f13"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f14"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f14"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f15"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f15"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f16"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f16"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f17"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f17"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f18"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f18"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f19"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f19"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f20"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f20"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f21"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f21"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f22"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f22"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f23"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f23"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f24"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f24"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f25"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f25"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f26"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f26"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f27"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f27"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f28"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f28"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f29"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f29"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f30"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f30"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f31"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f31"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f32"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f32"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f33"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f33"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f34"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f34"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f35"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f35"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f36"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f36"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f37"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f37"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f38"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f38"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f39"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f39"
+               }
+              ]
+             },
+             {
+              "all_of": [
+               {
+                "test": "has_tag",
+                "subject": "self",
+                "value": "war_f40"
+               },
+               {
+                "test": "has_tag",
+                "subject": "other",
+                "value": "war_f40"
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "all_of": [
+             {
+              "any_of": [
+               {
+                "test": "is_family",
+                "subject": "other",
+                "value": "war_soldier"
+               },
+               {
+                "test": "is_family",
+                "subject": "other",
+                "value": "war_hound"
+               }
+              ]
+             },
+             {
+              "any_of": [
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f1"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h1",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f2"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h2",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f3"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h3",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f4"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h4",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f5"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h5",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f6"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h6",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f7"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h7",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f8"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h8",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f9"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h9",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f10"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h10",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f11"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h11",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f12"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h12",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f13"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h13",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f14"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h14",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f15"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h15",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f16"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h16",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f17"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h17",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f18"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h18",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f19"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h19",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f20"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h20",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f21"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h21",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f22"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h22",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f23"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h23",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f24"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h24",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f25"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h25",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f26"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h26",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f27"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h27",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f28"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h28",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f29"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h29",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f30"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h30",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f31"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h31",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f32"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h32",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f33"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h33",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f34"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h34",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f35"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h35",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f36"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h36",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f37"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h37",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f38"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h38",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f39"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h39",
+                  "operator": "!="
+                 }
+                ]
+               },
+               {
+                "all_of": [
+                 {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "war_f40"
+                 },
+                 {
+                  "test": "has_tag",
+                  "subject": "other",
+                  "value": "war_h40",
+                  "operator": "!="
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   },
+   "wa:hostile": {
+    "minecraft:type_family": {
+     "family": [
+      "chihuahua",
+      "worldanimals",
+      "wa_dogs",
+      "mob",
+      "monster"
+     ]
+    },
+    "minecraft:environment_sensor": {
+     "triggers": [
+      {
+       "filters": {
+        "any_of": [
+         {
+          "test": "has_target",
+          "subject": "self",
+          "value": false
+         },
+         {
+          "test": "has_component",
+          "subject": "self",
+          "value": "minecraft:is_tamed"
+         }
+        ]
+       },
+       "event": "wa:hostile_off"
+      }
+     ]
+    }
+   }
+  },
+  "components": {
+   "minecraft:type_family": {
+    "family": [
+     "chihuahua",
+     "worldanimals",
+     "wa_dogs",
+     "mob"
+    ]
+   },
+   "minecraft:health": {
+    "value": 9,
+    "max": 9
+   },
+   "minecraft:collision_box": {
+    "width": 0.27,
+    "height": 0.383
+   },
+   "minecraft:movement": {
+    "value": 0.3
+   },
+   "minecraft:navigation.walk": {
+    "can_path_over_water": true,
+    "avoid_damage_blocks": true
+   },
+   "minecraft:movement.basic": {},
+   "minecraft:jump.static": {},
+   "minecraft:can_climb": {},
+   "minecraft:physics": {},
+   "minecraft:pushable": {
+    "is_pushable": true,
+    "is_pushable_by_piston": true
+   },
+   "minecraft:breathable": {
+    "total_supply": 15,
+    "suffocate_time": 0
+   },
+   "minecraft:nameable": {},
+   "minecraft:leashable": {
+    "soft_distance": 4.0,
+    "hard_distance": 6.0,
+    "max_distance": 10.0
+   },
+   "minecraft:balloonable": {},
+   "minecraft:ambient_sound_interval": {
+    "value": 10.0,
+    "range": 20.0,
+    "event_name": "ambient"
+   },
+   "minecraft:attack": {
+    "damage": 1
+   },
+   "minecraft:healable": {
+    "items": [
+     {
+      "item": "minecraft:beef",
+      "heal_amount": 3
+     },
+     {
+      "item": "minecraft:cooked_beef",
+      "heal_amount": 8
+     },
+     {
+      "item": "minecraft:chicken",
+      "heal_amount": 2
+     },
+     {
+      "item": "minecraft:cooked_chicken",
+      "heal_amount": 6
+     },
+     {
+      "item": "minecraft:porkchop",
+      "heal_amount": 3
+     },
+     {
+      "item": "minecraft:cooked_porkchop",
+      "heal_amount": 8
+     },
+     {
+      "item": "minecraft:mutton",
+      "heal_amount": 2
+     },
+     {
+      "item": "minecraft:cooked_mutton",
+      "heal_amount": 6
+     },
+     {
+      "item": "minecraft:rabbit",
+      "heal_amount": 3
+     },
+     {
+      "item": "minecraft:cooked_rabbit",
+      "heal_amount": 5
+     },
+     {
+      "item": "minecraft:rotten_flesh",
+      "heal_amount": 4
+     }
+    ]
+   },
+   "minecraft:loot": {
+    "table": "loot_tables/entities/wa_dogs.json"
+   },
+   "minecraft:behavior.float": {
+    "priority": 0
+   },
+   "minecraft:behavior.stay_while_sitting": {
+    "priority": 3
+   },
+   "minecraft:behavior.leap_at_target": {
+    "priority": 4,
+    "target_dist": 0.4
+   },
+   "minecraft:behavior.melee_attack": {
+    "priority": 5
+   },
+   "minecraft:behavior.random_stroll": {
+    "priority": 8,
+    "speed_multiplier": 1.0
+   },
+   "minecraft:behavior.look_at_player": {
+    "priority": 9,
+    "look_distance": 6,
+    "probability": 0.02
+   },
+   "minecraft:behavior.random_look_around": {
+    "priority": 10
+   },
+   "minecraft:behavior.panic": {
+    "priority": 2,
+    "speed_multiplier": 1.25
+   },
+   "minecraft:behavior.hurt_by_target": {
+    "priority": 1,
+    "alert_same_type": false,
+    "entity_types": [
+     {
+      "filters": {
+       "none_of": [
+        {
+         "any_of": [
+          {
+           "any_of": [
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f1"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f1"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f2"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f2"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f3"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f3"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f4"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f4"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f5"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f5"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f6"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f6"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f7"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f7"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f8"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f8"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f9"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f9"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f10"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f10"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f11"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f11"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f12"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f12"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f13"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f13"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f14"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f14"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f15"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f15"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f16"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f16"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f17"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f17"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f18"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f18"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f19"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f19"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f20"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f20"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f21"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f21"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f22"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f22"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f23"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f23"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f24"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f24"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f25"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f25"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f26"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f26"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f27"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f27"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f28"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f28"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f29"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f29"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f30"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f30"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f31"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f31"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f32"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f32"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f33"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f33"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f34"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f34"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f35"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f35"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f36"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f36"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f37"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f37"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f38"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f38"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f39"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f39"
+              }
+             ]
+            },
+            {
+             "all_of": [
+              {
+               "test": "has_tag",
+               "subject": "self",
+               "value": "war_f40"
+              },
+              {
+               "test": "has_tag",
+               "subject": "other",
+               "value": "war_f40"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "all_of": [
+            {
+             "any_of": [
+              {
+               "test": "is_family",
+               "subject": "other",
+               "value": "war_soldier"
+              },
+              {
+               "test": "is_family",
+               "subject": "other",
+               "value": "war_hound"
+              }
+             ]
+            },
+            {
+             "any_of": [
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f1"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h1",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f2"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h2",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f3"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h3",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f4"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h4",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f5"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h5",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f6"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h6",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f7"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h7",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f8"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h8",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f9"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h9",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f10"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h10",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f11"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h11",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f12"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h12",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f13"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h13",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f14"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h14",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f15"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h15",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f16"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h16",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f17"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h17",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f18"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h18",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f19"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h19",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f20"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h20",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f21"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h21",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f22"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h22",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f23"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h23",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f24"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h24",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f25"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h25",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f26"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h26",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f27"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h27",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f28"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h28",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f29"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h29",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f30"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h30",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f31"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h31",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f32"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h32",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f33"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h33",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f34"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h34",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f35"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h35",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f36"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h36",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f37"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h37",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f38"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h38",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f39"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h39",
+                 "operator": "!="
+                }
+               ]
+              },
+              {
+               "all_of": [
+                {
+                 "test": "has_tag",
+                 "subject": "self",
+                 "value": "war_f40"
+                },
+                {
+                 "test": "has_tag",
+                 "subject": "other",
+                 "value": "war_h40",
+                 "operator": "!="
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      "max_dist": 32
+     }
+    ]
+   },
+   "minecraft:on_target_acquired": {
+    "event": "wa:hostile_on",
+    "target": "self"
+   }
+  },
+  "events": {
+   "minecraft:entity_spawned": {
+    "sequence": [
+     {
+      "randomize": [
+       {
+        "weight": 9,
+        "add": {
+         "component_groups": [
+          "wa:adult",
+          "wa:wild"
+         ]
+        }
+       },
+       {
+        "weight": 1,
+        "add": {
+         "component_groups": [
+          "wa:baby",
+          "wa:wild"
+         ]
+        }
+       }
+      ]
+     },
+     {
+      "randomize": [
+       {
+        "weight": 1,
+        "add": {
+         "component_groups": [
+          "wa:v0"
+         ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "minecraft:entity_born": {
+    "sequence": [
+     {
+      "add": {
+       "component_groups": [
+        "wa:baby",
+        "wa:tame"
+       ]
+      },
+      "remove": {
+       "component_groups": [
+        "wa:hostile"
+       ]
+      }
+     },
+     {
+      "randomize": [
+       {
+        "weight": 1,
+        "add": {
+         "component_groups": [
+          "wa:v0"
+         ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "minecraft:ageable_grow_up": {
+    "remove": {
+     "component_groups": [
+      "wa:baby"
+     ]
+    },
+    "add": {
+     "component_groups": [
+      "wa:adult"
+     ]
+    }
+   },
+   "minecraft:on_tame": {
+    "remove": {
+     "component_groups": [
+      "wa:wild",
+      "wa:hostile"
+     ]
+    },
+    "add": {
+     "component_groups": [
+      "wa:tame"
+     ]
+    }
+   },
+   "wa:hostile_on": {
+    "sequence": [
+     {
+      "filters": {
+       "test": "has_component",
+       "subject": "self",
+       "value": "minecraft:is_tamed",
+       "operator": "!="
+      },
+      "add": {
+       "component_groups": [
+        "wa:hostile"
+       ]
+      }
+     }
+    ]
+   },
+   "wa:hostile_off": {
+    "remove": {
+     "component_groups": [
+      "wa:hostile"
+     ]
+    }
+   }
+  }
+ }
+}

@@ -6,6 +6,7 @@ Kept for the record (and to redo the cleanup if the original pack is updated). A
 repo are the source of truth; edit them directly.
 """
 import copy
+import math
 import json
 import os
 import re
@@ -14,7 +15,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from wa_common import load, dump  # noqa: E402
-from animals import (NS, GROUPS, ROSTER, REMOVED_ENTITIES, LAID_EGGS, ITEM_MAP, HUMANS, CLONES, CUT, ESSENTIALS, NATURAL_SPAWNING, MENU_GROUPS, MENU_OF)  # noqa: E402
+from animals import (NS, GROUPS, ROSTER, REMOVED_ENTITIES, LAID_EGGS, ITEM_MAP, HUMANS, CLONES, CUT, ESSENTIALS, NATURAL_SPAWNING, MENU_GROUPS, MENU_OF, MENU_FOR)  # noqa: E402
 
 NF = 40  # War Engine factions: tags war_f1..war_f40 (member), war_h1..war_h40 (soldier is hostile to faction i)
 SRC_BP, SRC_RP, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
@@ -22,7 +23,28 @@ BP = os.path.join(OUT, "World Animals BP")
 RP = os.path.join(OUT, "World Animals RP")
 log = []
 
+from species import S as SPECIES  # noqa: E402
+from species_build import build_species_rp  # noqa: E402
+for _sid, _sp in SPECIES.items():
+    ROSTER[_sid] = (_sp["group"], _sp["role"], _sp.get("prey", []), _sp.get("humans", 0), _sp.get("dmg", 0),
+                    _sp["tame"], _sp["name"])
+    if not _sp.get("dog"):
+        CLONES[_sid] = _sp["base"]
+import dogs as DOGS  # noqa: E402
+from recolor import egg_icon  # noqa: E402
+DOG_ENTITIES = {}       # entity id -> breed dict (pets and the wild dogs share the dog model)
+for _bid, _b in DOGS.BREEDS.items():
+    if not _b.get("wild"):
+        ROSTER[_bid] = ("dogs", "defensive", [], 0, _b["dmg"], "minecraft:bone", _b["name"])
+        DOG_ENTITIES[_bid] = dict(_b, breed=_bid, tame="minecraft:bone")
+for _sid, _sp in SPECIES.items():
+    if _sp.get("dog"):
+        DOG_ENTITIES[_sid] = dict(DOGS.BREEDS[_sp["breed"]], breed=_sp["breed"], tame=_sp["tame"],
+                                  dmg=_sp.get("dmg", 2), name=_sp["name"])
 KEPT = set(ROSTER) - set(CUT)
+EXTRA_ITEM_TEX = {}
+PERCHERS = {"saker_falcon"}
+BASE_DESC = {}
 JUNK_FAMILIES = {"monster", "undead", "polarbear", "polarsnail", "cavespider", "arthropod", "pig", "zombie", "animal",
                  "shark", "skeleton", "lightweight"}
 
@@ -214,6 +236,16 @@ def fix_item_names(o, key=None):
                 fix_item_names(v, key)
 
 
+def walk_items(o, path=()):
+    if isinstance(o, dict):
+        for k, v in o.items():
+            yield path + (k,), v
+            yield from walk_items(v, path + (k,))
+    elif isinstance(o, list):
+        for v in o:
+            yield from walk_items(v, path)
+
+
 def repair_structure(ent, short):
     """white_lion.json lost a closing brace after its wild group: the tame group, the components and the events
     all ended up nested inside it. Put them back where they belong."""
@@ -255,6 +287,16 @@ def build_entity(path, short):
     if short in CLONES:                      # same behaviour as its sibling, under its own id
         d = json.loads(json.dumps(d).replace(f'"{NS}:{CLONES[short]}"', f'"{NS}:{short}"'))
     group, role, prey, humans, dmg, tame_food, _name = ROSTER[short]
+    sp = SPECIES.get(short)
+    if sp and abs(sp.get("scale", 1.0) - 1.0) > 1e-3:       # bigger / smaller than the base: hitbox and health
+        k = sp["scale"]
+        for _p, v in walk_items(d):
+            if isinstance(v, dict) and "width" in v and "height" in v and _p and _p[-1] == "minecraft:collision_box":
+                v["width"] = round(v["width"] * k, 3); v["height"] = round(v["height"] * k, 3)
+            if isinstance(v, dict) and _p and _p[-1] == "minecraft:health" and k > 1:
+                for hk in ("value", "max"):
+                    if isinstance(v.get(hk), (int, float)):
+                        v[hk] = round(v[hk] * k)
     d = clean(d, tame_food)
     fix_item_names(d)
     ent = d["minecraft:entity"]
@@ -416,6 +458,13 @@ def build_entity(path, short):
                     clear_on_tame(v)
         clear_on_tame(events)
 
+    if short in PERCHERS:
+        for g in groups.values():
+            if "minecraft:is_tamed" in g:
+                fam = g.setdefault("minecraft:type_family", {"family": list(base_fams)})["family"]
+                if "parrot_tame" not in fam:
+                    fam.append("parrot_tame")
+
     # loot: point missing tables at a simple one for the group
     for blk in blocks(ent):
         lt = blk.get("minecraft:loot")
@@ -449,6 +498,11 @@ def main():
             ent_src[ident] = os.path.join(root, f)
     for clone, sibling in CLONES.items():
         ent_src[clone] = ent_src[sibling]
+    dog_src = os.path.join(OUT, ".dog_src")
+    shutil.rmtree(dog_src, ignore_errors=True)
+    os.makedirs(dog_src)
+    ent_src.update(DOGS.build({k: v for k, v in DOG_ENTITIES.items() if k in KEPT}, RP, dog_src, EGG_ICONS,
+                              EXTRA_ITEM_TEX, log, egg_icon))
     missing = KEPT - set(ent_src)
     assert not missing, missing
     mounts = set()
@@ -498,7 +552,7 @@ def main():
         "snakes": [("minecraft:string", 0, 1)],
         "sharks": [("minecraft:cod", 0, 2)], "marine_mammals": [("minecraft:cod", 0, 2)],
         "fish": [("minecraft:cod", 0, 2)], "shellfish": [("minecraft:cod", 0, 1)],
-        "bugs": [],
+        "bugs": [], "dogs": [], "none": [],
     }
     for lt in sorted(used):
         out = os.path.join(BP, lt)
@@ -519,7 +573,7 @@ def main():
             g = m.group(1)
             dump(out, {"pools": [{"rolls": 1, "entries": [{"type": "item", "name": n, "weight": 1, "functions": [
                 {"function": "set_count", "count": {"min": a, "max": b}},
-                {"function": "looting_enchant", "count": {"min": 0, "max": 1}}]}]} for n, a, b in generic[g]]})
+                {"function": "looting_enchant", "count": {"min": 0, "max": 1}}]}]} for n, a, b in generic.get(g, hide)]})
 
     # ---- BP animations (Molang driven sounds etc.)
     shutil.copytree(os.path.join(SRC_BP, "animations"), os.path.join(BP, "animations"))
@@ -548,12 +602,13 @@ BIG_CAT_RC = set()
 
 def build_rp(mounts):
     # client entities
-    os.makedirs(os.path.join(RP, "entity"))
+    os.makedirs(os.path.join(RP, "entity"), exist_ok=True)
     refs = set()
     for f in sorted(os.listdir(os.path.join(SRC_RP, "entity"))):
         d = load(os.path.join(SRC_RP, "entity", f))
         desc = d["minecraft:client_entity"]["description"]
         short = desc["identifier"].split(":", 1)[1]
+        BASE_DESC[short] = d
         if short not in KEPT:
             log.append(f"client entity dropped: {short}")
             continue
@@ -567,6 +622,8 @@ def build_rp(mounts):
             BIG_CAT_RC.add(short)
         refs |= set(walk_strings(desc))
         dump(os.path.join(RP, "entity", f"{short}.json"), d)
+    kept_species = {k: v for k, v in SPECIES.items() if k in KEPT}
+    build_species_rp(kept_species, SRC_RP, RP, BASE_DESC, refs, EGG_ICONS, EXTRA_ITEM_TEX, log)
 
     def keep_json_dir(sub, top_key):
         """copy files from `sub` that define something referenced by the kept client entities"""
@@ -645,9 +702,30 @@ def build_rp(mounts):
     # sounds: entity sound events of kept animals; every sound file referenced by the kept definitions
     snd = load(os.path.join(SRC_RP, "sounds.json"))
     ents = snd.get("entity_sounds", {}).get("entities", {})
+    base_sounds = dict(ents)
     for k in list(ents):
         if k.startswith(NS + ":") and k.split(":", 1)[1] not in KEPT:
             del ents[k]
+    # new species sound like the animal they're built on, deeper when bigger
+    for sid, sp in SPECIES.items():
+        if sid not in KEPT or sp.get("dog"):
+            continue
+        src = base_sounds.get(f"{NS}:{sp['base']}")
+        if src:
+            e = copy.deepcopy(src)
+            k = 1 / math.sqrt(sp.get("scale", 1.0))
+            p0, p1 = e.get("pitch", [1.0, 1.0]) if isinstance(e.get("pitch"), list) else [e.get("pitch", 1.0)] * 2
+            e["pitch"] = [round(p0 * k, 2), round(p1 * k, 2)]
+            ents[f"{NS}:{sid}"] = e
+    # dogs bark like wolves; small breeds higher
+    for eid, b in DOG_ENTITIES.items():
+        if eid not in KEPT:
+            continue
+        k = 1 / math.sqrt(b["scale"])
+        ents[f"{NS}:{eid}"] = {"volume": 1.0, "pitch": [round(0.9 * k, 2), round(1.1 * k, 2)], "events": {
+            "ambient": "mob.wolf.bark" if not b.get("wild") else "mob.wolf.growl", "hurt": "mob.wolf.hurt",
+            "death": "mob.wolf.death", "step": {"sound": "mob.wolf.step", "volume": 0.15, "pitch": 1.0},
+            "attack": "mob.wolf.bark", "eat": "random.eat"}}
     dump(os.path.join(RP, "sounds.json"), snd)
     sd = load(os.path.join(SRC_RP, "sounds", "sound_definitions.json"))
     os.makedirs(os.path.join(RP, "sounds"), exist_ok=True)
@@ -671,11 +749,19 @@ def build_rp(mounts):
                     os.makedirs(os.path.dirname(out), exist_ok=True)
                     shutil.copy2(p, out)
 
+    # falconry glove icon
+    glove_rel = "textures/items/wa_falconry_glove"
+    glove_icon().save(os.path.join(RP, glove_rel + ".png"))
+    EXTRA_ITEM_TEX["wa_falconry_glove"] = {"textures": glove_rel}
+    EGG_ICONS["__glove"] = "wa_falconry_glove"
+
     # item atlas: only the egg icons
     it = load(os.path.join(SRC_RP, "textures", "item_texture.json"))
     data = {}
     for short, key in EGG_ICONS.items():
-        if key in it["texture_data"]:
+        if key in EXTRA_ITEM_TEX:
+            data[key] = EXTRA_ITEM_TEX[key]
+        elif key in it["texture_data"]:
             data[key] = it["texture_data"][key]
             tex = data[key]["textures"]
             tex = tex if isinstance(tex, str) else tex[0]
@@ -710,7 +796,49 @@ def build_rp(mounts):
     shutil.copy2(os.path.join(SRC_RP, "pack_icon.png"), os.path.join(RP, "pack_icon.png"))
 
 
+def glove_icon():
+    """16x16 leather falconry gauntlet"""
+    from PIL import Image
+    art = ["................", "......bb.bb.....", ".....bLLbLLb....", ".....bLLbLLb.b..", ".....bLLbLLbbLb.",
+           ".....bLLLLLLbLb.", ".bb..bLLLLLLLLb.", "bLLb.bLLLLLLLLb.", "bLLLbbLLLLLLLb..", ".bLLLLLLLLLLLb..",
+           "..bLLLLLLLLLb...", "...bLLLLLLLb....", "...bccccccccb...", "...bCCCCCCCCb...", "...bccccccccb...",
+           "....bbbbbbbb...."]
+    col = {"b": (58, 34, 18, 255), "L": (156, 98, 52, 255), "c": (120, 72, 36, 255), "C": (214, 182, 120, 255)}
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    for y, row in enumerate(art):
+        for x, ch in enumerate(row):
+            if ch in col:
+                r, g, b, a = col[ch]
+                if ch == "L" and (x + y) % 5 == 0:
+                    r, g, b = r + 18, g + 12, b + 8      # a little leather sheen
+                img.putpixel((x, y), (r, g, b, a))
+    return img
+
+
+def build_glove():
+    dump(os.path.join(BP, "items", "falconry_glove.json"), {
+        "format_version": "1.21.60",
+        "minecraft:item": {
+            "description": {"identifier": f"{NS}:falconry_glove", "menu_category": {"category": "equipment"}},
+            "components": {
+                "minecraft:display_name": {"value": "Falconry Glove"},
+                "minecraft:icon": {"textures": {"default": "wa_falconry_glove"}},
+                "minecraft:max_stack_size": 1,
+                "minecraft:use_modifiers": {"use_duration": 0.05, "movement_modifier": 1.0},
+                "minecraft:cooldown": {"category": "wa_falconry", "duration": 0.75},
+            }}})
+    dump(os.path.join(BP, "recipes", "falconry_glove.json"), {
+        "format_version": "1.20.10",
+        "minecraft:recipe_shaped": {
+            "description": {"identifier": f"{NS}:falconry_glove"},
+            "tags": ["crafting_table"],
+            "pattern": ["L L", "LLL", " S "],
+            "key": {"L": {"item": "minecraft:leather"}, "S": {"item": "minecraft:string"}},
+            "result": {"item": f"{NS}:falconry_glove", "count": 1}}})
+
+
 def build_items_and_catalog():
+    build_glove()
     os.makedirs(os.path.join(BP, "items", "spawn_eggs"))
     os.makedirs(os.path.join(BP, "items", "laid_eggs"))
     by_group = {g: [] for g in MENU_GROUPS}
@@ -722,7 +850,7 @@ def build_items_and_catalog():
             menu = {"category": "none"}
         else:
             ident, sub, label = f"{NS}:spawn_{short}", "spawn_eggs", f"{name} Spawn Egg"
-            g = "essentials" if short in ESSENTIALS else MENU_OF[group]
+            g = "essentials" if short in ESSENTIALS else MENU_FOR.get(short, MENU_OF[group])
             menu = {"category": "nature", "group": f"{NS}:itemGroup.name.{g}"}
             by_group[g].append(ident)
         comps = {

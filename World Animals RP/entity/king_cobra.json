@@ -1,0 +1,51 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "worldanimals:king_cobra",
+      "materials": {
+        "default": "slime"
+      },
+      "textures": {
+        "blue": "textures/entity/wa_species/king_cobra/blue",
+        "green": "textures/entity/wa_species/king_cobra/green",
+        "red_blue": "textures/entity/wa_species/king_cobra/red_blue",
+        "yellow_blue": "textures/entity/wa_species/king_cobra/yellow_blue",
+        "grey": "textures/entity/wa_species/king_cobra/grey"
+      },
+      "geometry": {
+        "default": "geometry.snake_v2"
+      },
+      "animations": {
+        "setup": "animation.snake_v2.idle2",
+        "attack": "animation.snake_v2.attack",
+        "walk": "animation.snake_v2.walk"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.attack = Math.sin(variable.attack_time * 38.17);"
+        ],
+        "scale": "1.45"
+      },
+      "animation_controllers": [
+        {
+          "move": "controller.animation.llama.move"
+        },
+        {
+          "baby": "controller.animation.llama.baby"
+        },
+        {
+          "attack": "controller.animation.animals.attack"
+        }
+      ],
+      "render_controllers": [
+        "controller.render.parrot"
+      ],
+      "enable_attachables": true,
+      "spawn_egg": {
+        "texture": "wa_egg_king_cobra",
+        "texture_index": 0
+      }
+    }
+  }
+}
