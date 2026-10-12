@@ -1,4 +1,4 @@
-"""Octopus and lobster: models, painted textures and animations of their own (no base model fits them).
+"""Octopus, lobster and moose: models, painted textures and animations of their own (no base model fits them).
 Coordinates in pixels, facing -Z, feet at y = 0."""
 import math
 import os
@@ -9,6 +9,7 @@ from PIL import Image
 
 from dogs import Packer, noise3, _hash, hx
 from wa_common import dump
+import moose_model
 
 NS = "worldanimals"
 TEX = 128          # same UV space as the shared packer
@@ -16,8 +17,9 @@ RES = 2
 
 
 class Model:
-    def __init__(self, gid):
-        self.gid, self.bones, self.cubes, self.P = gid, [], [], Packer()
+    def __init__(self, gid, tex=TEX, packer=None, bounds=(3, 2, [0, 0.5, 0])):
+        self.gid, self.bones, self.cubes, self.P = gid, [], [], packer or Packer()
+        self.tex, self.bounds = tex, bounds
 
     def bone(self, name, pivot, parent=None, rotation=None):
         b = {"name": name, "pivot": pivot, "cubes": []}
@@ -40,16 +42,16 @@ class Model:
         self.cubes.append(dict(part=part, uv=uv, size=isz, origin=origin))
 
     def geometry(self):
-        return {"description": {"identifier": self.gid, "texture_width": TEX, "texture_height": TEX,
-                                "visible_bounds_width": 3, "visible_bounds_height": 2,
-                                "visible_bounds_offset": [0, 0.5, 0]},
+        return {"description": {"identifier": self.gid, "texture_width": self.tex, "texture_height": self.tex,
+                                "visible_bounds_width": self.bounds[0], "visible_bounds_height": self.bounds[1],
+                                "visible_bounds_offset": self.bounds[2]},
                 "bones": self.bones}
 
 
 def paint(model, color_fn, seed, variant=0):
     """color_fn(part, face, nx, ny, nz, wx, wy, wz, variant) -> rgb"""
     R = RES
-    img = np.zeros((TEX * R, TEX * R, 4), float)
+    img = np.zeros((model.tex * R, model.tex * R, 4), float)
     for c in model.cubes:
         w, h, d = c["size"]
         u, v = c["uv"]
@@ -192,7 +194,7 @@ def lobster():
     return M, col, anims, ["walk", "idle"], 2
 
 
-MODELS = {"octopus": octopus, "lobster": lobster}
+MODELS = {"octopus": octopus, "lobster": lobster, "moose": lambda: moose_model.moose(Model)}
 
 
 def build(sid, sp, rp):
@@ -219,7 +221,8 @@ def build(sid, sp, rp):
         "materials": {"default": "entity_alphatest"},
         "textures": tex,
         "geometry": {"default": M.gid},
-        "animations": {n: f"animation.wa_{sid}.{n}" for n in anim_names},
-        "scripts": {"animate": anim_names, "scale": str(sp.get("scale", 1.0))},
+        "animations": {(n if isinstance(n, str) else next(iter(n))): f"animation.wa_{sid}.{n if isinstance(n, str) else next(iter(n))}"
+                       for n in anim_names},
+        "scripts": {"animate": anim_names, "scale": str(sp.get("render_scale", sp.get("scale", 1.0)))},
         "render_controllers": [rc],
         "spawn_egg": {"texture": f"wa_egg_{sid}", "texture_index": 0}}}}

@@ -1,9 +1,9 @@
-# World Animals v3.2
+# World Animals v3.3
 
 A cleaned-up rebuild of the World Animals add-on (originally by ArathNido): animals only, sorted by type, with
 smarter hunting, and tamed animals that fight on your side in [War Engine](https://github.com/Joeishelping/Minecraft-War-Mod).
 
-Install `dist/World_Animals_v3_2.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
+Install `dist/World_Animals_v3_3.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
 replaces the old version, because it keeps the same pack IDs. Remove the old **[Structure generation]** pack from
 the world: it's gone.
 
@@ -81,7 +81,9 @@ only kept where they look like their own animal next to the original:
 | Warthog | Africa | defensive |
 | Whale Shark | Mexico, India, Middle East seas | passive |
 
-The **Moose** has its own antlers (flat palms), a long heavy muzzle and a dewlap, and stands about 1.9 blocks at the
+The **Moose** is its own model, not a reshaped deer: a shoulder hump, a long overhanging nose, the bell under the
+throat, wide palmate antlers with tines, a near-black coat with grey-brown lower legs, and it lowers its head to
+charge. It stands about 1.9 blocks at the
 shoulder (a real moose next to Steve); the **Peacock** has a full eye-spotted tail fan. The **Octopus** and the
 **Lobster** have models of their own: the octopus waves its eight arms and squirts ink when hurt (blinding whoever is
 next to it for a moment and jetting away); the lobster walks on eight legs, works its claws and antennae, and is

@@ -1,0 +1,169 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.wa_moose.walk": {
+      "loop": true,
+      "bones": {
+        "leg_fl": {
+          "rotation": [
+            "math.sin(query.modified_distance_moved * 22 + 0) * 26 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "leg_br": {
+          "rotation": [
+            "math.sin(query.modified_distance_moved * 22 + 20) * 26 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "leg_fr": {
+          "rotation": [
+            "math.sin(query.modified_distance_moved * 22 + 180) * 26 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "leg_bl": {
+          "rotation": [
+            "math.sin(query.modified_distance_moved * 22 + 200) * 26 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "leg_fl_low": {
+          "rotation": [
+            "math.max(0, math.sin(query.modified_distance_moved * 22 + 0 + 60)) * 26 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "leg_br_low": {
+          "rotation": [
+            "math.max(0, math.sin(query.modified_distance_moved * 22 + 20 + 60)) * 26 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "leg_fr_low": {
+          "rotation": [
+            "math.max(0, math.sin(query.modified_distance_moved * 22 + 180 + 60)) * 26 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "leg_bl_low": {
+          "rotation": [
+            "math.max(0, math.sin(query.modified_distance_moved * 22 + 200 + 60)) * 26 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "neck": {
+          "rotation": [
+            "math.sin(query.modified_distance_moved * 22 * 2) * 2.5 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "body": {
+          "position": [
+            0,
+            "math.abs(math.sin(query.modified_distance_moved * 22)) * 0.5 * query.modified_move_speed",
+            0
+          ]
+        }
+      }
+    },
+    "animation.wa_moose.idle": {
+      "loop": true,
+      "bones": {
+        "ear0": {
+          "rotation": [
+            0,
+            0,
+            "math.max(0, math.sin(query.life_time * 40) - 0.9) * -180"
+          ]
+        },
+        "ear1": {
+          "rotation": [
+            0,
+            0,
+            "math.max(0, math.sin(query.life_time * 37 + 90) - 0.9) * 180"
+          ]
+        },
+        "tail": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 120) * 8",
+            0
+          ]
+        },
+        "bell": {
+          "rotation": [
+            "math.sin(query.life_time * 60) * 3",
+            0,
+            "math.sin(query.life_time * 45) * 4"
+          ]
+        },
+        "head": {
+          "rotation": [
+            "math.sin(query.life_time * 20) * 2",
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "animation.wa_moose.look": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "rotation": [
+            0,
+            "math.clamp(query.target_y_rotation, -40, 40) * 0.7",
+            0
+          ]
+        }
+      }
+    },
+    "animation.wa_moose.charge": {
+      "loop": true,
+      "bones": {
+        "neck": {
+          "rotation": [
+            "math.sin(variable.attack_time * 180) * 30",
+            0,
+            0
+          ]
+        },
+        "head": {
+          "rotation": [
+            "math.sin(variable.attack_time * 180) * 15",
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "animation.wa_moose.baby": {
+      "loop": true,
+      "bones": {
+        "antlers": {
+          "scale": 0
+        },
+        "head": {
+          "scale": 1.35
+        },
+        "body": {
+          "scale": [
+            1,
+            0.9,
+            0.9
+          ]
+        }
+      }
+    }
+  }
+}

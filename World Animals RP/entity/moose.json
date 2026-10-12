@@ -1,51 +1,42 @@
 {
-  "format_version": "1.8.0",
+  "format_version": "1.10.0",
   "minecraft:client_entity": {
     "description": {
       "identifier": "worldanimals:moose",
       "materials": {
-        "default": "slime"
+        "default": "entity_alphatest"
       },
       "textures": {
-        "default": "textures/entity/wa_species/moose/default",
-        "deer_1": "textures/entity/wa_species/moose/default",
-        "deer_2": "textures/entity/wa_species/moose/default",
-        "deer_3": "textures/entity/wa_species/moose/default"
+        "v0": "textures/entity/wa_species/moose/v0",
+        "default": "textures/entity/wa_species/moose/v0"
       },
       "geometry": {
         "default": "geometry.wa_moose"
       },
       "animations": {
-        "attack": "animation.deer_v2.attack",
-        "setup": "animation.deer_v2.idle",
-        "walk": "animation.deer_v2.walk",
-        "look_at_target": "animation.common.look_at_target",
-        "baby": "animation.deer_v2.baby"
+        "walk": "animation.wa_moose.walk",
+        "idle": "animation.wa_moose.idle",
+        "look": "animation.wa_moose.look",
+        "charge": "animation.wa_moose.charge",
+        "baby": "animation.wa_moose.baby"
       },
       "scripts": {
-        "pre_animation": [
-          "variable.attack = Math.sin(variable.attack_time * 38.17);"
+        "animate": [
+          "walk",
+          "idle",
+          "look",
+          {
+            "charge": "variable.attack_time > 0"
+          },
+          {
+            "baby": "query.is_baby"
+          }
         ],
-        "scale": "1.27"
+        "scale": "1.0"
       },
-      "animation_controllers": [
-        {
-          "attack": "controller.animation.animals.attack"
-        },
-        {
-          "move": "controller.animation.llama.move"
-        },
-        {
-          "baby": "controller.animation.deer.baby"
-        }
-      ],
       "render_controllers": [
-        "controller.render.deer_0",
-        "controller.render.deer_1",
-        "controller.render.deer_2",
-        "controller.render.deer_3"
+        "controller.render.wa_moose"
       ],
-      "enable_attachables": true,
       "spawn_egg": {
         "texture": "wa_egg_moose",
         "texture_index": 0
