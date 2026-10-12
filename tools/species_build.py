@@ -5,7 +5,11 @@ import os
 
 from PIL import Image
 
-from recolor import recolor, egg_icon
+import random
+
+import numpy as np
+
+from recolor import recolor, egg_icon, ramp_lookup
 from render_preview import geometries
 from wa_common import dump
 
@@ -110,6 +114,52 @@ def bone_areas(geo, prefixes, tw, th):
     return out
 
 
+def free_rects(img, tw, th, sizes):
+    """find empty (fully transparent) spots in the texture for new paint: {name: (w, h)} in UV units -> {name: (u, v)}"""
+    a = np.array(img.convert("RGBA"))[..., 3] > 0
+    px = img.width / tw
+    used = np.zeros((th, tw), bool)
+    for v in range(th):
+        for u in range(tw):
+            y0, x0 = int(v * px), int(u * px)
+            used[v, u] = a[y0:int((v + 1) * px), x0:int((u + 1) * px)].any()
+    out = {}
+    for name, (w, h) in sorted(sizes.items(), key=lambda kv: -kv[1][0] * kv[1][1]):
+        done = False
+        for v in range(th - h + 1):
+            for u in range(tw - w + 1):
+                if not used[v:v + h, u:u + w].any():
+                    used[v:v + h, u:u + w] = True
+                    out[name] = (u, v)
+                    done = True
+                    break
+            if done:
+                break
+        if not done:
+            raise ValueError(f"no room in the texture for patch {name}")
+    return out
+
+
+def paint_patch(img, rect, size, spec, tw, seed):
+    """paint a patch: a ramp with soft vertical shading, grain and darker edges (bone, horn, fur)"""
+    px = img.width / tw
+    u, v = rect
+    w, h = size
+    x0, y0, x1, y1 = int(u * px), int(v * px), int((u + w) * px), int((v + h) * px)
+    rng = random.Random(seed)
+    arr = np.array(img.convert("RGBA")).astype(float)
+    for y in range(y0, y1):
+        for x in range(x0, x1):
+            ty = (y - y0 + .5) / (y1 - y0)
+            edge = min(x - x0, x1 - 1 - x, y - y0, y1 - 1 - y)
+            t = spec.get("base", 0.55) + 0.25 * (0.5 - ty) + rng.uniform(-1, 1) * spec.get("grain", 0.12)
+            if edge < 1:
+                t -= 0.22
+            arr[y, x, :3] = ramp_lookup(spec["ramp"], np.array([t]))[0]
+            arr[y, x, 3] = 255
+    return Image.fromarray(arr.astype(np.uint8), "RGBA")
+
+
 def build_species_rp(species, src_rp, rp, base_descs, refs, egg_icons, extra_item_tex, log):
     geos = geometries(src_rp)
     for sid, sp in sorted(species.items()):
@@ -123,9 +173,23 @@ def build_species_rp(species, src_rp, rp, base_descs, refs, egg_icons, extra_ite
         # geometry: reshaped copy if asked
         gid = desc["geometry"].get("default")
         geo = geos.get(gid)
+        tex_default = desc["textures"].get("default") or next(iter(desc["textures"].values()))
+        src_default = next((os.path.join(src_rp, tex_default + e) for e in (".png", ".tga")
+                            if os.path.exists(os.path.join(src_rp, tex_default + e))), None)
+        tweak = copy.deepcopy(sp.get("geo") or {})
+        patch_at = {}
+        if tweak.get("patches") and geo and src_default:
+            tw = geo["description"].get("texture_width", 64)
+            th = geo["description"].get("texture_height", 64)
+            patch_at = free_rects(Image.open(src_default), tw, th,
+                                  {k: tuple(p["size"]) for k, p in tweak["patches"].items()})
+            for add in tweak.get("add", []):
+                if "patch" in add:
+                    add["uv"] = list(patch_at[add["patch"]])
+                    add["uv_size"] = list(tweak["patches"][add["patch"]]["size"])
         if sp.get("geo") and geo:
             new_gid = f"geometry.wa_{sid}"
-            g = reshape(geo, new_gid, sp["geo"])
+            g = reshape(geo, new_gid, tweak)
             dump(os.path.join(rp, "models", "entity", "wa_species", f"{sid}.geo.json"),
                  {"format_version": "1.12.0", "minecraft:geometry": [g]})
             desc["geometry"] = {k: (new_gid if v == gid else v) for k, v in desc["geometry"].items()}
@@ -140,7 +204,10 @@ def build_species_rp(species, src_rp, rp, base_descs, refs, egg_icons, extra_ite
             rec["areas"] = areas
         # textures
         new_tex = {}
+        single = rec.get("single")
         for key, path in desc["textures"].items():
+            if single and key != "default" and not any(k in key.lower() or k in path.lower() for k in KEEP_TEXTURE):
+                continue
             if any(k in key.lower() or k in path.lower() for k in KEEP_TEXTURE):
                 new_tex[key] = path
                 continue
@@ -151,8 +218,17 @@ def build_species_rp(species, src_rp, rp, base_descs, refs, egg_icons, extra_ite
                 continue
             out_rel = f"textures/entity/wa_species/{sid}/{key}"
             os.makedirs(os.path.dirname(os.path.join(rp, out_rel)), exist_ok=True)
-            recolor(Image.open(src), rec, seed=hash(sid) & 0xffff).save(os.path.join(rp, out_rel + ".png"))
+            out_img = recolor(Image.open(src), rec, seed=hash(sid) & 0xffff)
+            if patch_at:
+                tw = geo["description"].get("texture_width", 64)
+                for i, (name, pspec) in enumerate(tweak["patches"].items()):
+                    out_img = paint_patch(out_img, patch_at[name], pspec["size"], pspec, tw, seed=i * 31 + len(sid))
+            out_img.save(os.path.join(rp, out_rel + ".png"))
             new_tex[key] = out_rel
+        if single:      # every coat variant shows the one recolored coat
+            for key, path in desc["textures"].items():
+                if key not in new_tex:
+                    new_tex[key] = new_tex["default"]
         desc["textures"] = new_tex
         # size: render scale (the behaviour file scales the hitbox)
         scale = sp.get("scale", 1.0)

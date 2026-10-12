@@ -8,9 +8,9 @@
       },
       "textures": {
         "default": "textures/entity/wa_species/moose/default",
-        "deer_1": "textures/entity/wa_species/moose/deer_1",
-        "deer_2": "textures/entity/wa_species/moose/deer_2",
-        "deer_3": "textures/entity/wa_species/moose/deer_3"
+        "deer_1": "textures/entity/wa_species/moose/default",
+        "deer_2": "textures/entity/wa_species/moose/default",
+        "deer_3": "textures/entity/wa_species/moose/default"
       },
       "geometry": {
         "default": "geometry.wa_moose"

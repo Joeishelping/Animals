@@ -123,8 +123,9 @@ def geometry(bid, b):
             y = ey - h if ears != "fold" else ey - 1
             cube("head", "ear", [x, y, hz + 1], [1, h, 2 if ears != "long" else 3])
     # legs
-    for i, (lx, lz) in enumerate([(-bw / 2 + 0.5, bl / 2 - 2.5), (bw / 2 - 2.5, bl / 2 - 2.5),
-                                  (-bw / 2 + 0.5, z0 + 0.5), (bw / 2 - 2.5, z0 + 0.5)]):
+    # hind legs (0, 1) set a little wider than the front ones, so all four show from the front
+    for i, (lx, lz) in enumerate([(-bw / 2 - 0.4, bl / 2 - 2.5), (bw / 2 - 1.6, bl / 2 - 2.5),
+                                  (-bw / 2 + 0.6, z0 + 0.5), (bw / 2 - 2.6, z0 + 0.5)]):
         cube(f"leg{i}", "leg", [lx, 1, lz], [2, L - 1, 2])
         cube(f"leg{i}", "paw", [lx - 0.25, 0, lz - 0.5], [2, 1, 3] if L > 3 else [2, 1, 2])
         if b.get("puffs"):
@@ -156,7 +157,7 @@ def geometry(bid, b):
 
     pivots = {
         "body": [0, top, 0], "upperBody": [0, top, z0], "head": [0, hy + hh / 2, hz + hd],
-        "leg0": [-bw / 2 + 1.5, L, bl / 2 - 1.5], "leg1": [bw / 2 - 1.5, L, bl / 2 - 1.5],
+        "leg0": [-bw / 2 + 0.6, L, bl / 2 - 1.5], "leg1": [bw / 2 - 0.6, L, bl / 2 - 1.5],
         "leg2": [-bw / 2 + 1.5, L, z0 + 1.5], "leg3": [bw / 2 - 1.5, L, z0 + 1.5],
         "tail": [0, top - 1, tz],
     }
@@ -375,15 +376,21 @@ def paint(bid, b, cubes, variant=0, seed=1):
                     img[(fv * R) + j, (fu * R) + i, :3] = np.clip(col * (shade + fur), 0, 255)
                     img[(fv * R) + j, (fu * R) + i, 3] = 255
         X = lambda x: x * R
-        if c["part"] == "head":                 # eyes with a glint, brows
+        if c["part"] == "head":                 # eyes: iris, pupil and glint; brows on dark coats
             fu, fv = u + d, v + d
-            eye_y = X(fv) + max(1, int(h * R * 0.38))
+            eye_y = X(fv) + max(1, int(h * R * 0.36))
+            face = img[X(fv):X(fv + h), X(fu):X(fu + w), :3]
+            dark_coat = face.mean() < 70
+            iris = (70, 130, 210) if (b["coat"] == "husky" and variant == 0) else ((176, 112, 44) if dark_coat else (60, 38, 22))
             for left in (True, False):
                 ex = X(fu) + (int(R * 0.6) if left else X(w) - int(R * 0.6) - R)
-                iris = (34, 22, 14) if not (b["coat"] == "husky" and variant == 0) else (70, 130, 210)
                 img[eye_y:eye_y + R, ex:ex + R, :3] = iris
-                img[eye_y, ex + (0 if left else R - 1), :3] = (235, 235, 230)
-                img[eye_y - 1, ex - 1:ex + R + 1, :3] *= 0.8
+                img[eye_y + R // 2:eye_y + R, ex + (R // 2 if left else 0):ex + (R if left else R // 2), :3] = (18, 12, 10)
+                img[eye_y, ex + (0 if left else R - 1), :3] = (245, 245, 240)
+                if dark_coat and b["coat"] in ("rottweiler", "doberman", "beagle", "gsd"):
+                    img[eye_y - 2:eye_y - 1, ex:ex + R, :3] = (154, 90, 40)       # tan brow dots
+                elif not dark_coat:
+                    img[eye_y - 1, ex - 1:ex + R + 1, :3] *= 0.8
         if c["part"] == "nose":                 # nostrils
             fu, fv = u + d, v + d
             img[X(fv) + R // 2, X(fu) + 1, :3] = (70, 62, 58)
