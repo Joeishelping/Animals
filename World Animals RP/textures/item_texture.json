@@ -248,11 +248,17 @@
     "wa_egg_king_cobra": {
       "textures": "textures/items/wa_eggs/king_cobra"
     },
+    "wa_egg_lobster": {
+      "textures": "textures/items/wa_eggs/lobster"
+    },
     "wa_egg_manta_ray": {
       "textures": "textures/items/wa_eggs/manta_ray"
     },
     "wa_egg_moose": {
       "textures": "textures/items/wa_eggs/moose"
+    },
+    "wa_egg_octopus": {
+      "textures": "textures/items/wa_eggs/octopus"
     },
     "wa_egg_okapi": {
       "textures": "textures/items/wa_eggs/okapi"

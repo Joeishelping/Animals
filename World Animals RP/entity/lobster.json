@@ -1,0 +1,37 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "worldanimals:lobster",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "v0": "textures/entity/wa_species/lobster/v0",
+        "v1": "textures/entity/wa_species/lobster/v1",
+        "default": "textures/entity/wa_species/lobster/v0"
+      },
+      "geometry": {
+        "default": "geometry.wa_lobster"
+      },
+      "animations": {
+        "walk": "animation.wa_lobster.walk",
+        "idle": "animation.wa_lobster.idle"
+      },
+      "scripts": {
+        "animate": [
+          "walk",
+          "idle"
+        ],
+        "scale": "1.0"
+      },
+      "render_controllers": [
+        "controller.render.wa_lobster"
+      ],
+      "spawn_egg": {
+        "texture": "wa_egg_lobster",
+        "texture_index": 0
+      }
+    }
+  }
+}

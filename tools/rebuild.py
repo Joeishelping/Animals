@@ -458,6 +458,11 @@ def build_entity(path, short):
                     clear_on_tame(v)
         clear_on_tame(events)
 
+    if short == "lobster":          # blue lobsters are rare (1 in 8); the crab it's built on is 50/50
+        for opt in ent.get("events", {}).get("minecraft:entity_spawned", {}).get("randomize", []):
+            if "minecraft:parrot_red" in opt.get("add", {}).get("component_groups", []):
+                opt["weight"] = opt.get("weight", 1) * 7
+
     if short in PERCHERS:
         for g in groups.values():
             if "minecraft:is_tamed" in g:

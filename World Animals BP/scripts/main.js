@@ -12,6 +12,7 @@
 import { world, system } from "@minecraft/server";
 import "./falconry.js";
 import "./dogs.js";
+import "./sealife.js";
 
 const NS = "worldanimals:";
 const NF = 40;

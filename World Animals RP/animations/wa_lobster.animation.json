@@ -1,0 +1,113 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.wa_lobster.walk": {
+      "loop": true,
+      "bones": {
+        "legl0": {
+          "rotation": [
+            0,
+            "math.sin(query.modified_distance_moved * 60 + 0) * 18 * query.modified_move_speed",
+            0
+          ]
+        },
+        "legl1": {
+          "rotation": [
+            0,
+            "math.sin(query.modified_distance_moved * 60 + 90) * 18 * query.modified_move_speed",
+            0
+          ]
+        },
+        "legl2": {
+          "rotation": [
+            0,
+            "math.sin(query.modified_distance_moved * 60 + 180) * 18 * query.modified_move_speed",
+            0
+          ]
+        },
+        "legl3": {
+          "rotation": [
+            0,
+            "math.sin(query.modified_distance_moved * 60 + 270) * 18 * query.modified_move_speed",
+            0
+          ]
+        },
+        "legr0": {
+          "rotation": [
+            0,
+            "math.sin(query.modified_distance_moved * 60 + 180) * 18 * query.modified_move_speed",
+            0
+          ]
+        },
+        "legr1": {
+          "rotation": [
+            0,
+            "math.sin(query.modified_distance_moved * 60 + 270) * 18 * query.modified_move_speed",
+            0
+          ]
+        },
+        "legr2": {
+          "rotation": [
+            0,
+            "math.sin(query.modified_distance_moved * 60 + 360) * 18 * query.modified_move_speed",
+            0
+          ]
+        },
+        "legr3": {
+          "rotation": [
+            0,
+            "math.sin(query.modified_distance_moved * 60 + 450) * 18 * query.modified_move_speed",
+            0
+          ]
+        }
+      }
+    },
+    "animation.wa_lobster.idle": {
+      "loop": true,
+      "bones": {
+        "antenna0": {
+          "rotation": [
+            "math.sin(query.life_time * 80) * 6",
+            "math.cos(query.life_time * 60) * 6",
+            0
+          ]
+        },
+        "antenna1": {
+          "rotation": [
+            "math.cos(query.life_time * 70) * 6",
+            "math.sin(query.life_time * 55) * 6",
+            0
+          ]
+        },
+        "claw0": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 50) * 5",
+            0
+          ]
+        },
+        "claw1": {
+          "rotation": [
+            0,
+            "-math.sin(query.life_time * 50 + 40) * 5",
+            0
+          ]
+        },
+        "tail2": {
+          "rotation": [
+            "math.sin(query.life_time * 40) * 4",
+            0,
+            0
+          ]
+        },
+        "fan": {
+          "rotation": [
+            "math.sin(query.life_time * 40 + 30) * 8",
+            0,
+            0
+          ]
+        }
+      }
+    }
+  }
+}

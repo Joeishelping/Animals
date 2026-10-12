@@ -26,7 +26,7 @@
         "pre_animation": [
           "variable.attack = Math.sin(variable.attack_time * 38.17);"
         ],
-        "scale": "1.6"
+        "scale": "1.27"
       },
       "animation_controllers": [
         {

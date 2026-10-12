@@ -1,0 +1,134 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.wa_octopus.swim": {
+      "loop": true,
+      "bones": {
+        "arm0": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 0) * 10",
+            0,
+            0
+          ]
+        },
+        "arm1": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 45) * 10",
+            0,
+            0
+          ]
+        },
+        "arm2": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 90) * 10",
+            0,
+            0
+          ]
+        },
+        "arm3": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 135) * 10",
+            0,
+            0
+          ]
+        },
+        "arm4": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 180) * 10",
+            0,
+            0
+          ]
+        },
+        "arm5": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 225) * 10",
+            0,
+            0
+          ]
+        },
+        "arm6": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 270) * 10",
+            0,
+            0
+          ]
+        },
+        "arm7": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 315) * 10",
+            0,
+            0
+          ]
+        },
+        "arm0b": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 60) * 14",
+            0,
+            0
+          ]
+        },
+        "arm1b": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 105) * 14",
+            0,
+            0
+          ]
+        },
+        "arm2b": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 150) * 14",
+            0,
+            0
+          ]
+        },
+        "arm3b": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 195) * 14",
+            0,
+            0
+          ]
+        },
+        "arm4b": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 240) * 14",
+            0,
+            0
+          ]
+        },
+        "arm5b": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 285) * 14",
+            0,
+            0
+          ]
+        },
+        "arm6b": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 330) * 14",
+            0,
+            0
+          ]
+        },
+        "arm7b": {
+          "rotation": [
+            "math.sin(query.life_time * 120 + 375) * 14",
+            0,
+            0
+          ]
+        },
+        "mantle": {
+          "rotation": [
+            "math.sin(query.life_time * 90) * 6",
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            "1 + math.sin(query.life_time * 180) * 0.04",
+            1
+          ]
+        }
+      }
+    }
+  }
+}

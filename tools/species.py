@@ -24,7 +24,7 @@ ORANGE_TIGER = ["#2a1306", "#8a3c0e", "#c96318", "#e59a48", "#f7e8d4"]
 S = {
     # ================= North America (USA, Canada, Mexico)
     "moose": dict(name="Moose", region="Canada, USA, Russia, Northern Europe", base="deer", group="deer", role="defensive",
-                  dmg=8, tame="minecraft:wheat", scale=1.6,
+                  dmg=8, tame="minecraft:wheat", scale=1.27,
                   recipe=dict(ramp=["#120b07", "#241811", "#36251a", "#4c3626", "#6a5440"], lift=0.0, contrast=0.9,
                               single=True,
                               bones={("leg",): ["#2e241c", "#4a3c30", "#6e5e4c", "#8a7a66", "#a69882"]}),
@@ -386,11 +386,19 @@ S = {
                       recipe=dict(ramp=["#08080a", "#16161a", "#26262c", "#3a3a42", "#eaeaea"], no_features=True)),
 }
 
+S["lobster"] = dict(name="Lobster", region="Canada, USA (Maine), Northern Europe, Mediterranean", base="crab",
+                    group="shellfish", role="defensive", dmg=3, tame="minecraft:cod", scale=1.0, model="lobster",
+                    recipe=dict(ramp=["#2a1a14", "#4a2c1e", "#7a3a22", "#c8703a", "#e8a070"]))
+S["octopus"] = dict(name="Octopus", region="Greece, Italy, Mediterranean, Korea, worldwide", base="jellyfish_wa",
+                    group="fish", role="defensive", dmg=2, tame="minecraft:cod", scale=0.7, model="octopus",
+                    recipe=dict(ramp=["#5a1608", "#9a2e12", "#c8562a", "#e08a54", "#f2c0a0"]))
+
 # one per kind, and only where the base model really fits the animal; the rest stay defined but unbuilt
 KEEP = {
     "moose", "american_bison", "cheetah", "pallas_cat", "coyote", "fennec_fox", "saker_falcon",
     "red_crowned_crane", "indian_peafowl", "american_alligator", "hermann_tortoise", "rattlesnake", "king_cobra",
     "skunk", "opossum", "przewalski_horse", "okapi", "warthog", "beluga", "whale_shark", "manta_ray",
+    "lobster", "octopus",
 }
 # built and looked at, but too close to an animal the pack already has
 LOOKS_LIKE = {"jaguar": "leopard", "bald_eagle": "eagle", "eurasian_lynx": "caracal", "moon_bear": "black bear",

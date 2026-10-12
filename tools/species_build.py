@@ -10,6 +10,7 @@ import random
 import numpy as np
 
 from recolor import recolor, egg_icon, ramp_lookup
+import sea_models
 from render_preview import geometries
 from wa_common import dump
 
@@ -164,6 +165,19 @@ def build_species_rp(species, src_rp, rp, base_descs, refs, egg_icons, extra_ite
     geos = geometries(src_rp)
     for sid, sp in sorted(species.items()):
         if sp.get("dog"):
+            continue
+        if sp.get("model"):                         # a model of its own (octopus, lobster)
+            d = sea_models.build(sid, sp, rp)
+            desc = d["minecraft:client_entity"]["description"]
+            ramp = sp["recipe"]["ramp"]
+            key = f"wa_egg_{sid}"
+            egg_rel = f"textures/items/wa_eggs/{sid}"
+            os.makedirs(os.path.dirname(os.path.join(rp, egg_rel)), exist_ok=True)
+            egg_icon(ramp[2], ramp[-1], seed=len(sid)).save(os.path.join(rp, egg_rel + ".png"))
+            extra_item_tex[key] = {"textures": egg_rel}
+            egg_icons[sid] = key
+            refs |= set(_walk(desc))
+            dump(os.path.join(rp, "entity", f"{sid}.json"), d)
             continue
         base = base_descs[sp["base"]]
         d = copy.deepcopy(base)

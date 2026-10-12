@@ -1,15 +1,15 @@
-# World Animals v3.1
+# World Animals v3.2
 
 A cleaned-up rebuild of the World Animals add-on (originally by ArathNido): animals only, sorted by type, with
 smarter hunting, and tamed animals that fight on your side in [War Engine](https://github.com/Joeishelping/Minecraft-War-Mod).
 
-Install `dist/World_Animals_v3_1.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
+Install `dist/World_Animals_v3_2.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
 replaces the old version, because it keeps the same pack IDs. Remove the old **[Structure generation]** pack from
 the world: it's gone.
 
 ## Spawn eggs, by type
 
-102 animals in the creative menu's **Nature** tab (after Minecraft's own groups), in 12 collapsible groups.
+104 animals in the creative menu's **Nature** tab (after Minecraft's own groups), in 12 collapsible groups.
 **Essentials** comes first:
 
 | Group | Animals |
@@ -24,7 +24,7 @@ the world: it's gone.
 | Land Birds & Birds of Prey | Blue Jay, Dove, Indian Peafowl (Peacock), Kiwi, Ostrich, Saker Falcon, Toucan, Turkey, Vulture |
 | Crocodiles, Lizards & Turtles | American Alligator, Hermann's Tortoise, Iguana, Komodo Dragon |
 | Snakes | Coral Snake, King Cobra, Rattlesnake, Scarlet Kingsnake, Snake |
-| Sea Life | Beluga Whale, Crab, Hammerhead Shark, Jellyfish, Manta Ray, Seal, Stingray, Swordfish, Tiger Shark, Whale, Whale Shark |
+| Sea Life | Beluga Whale, Crab, Hammerhead Shark, Jellyfish, Lobster, Manta Ray, Octopus, Seal, Stingray, Swordfish, Tiger Shark, Whale, Whale Shark |
 | Insects & Bugs | Butterfly, Firefly |
 
 **No natural spawning**: animals only come from eggs, breeding and hatching (`NATURAL_SPAWNING` in
@@ -66,8 +66,10 @@ only kept where they look like their own animal next to the original:
 | Hermann's Tortoise | Greece, Italy, Balkans | passive |
 | Indian Peafowl (Peacock) | India (national bird) | passive |
 | King Cobra | India, Southeast Asia | hunts, attacks people |
+| Lobster | Canada, USA (Maine), Northern Europe, Mediterranean | defensive |
 | Manta Ray | Mexico, Dominican Republic, Indian Ocean | passive |
 | Moose | Canada, USA, Russia, Northern Europe | defensive |
+| Octopus | Greece, Italy, Mediterranean, Korea, worldwide | defensive |
 | Okapi | Africa (Congo) | passive |
 | Opossum (Tlacuache) | Mexico, USA | passive |
 | Pallas's Cat (Manul) | Mongolia, Russia | hunts |
@@ -79,8 +81,11 @@ only kept where they look like their own animal next to the original:
 | Warthog | Africa | defensive |
 | Whale Shark | Mexico, India, Middle East seas | passive |
 
-The **Moose** has its own antlers (flat palms), a long heavy muzzle and a dewlap; the **Peacock** a full
-eye-spotted tail fan.
+The **Moose** has its own antlers (flat palms), a long heavy muzzle and a dewlap, and stands about 1.9 blocks at the
+shoulder (a real moose next to Steve); the **Peacock** has a full eye-spotted tail fan. The **Octopus** and the
+**Lobster** have models of their own: the octopus waves its eight arms and squirts ink when hurt (blinding whoever is
+next to it for a moment and jetting away); the lobster walks on eight legs, works its claws and antennae, and is
+rarely blue (1 in 8).
 
 Tried and cut because they looked too much like an animal the pack already has: Jaguar (looked like the leopard), Bald Eagle (looked like the eagle), Eurasian Lynx (looked like the caracal), Moon Bear (looked like the black bear), Yak (looked like the bison), Snowy Owl (looked like the a white eagle), Atlantic Puffin (looked like the african penguin), Mute Swan (looked like the a white duck), European Badger (looked like the raccoon), Meerkat (looked like the squirrel), Olive Baboon (looked like the chimpanzee).
 
