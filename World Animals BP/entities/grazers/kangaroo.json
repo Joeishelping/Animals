@@ -4397,7 +4397,7 @@
    "minecraft:behavior.melee_attack": {
     "priority": 3,
     "speed_multiplier": 1,
-    "track_target": false
+    "track_target": true
    },
    "minecraft:behavior.stomp_turtle_egg": {
     "priority": 4,

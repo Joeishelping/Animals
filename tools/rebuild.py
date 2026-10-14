@@ -283,6 +283,39 @@ def prune_events(ent):
     fix(ent.get("events", {}))
 
 
+SWIM_SPEED = {"apex": 0.24, "hunter": 0.22, "defensive": 0.18}
+
+
+def fix_swimmers(ent, role):
+    """Sea animals copied the pack's fish AI: sway movement (drifts, doesn't chase), an attack that doesn't follow
+    its target, and a sensor that turns them away whenever a target comes within 3 blocks. Swimmers that fight
+    get real swim movement and a proper chase instead."""
+    base = ent.setdefault("components", {})
+    groups = ent.setdefault("component_groups", {})
+    if "minecraft:movement.sway" not in base or role not in SWIM_SPEED:
+        return
+    del base["minecraft:movement.sway"]
+    base["minecraft:movement.generic"] = {}
+    nav = base.setdefault("minecraft:navigation.generic", {})
+    nav.update({"is_amphibious": True, "can_swim": True, "can_walk": False, "can_breach": True,
+                "can_path_over_water": False, "can_sink": False})
+    uw = base.setdefault("minecraft:underwater_movement", {"value": 0.12})
+    uw["value"] = max(uw.get("value", 0.12), SWIM_SPEED[role])
+    for g in [g for g in groups if g.endswith("_aggressive") or g.endswith("_passive")]:
+        del groups[g]
+    for e in ("minecraft:target_too_close", "minecraft:target_far_enough"):
+        ent.get("events", {}).pop(e, None)
+    for blk in blocks(ent):
+        if "minecraft:behavior.random_stroll" in blk:
+            st = blk.pop("minecraft:behavior.random_stroll")
+            blk["minecraft:behavior.random_swim"] = {"priority": st.get("priority", 7), "speed_multiplier": 1.0,
+                                                     "xz_dist": 16, "y_dist": 4, "interval": 60}
+        m = blk.get("minecraft:behavior.melee_attack")
+        if m:
+            m.update({"track_target": True, "speed_multiplier": max(m.get("speed_multiplier", 1), 1.4)})
+    prune_events(ent)
+
+
 def build_entity(path, short):
     d = load(path)
     if short in CLONES:                      # same behaviour as its sibling, under its own id
@@ -476,6 +509,11 @@ def build_entity(path, short):
         lt = blk.get("minecraft:loot")
         if lt and not os.path.exists(os.path.join(SRC_BP, lt.get("table", ""))):
             lt["table"] = f"loot_tables/entities/wa_{group}.json"
+    fix_swimmers(ent, role)
+    for blk in blocks(ent):                       # an attack that loses its target the moment it moves is no threat
+        m = blk.get("minecraft:behavior.melee_attack")
+        if m and role in ("apex", "hunter", "defensive"):
+            m["track_target"] = True
     return d, mount
 
 

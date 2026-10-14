@@ -4806,7 +4806,7 @@
    "minecraft:behavior.melee_attack": {
     "priority": 3,
     "speed_multiplier": 1,
-    "track_target": false
+    "track_target": true
    },
    "minecraft:behavior.move_towards_restriction": {
     "priority": 5,

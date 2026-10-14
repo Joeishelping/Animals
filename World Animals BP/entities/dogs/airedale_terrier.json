@@ -4478,7 +4478,8 @@
     "target_dist": 0.4
    },
    "minecraft:behavior.melee_attack": {
-    "priority": 5
+    "priority": 5,
+    "track_target": true
    },
    "minecraft:behavior.random_stroll": {
     "priority": 8,
