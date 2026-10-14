@@ -33,10 +33,6 @@
       "loop": true,
       "bones": {}
     },
-    "animation.kiwi.idle": {
-      "loop": true,
-      "bones": {}
-    },
     "animation.ostrich_egg.idle": {
       "loop": true,
       "bones": {}
@@ -62,10 +58,6 @@
       "bones": {}
     },
     "animation.squirrel.setup": {
-      "loop": true,
-      "bones": {}
-    },
-    "animation.stork.attack": {
       "loop": true,
       "bones": {}
     },

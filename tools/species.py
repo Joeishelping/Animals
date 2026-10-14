@@ -375,10 +375,8 @@ S["octopus"] = dict(name="Octopus", region="Greece, Italy, Mediterranean, Korea,
 
 # one per kind, and only where the base model really fits the animal; the rest stay defined but unbuilt
 KEEP = {
-    "moose", "american_bison", "cheetah", "pallas_cat", "coyote", "fennec_fox", "saker_falcon",
-    "red_crowned_crane", "indian_peafowl", "american_alligator", "hermann_tortoise", "rattlesnake", "king_cobra",
-    "skunk", "opossum", "przewalski_horse", "okapi", "warthog", "beluga", "whale_shark", "manta_ray",
-    "lobster", "octopus",
+    "moose", "saker_falcon", "indian_peafowl", "american_alligator", "hermann_tortoise", "rattlesnake", "king_cobra",
+    "opossum", "manta_ray", "lobster", "octopus",
 }
 # built and looked at, but too close to an animal the pack already has
 LOOKS_LIKE = {"jaguar": "leopard", "bald_eagle": "eagle", "eurasian_lynx": "caracal", "moon_bear": "black bear",

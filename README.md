@@ -1,36 +1,34 @@
-# World Animals v3.3
+# World Animals v3.4
 
 A cleaned-up rebuild of the World Animals add-on (originally by ArathNido): animals only, sorted by type, with
 smarter hunting, and tamed animals that fight on your side in [War Engine](https://github.com/Joeishelping/Minecraft-War-Mod).
 
-Install `dist/World_Animals_v3_3.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
+Install `dist/World_Animals_v3_4.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
 replaces the old version, because it keeps the same pack IDs. Remove the old **[Structure generation]** pack from
 the world: it's gone.
 
 ## Spawn eggs, by type
 
-104 animals in the creative menu's **Nature** tab (after Minecraft's own groups), in 12 collapsible groups.
+70 animals in the creative menu's **Nature** tab (after Minecraft's own groups), in 11 collapsible groups.
 **Essentials** comes first:
 
 | Group | Animals |
 |---|---|
-| Essentials | African Elephant, Brown Bear, Buffalo, Crocodile, Deer, Eagle, Emperor Penguin, Giraffe, Gorilla, Great White Shark, Hippopotamus, Lion, Moose, Orca, Rhino, Tiger, Zebra |
-| Dogs | Airedale Terrier, Beagle, Border Collie, Chihuahua, Dachshund, Dalmatian, Doberman, German Shepherd, Golden Retriever, Korean Jindo, Labrador Retriever, Rottweiler, Shiba Inu, Siberian Husky, Toy Poodle |
-| Big & Wild Cats | Caracal, Cheetah, Cougar, Leopard, Pallas's Cat (Manul), Panther, Snow Leopard, White Lion, White Tiger |
-| Bears, Wild Dogs & Hyenas | Black Bear, Coyote, Fennec Fox, Hyena |
-| Hoofed Animals & Giants | American Bison, Asian Elephant, Kangaroo, Mammoth, Okapi, Przewalski's Horse, Warthog, Wild Boar |
-| Small Mammals & Primates | Capuchin Monkey, Chimpanzee, Hedgehog, Opossum (Tlacuache), Platypus, Raccoon, Rat, Red Panda, Skunk, Squirrel |
-| Water Birds & Penguins | African Penguin, Blue Penguin, Duck, Flamingo, Pelican, Red-crowned Crane, Seagull, Stork |
-| Land Birds & Birds of Prey | Blue Jay, Dove, Indian Peafowl (Peacock), Kiwi, Ostrich, Saker Falcon, Toucan, Turkey, Vulture |
+| Essentials | African Elephant, Buffalo, Crocodile, Deer, Eagle, Emperor Penguin, Giraffe, Gorilla, Great White Shark, Hippopotamus, Lion, Moose, Orca, Rhino, Tiger, Zebra |
+| Dogs | Airedale Terrier, Beagle, Border Collie, Chihuahua, Dachshund, German Shepherd, Golden Retriever, Labrador Retriever, Rottweiler, Shiba Inu, Siberian Husky, Toy Poodle |
+| Cats, Bears & Hyenas | Black Bear, Cougar, Hyena, Snow Leopard |
+| Hoofed Animals & Giants | Kangaroo, Mammoth, Wild Boar |
+| Small Mammals & Primates | Capuchin Monkey, Chimpanzee, Opossum (Tlacuache), Raccoon, Rat, Squirrel |
+| Water Birds | Duck, Flamingo, Pelican, Seagull |
+| Land Birds & Birds of Prey | Dove, Indian Peafowl (Peacock), Ostrich, Saker Falcon, Toucan, Turkey, Vulture |
 | Crocodiles, Lizards & Turtles | American Alligator, Hermann's Tortoise, Iguana, Komodo Dragon |
-| Snakes | Coral Snake, King Cobra, Rattlesnake, Scarlet Kingsnake, Snake |
-| Sea Life | Beluga Whale, Crab, Hammerhead Shark, Jellyfish, Lobster, Manta Ray, Octopus, Seal, Stingray, Swordfish, Tiger Shark, Whale, Whale Shark |
-| Insects & Bugs | Butterfly, Firefly |
+| Snakes | King Cobra, Rattlesnake, Snake |
+| Sea Life | Crab, Hammerhead Shark, Jellyfish, Lobster, Manta Ray, Octopus, Seal, Stingray, Swordfish, Tiger Shark, Whale |
 
 **No natural spawning**: animals only come from eggs, breeding and hatching (`NATURAL_SPAWNING` in
 `tools/animals.py`).
 
-Blue Crab and Blue Iguana are color variants of the Crab and Iguana. Laid eggs (duck, turkey, ostrich, penguins)
+Blue Crab, Blue Iguana and the blue Lobster are color variants of the Crab and Iguana. Laid eggs (duck, turkey, ostrich, emperor penguin)
 still drop from the parents and hatch, but they aren't in the menu.
 
 ### Cut as filler (say the word and any of them comes back)
@@ -47,6 +45,7 @@ still drop from the parents and hatch, but they aren't in the menu.
 | Snail | tiny, does nothing |
 | Ant | tiny, does nothing |
 | Lanternfish | tiny, does nothing |
+| Asian Elephant, White Lion, White Tiger, Leopard, Panther, Brown Bear, Coral Snake, Scarlet Kingsnake, Caracal, Red Panda, Hedgehog, Platypus, African Penguin, Blue Penguin, Stork, Blue Jay, Kiwi, Butterfly, Firefly, American Bison, Przewalski's Horse, Warthog, Cheetah, Pallas's Cat (Manul), Coyote, Skunk, Okapi, Fennec Fox, Red-crowned Crane, Beluga Whale, Whale Shark, Doberman, Korean Jindo, Dalmatian | removed by request (v3.4) |
 
 ## New in v3
 
@@ -58,11 +57,6 @@ only kept where they look like their own animal next to the original:
 | Animal | From | Behavior |
 |---|---|---|
 | American Alligator | USA | hunts, attacks people |
-| American Bison | USA, Canada | defensive |
-| Beluga Whale | Canada, Russia, Arctic | passive |
-| Cheetah | Africa, Iran | hunts |
-| Coyote | USA, Mexico, Canada | hunts |
-| Fennec Fox | Middle East, North Africa | passive |
 | Hermann's Tortoise | Greece, Italy, Balkans | passive |
 | Indian Peafowl (Peacock) | India (national bird) | passive |
 | King Cobra | India, Southeast Asia | hunts, attacks people |
@@ -70,16 +64,9 @@ only kept where they look like their own animal next to the original:
 | Manta Ray | Mexico, Dominican Republic, Indian Ocean | passive |
 | Moose | Canada, USA, Russia, Northern Europe | defensive |
 | Octopus | Greece, Italy, Mediterranean, Korea, worldwide | defensive |
-| Okapi | Africa (Congo) | passive |
 | Opossum (Tlacuache) | Mexico, USA | passive |
-| Pallas's Cat (Manul) | Mongolia, Russia | hunts |
-| Przewalski's Horse | Mongolia | defensive |
 | Rattlesnake | USA, Mexico | hunts, attacks people |
-| Red-crowned Crane | Korea, Mongolia, Russia, Japan | passive |
 | Saker Falcon | Mongolia (national bird), Middle East | hunts |
-| Skunk | USA, Canada, Mexico | defensive |
-| Warthog | Africa | defensive |
-| Whale Shark | Mexico, India, Middle East seas | passive |
 
 The **Moose** is its own model, not a reshaped deer: a shoulder hump, a long overhanging nose, the bell under the
 throat, wide palmate antlers with tines, a near-black coat with grey-brown lower legs, and it lowers its head to
@@ -108,16 +95,13 @@ follow you, defend you and respect your War Engine faction like every other pet.
 | Siberian Husky | Russia (Siberia) |
 | Beagle | England |
 | Dachshund | Germany |
-| Dalmatian | Croatia |
 | Border Collie | Scotland / England |
 | Rottweiler | Germany |
-| Korean Jindo | Korea |
-| Doberman | Germany |
 
 What they do (tamed):
 
 - **All dogs bark at danger**: a monster or an enemy soldier within 16 blocks, and you get told what and where.
-- **Guard dogs** (German Shepherd, Rottweiler, Doberman, Airedale, Husky, Jindo, Labrador, Golden, Dalmatian)
+- **Guard dogs** (German Shepherd, Rottweiler, Airedale, Husky, Labrador, Golden Retriever)
   attack monsters and enemy soldiers on their own.
 - **Border Collie herds**: sneak near it and the livestock around it is driven to you.
 - **Retrievers** (Golden Retriever, Labrador, Beagle) fetch the drops of anything you kill near them.
@@ -139,13 +123,12 @@ the bottom row).
 ## How they behave
 
 - **Dangerous predators** hunt prey **and** attack people (players, villagers, illagers) who come close. They
-  leave War Engine soldiers alone unless a soldier hurts them: Lion, White Lion, Tiger, White Tiger, Leopard, Panther, Brown Bear, Hyena, Hippopotamus, Crocodile,
-  Komodo Dragon, Snake, Coral Snake, Great White Shark, Tiger Shark.
-- **Hunters** go after their prey but leave people alone unless hurt: Cougar, Snow Leopard, Caracal, Black Bear,
-  Chimpanzee (hunts capuchins), Eagle, Pelican, Seagull, Seal, Orca, Hammerhead, Swordfish, Scarlet Kingsnake (eats
-  other snakes).
+  leave War Engine soldiers alone unless a soldier hurts them: Lion, Tiger, Hyena, Hippopotamus, Crocodile,
+  Komodo Dragon, Snake, Great White Shark, Tiger Shark.
+- **Hunters** go after their prey but leave people alone unless hurt: Cougar, Snow Leopard, Black Bear,
+  Chimpanzee (hunts capuchins), Eagle, Pelican, Seagull, Seal, Orca, Hammerhead, Swordfish.
 - **Defensive animals** fight back when hurt: elephants, mammoth, rhino, buffalo, giraffe, zebra, kangaroo, wild
-  boar, ostrich, gorilla, hedgehog, platypus, crab, stingray, jellyfish. Herd animals call the herd.
+  boar, ostrich, gorilla, moose, crab, lobster, octopus, stingray, jellyfish. Herd animals call the herd.
 - Everything else is passive.
 - **Soldiers fight back.** War Engine soldiers only react to mobs of the `monster` family, so an animal carries
   `monster` while it is attacking something (and soldiers within 9 blocks of it shoot), and drops it once it has
@@ -160,25 +143,24 @@ original never let you tame take a few tries (1 in 3):
 
 | Tame with | Animals |
 |---|---|
-| apple | Deer, Giraffe, Okapi, Przewalski's Horse |
-| beef | Cheetah, Cougar, Hyena, Leopard, Lion, Panther, Tiger, White Lion, White Tiger |
-| bone | Airedale Terrier, Beagle, Border Collie, Chihuahua, Dachshund, Dalmatian, Doberman, German Shepherd, Golden Retriever, Korean Jindo, Labrador Retriever, Rottweiler, Shiba Inu, Siberian Husky, Toy Poodle |
-| carrot | Warthog, Wild Boar |
-| chicken | American Alligator, Caracal, Coyote, Crocodile, Eagle, Komodo Dragon |
-| cod | African Penguin, Beluga Whale, Blue Penguin, Emperor Penguin, Flamingo, Great White Shark, Hammerhead Shark, Jellyfish, Pelican, Platypus, Red-crowned Crane, Seagull, Seal, Stingray, Stork, Swordfish, Tiger Shark, Whale |
+| apple | Deer, Giraffe |
+| beef | Cougar, Hyena, Lion, Tiger |
+| bone | Airedale Terrier, Beagle, Border Collie, Chihuahua, Dachshund, German Shepherd, Golden Retriever, Labrador Retriever, Rottweiler, Shiba Inu, Siberian Husky, Toy Poodle |
+| carrot | Wild Boar |
+| chicken | American Alligator, Crocodile, Eagle, Komodo Dragon |
+| cod | Emperor Penguin, Flamingo, Great White Shark, Hammerhead Shark, Jellyfish, Pelican, Seagull, Seal, Stingray, Swordfish, Tiger Shark, Whale |
 | dandelion | Hermann's Tortoise |
 | egg | Opossum (Tlacuache) |
-| hay block | African Elephant, Asian Elephant, Mammoth |
-| kelp | Crab, Manta Ray, Whale Shark |
+| hay block | African Elephant, Mammoth |
+| kelp | Crab, Manta Ray |
 | melon slice | Capuchin Monkey, Chimpanzee, Gorilla, Hippopotamus, Toucan |
 | mutton | Snow Leopard |
-| rabbit | Coral Snake, King Cobra, Pallas's Cat (Manul), Rattlesnake, Saker Falcon, Scarlet Kingsnake, Snake |
+| rabbit | King Cobra, Rattlesnake, Saker Falcon, Snake |
 | rotten flesh | Vulture |
-| salmon | Brown Bear, Orca |
-| sugar | Butterfly, Firefly |
-| sweet berries | Black Bear, Fennec Fox, Hedgehog, Iguana, Raccoon, Red Panda, Skunk |
-| wheat | American Bison, Buffalo, Kangaroo, Moose, Ostrich, Rhino, Zebra |
-| wheat seeds | Blue Jay, Dove, Duck, Indian Peafowl (Peacock), Kiwi, Rat, Squirrel, Turkey |
+| salmon | Orca |
+| sweet berries | Black Bear, Iguana, Raccoon |
+| wheat | Buffalo, Kangaroo, Moose, Ostrich, Rhino, Zebra |
+| wheat seeds | Dove, Duck, Indian Peafowl (Peacock), Rat, Squirrel, Turkey |
 
 A tamed animal belongs to your War Engine faction (it takes the same `war_f<n>` tag as you, kept in sync while you
 are online):
@@ -191,8 +173,7 @@ are online):
 
 ## Riding
 
-Elephants, mammoth, rhino, giraffe, ostrich and the big cats (Lion, White Lion, Tiger, White Tiger, Leopard,
-Panther, Cougar, Snow Leopard) are ridden with a **vanilla saddle** once tamed. Soldiers can ride them too: they
+The African Elephant, mammoth, rhino, giraffe, ostrich and the big cats (Lion, Tiger, Cougar, Snow Leopard) are ridden with a **vanilla saddle** once tamed. Soldiers can ride them too: they
 carry the `war_mount` family, which **War Engine v9.3** treats like a horse (Mount up, followers riding off with you).
 
 ## What was removed

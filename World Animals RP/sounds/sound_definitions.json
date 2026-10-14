@@ -320,29 +320,6 @@
       "sounds/zebra/say3"
     ]
   },
-  "mob.ornitorrinco.death": {
-    "category": "neutral",
-    "sounds": [
-      "sounds/ornitorrinco/death",
-      "sounds/ornitorrinco/death"
-    ]
-  },
-  "mob.ornitorrinco.hurt": {
-    "category": "neutral",
-    "sounds": [
-      "sounds/ornitorrinco/say1",
-      "sounds/ornitorrinco/say2",
-      "sounds/ornitorrinco/say3"
-    ]
-  },
-  "mob.ornitorrinco.idle": {
-    "category": "neutral",
-    "sounds": [
-      "sounds/ornitorrinco/say1",
-      "sounds/ornitorrinco/say2",
-      "sounds/ornitorrinco/say3"
-    ]
-  },
   "mob.crocodile.death": {
     "category": "neutral",
     "sounds": [

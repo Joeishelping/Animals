@@ -32,62 +32,26 @@
     "wa_egg_dachshund": {
       "textures": "textures/items/wa_eggs/dachshund"
     },
-    "wa_egg_dalmatian": {
-      "textures": "textures/items/wa_eggs/dalmatian"
-    },
     "wa_egg_border_collie": {
       "textures": "textures/items/wa_eggs/border_collie"
     },
     "wa_egg_rottweiler": {
       "textures": "textures/items/wa_eggs/rottweiler"
     },
-    "wa_egg_korean_jindo": {
-      "textures": "textures/items/wa_eggs/korean_jindo"
-    },
-    "wa_egg_doberman": {
-      "textures": "textures/items/wa_eggs/doberman"
-    },
-    "wa_egg_coyote": {
-      "textures": "textures/items/wa_eggs/coyote"
-    },
-    "wa_egg_fennec_fox": {
-      "textures": "textures/items/wa_eggs/fennec_fox"
-    },
     "egg_african_elephant": {
       "textures": "textures/items/egg_african_elephant"
-    },
-    "african_penguin_egg": {
-      "textures": "textures/items/african_penguin_egg"
-    },
-    "egg_asian_elephant": {
-      "textures": "textures/items/egg_asian_elephant"
     },
     "egg_shark": {
       "textures": "textures/items/egg_shark"
     },
-    "egg_bear": {
-      "textures": "textures/items/egg_bear"
-    },
     "egg_black_bear": {
       "textures": "textures/items/egg_black_bear"
-    },
-    "egg_blue_penguin": {
-      "textures": "textures/items/egg_blue_penguin"
-    },
-    "blue_penguin_egg": {
-      "textures": "textures/items/blue_penguin_egg"
     },
     "egg_gorilla": {
       "textures": "textures/items/egg_gorilla"
     },
-    "egg_butterfly": {
-      "textures": "textures/items/egg_butterfly"
-    },
     "egg_ornintorrinco_original": {
       "textures": "textures/items/egg_ornintorrinco_original"
-    },
-    "egg_ostrich": {
-      "textures": "textures/items/egg_ostrich"
     },
     "egg_chimpanzee": {
       "textures": "textures/items/egg_chimpanzee"
@@ -100,9 +64,6 @@
     },
     "egg_crocodile": {
       "textures": "textures/items/egg_crocodile"
-    },
-    "egg_cyanocitta_cristata": {
-      "textures": "textures/items/egg_cyanocitta_cristata"
     },
     "egg_deer": {
       "textures": "textures/items/egg_deer"
@@ -122,9 +83,6 @@
     "egg_penguin": {
       "textures": "textures/items/egg_penguin"
     },
-    "egg_erizo": {
-      "textures": "textures/items/egg_erizo"
-    },
     "egg_flamingo": {
       "textures": "textures/items/egg_flamingo"
     },
@@ -140,20 +98,14 @@
     "egg_iguana": {
       "textures": "textures/items/egg_iguana"
     },
-    "egg_kiwi": {
-      "textures": "textures/items/egg_kiwi"
+    "egg_butterfly": {
+      "textures": "textures/items/egg_butterfly"
     },
     "egg_komodo_dragon": {
       "textures": "textures/items/egg_komodo_dragon"
     },
-    "egg_leopard": {
-      "textures": "textures/items/egg_leopard"
-    },
     "egg_lion": {
       "textures": "textures/items/egg_lion"
-    },
-    "egg_lucienaga": {
-      "textures": "textures/items/egg_lucienaga"
     },
     "egg_mammoth": {
       "textures": "textures/items/egg_mammoth"
@@ -161,26 +113,20 @@
     "egg_orca": {
       "textures": "textures/items/egg_orca"
     },
+    "egg_ostrich": {
+      "textures": "textures/items/egg_ostrich"
+    },
     "ostrich_egg": {
       "textures": "textures/items/ostrich_egg"
     },
-    "egg_panther": {
-      "textures": "textures/items/egg_panther"
-    },
     "egg_pelican": {
       "textures": "textures/items/egg_pelican"
-    },
-    "egg_penguin_african": {
-      "textures": "textures/items/egg_penguin_african"
     },
     "egg_raccoon": {
       "textures": "textures/items/egg_raccoon"
     },
     "egg_rat": {
       "textures": "textures/items/egg_rat"
-    },
-    "egg_red_panda": {
-      "textures": "textures/items/egg_red_panda"
     },
     "egg_rhinoceros": {
       "textures": "textures/items/egg_rhinoceros"
@@ -197,8 +143,8 @@
     "egg_snow_leopard": {
       "textures": "textures/items/egg_snow_leopard"
     },
-    "egg_stork": {
-      "textures": "textures/items/egg_stork"
+    "egg_bear": {
+      "textures": "textures/items/egg_bear"
     },
     "egg_swordfish": {
       "textures": "textures/items/egg_swordfish"
@@ -221,23 +167,11 @@
     "egg_white_shark": {
       "textures": "textures/items/egg_white_shark"
     },
-    "egg_white_tiger": {
-      "textures": "textures/items/egg_white_tiger"
-    },
     "egg_zebra": {
       "textures": "textures/items/egg_zebra"
     },
     "wa_egg_american_alligator": {
       "textures": "textures/items/wa_eggs/american_alligator"
-    },
-    "wa_egg_american_bison": {
-      "textures": "textures/items/wa_eggs/american_bison"
-    },
-    "wa_egg_beluga": {
-      "textures": "textures/items/wa_eggs/beluga"
-    },
-    "wa_egg_cheetah": {
-      "textures": "textures/items/wa_eggs/cheetah"
     },
     "wa_egg_hermann_tortoise": {
       "textures": "textures/items/wa_eggs/hermann_tortoise"
@@ -260,35 +194,14 @@
     "wa_egg_octopus": {
       "textures": "textures/items/wa_eggs/octopus"
     },
-    "wa_egg_okapi": {
-      "textures": "textures/items/wa_eggs/okapi"
-    },
     "wa_egg_opossum": {
       "textures": "textures/items/wa_eggs/opossum"
-    },
-    "wa_egg_pallas_cat": {
-      "textures": "textures/items/wa_eggs/pallas_cat"
-    },
-    "wa_egg_przewalski_horse": {
-      "textures": "textures/items/wa_eggs/przewalski_horse"
     },
     "wa_egg_rattlesnake": {
       "textures": "textures/items/wa_eggs/rattlesnake"
     },
-    "wa_egg_red_crowned_crane": {
-      "textures": "textures/items/wa_eggs/red_crowned_crane"
-    },
     "wa_egg_saker_falcon": {
       "textures": "textures/items/wa_eggs/saker_falcon"
-    },
-    "wa_egg_skunk": {
-      "textures": "textures/items/wa_eggs/skunk"
-    },
-    "wa_egg_warthog": {
-      "textures": "textures/items/wa_eggs/warthog"
-    },
-    "wa_egg_whale_shark": {
-      "textures": "textures/items/wa_eggs/whale_shark"
     },
     "wa_falconry_glove": {
       "textures": "textures/items/wa_falconry_glove"

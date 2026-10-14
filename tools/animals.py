@@ -28,7 +28,6 @@ GROUPS = {
     "marine_mammals": "Whales, Dolphins & Seals",
     "fish": "Fish, Rays, Crabs & Jellyfish",
     "shellfish": "Crabs & Shellfish",
-    "bugs": "Insects & Bugs",
 }
 
 # prey sets (type families: vanilla ones plus the short names this pack gives its own animals)
@@ -44,36 +43,34 @@ SNAKES = ["snake", "snake_coral"]
 HUMANS = ["player", "villager", "wandering_trader", "illager"]
 
 # the first group in the creative menu: the animals you reach for most
-ESSENTIALS = ["lion", "moose", "tiger", "african_elephant", "gorilla", "white_shark", "bear", "crocodile", "rhinoceros",
+ESSENTIALS = ["lion", "moose", "tiger", "african_elephant", "gorilla", "white_shark", "crocodile", "rhinoceros",
               "giraffe", "zebra", "hippopotamus", "orca", "eagle", "emperor_penguin", "deer", "buffalo"]
 
 # creative menu groups (after Essentials): the roster groups folded into a few categories
 MENU_GROUPS = {
     "essentials": "Essentials",
     "dogs": "Dogs",
-    "big_cats": "Big & Wild Cats",
-    "bears_canids": "Bears, Wild Dogs & Hyenas",
+    "big_cats": "Cats, Bears & Hyenas",
     "grazers": "Hoofed Animals & Giants",
     "small_mammals": "Small Mammals & Primates",
-    "water_birds": "Water Birds & Penguins",
+    "water_birds": "Water Birds",
     "land_birds": "Land Birds & Birds of Prey",
     "reptiles": "Crocodiles, Lizards & Turtles",
     "snakes": "Snakes",
     "sea_life": "Sea Life",
-    "bugs": "Insects & Bugs",
 }
 MENU_OF = {
     "birds_of_prey": "land_birds", "water_birds": "water_birds", "land_birds": "land_birds",
     "flightless_birds": "water_birds", "seabirds": "water_birds", "songbirds": "land_birds", "game_birds": "land_birds",
     "big_cats": "big_cats", "wild_cats": "big_cats",
-    "bears_hyenas": "bears_canids", "bears": "bears_canids", "wild_canids": "bears_canids",
+    "bears_hyenas": "big_cats", "bears": "big_cats", "wild_canids": "big_cats",
     "giants": "grazers", "grazers": "grazers", "cattle": "grazers", "horses": "grazers", "pigs": "grazers",
     "deer": "grazers", "antelopes": "grazers",
     "small_mammals": "small_mammals", "primates": "small_mammals",
     "reptiles": "reptiles", "crocodilians": "reptiles", "lizards": "reptiles", "snakes": "snakes",
     "sharks": "sea_life", "fish": "sea_life", "shellfish": "sea_life",
     "marine_mammals": "sea_life", "whales": "sea_life",
-    "bugs": "bugs", "dogs": "dogs",
+    "dogs": "dogs",
 }
 MENU_FOR = {"kiwi": "land_birds", "ostrich": "land_birds"}
 
@@ -190,6 +187,27 @@ CUT = {
     "snail": "tiny, does nothing",
     "ant": "tiny, does nothing",
     "lantern_fish": "tiny, does nothing",
+    "asian_elephant": "removed by request",
+    "white_lion": "removed by request",
+    "white_tiger": "removed by request",
+    "leopard": "removed by request",
+    "panther": "removed by request",
+    "bear": "removed by request",
+    "snake_coral": "removed by request",
+    "snake_scarlet": "removed by request",
+    "caracal": "removed by request",
+    "red_panda": "removed by request",
+    "erizo": "removed by request",
+    "ornitorrinco_original": "removed by request",
+    "penguin_african": "removed by request",
+    "blue_penguin": "removed by request",
+    "african_penguin_egg": "removed by request",
+    "blue_penguin_egg": "removed by request",
+    "stork": "removed by request",
+    "cyanocitta_cristata": "removed by request",
+    "kiwi": "removed by request",
+    "butterfly": "removed by request",
+    "lucienaga": "removed by request",
 }
 
 # removed on purpose
