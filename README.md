@@ -1,9 +1,9 @@
-# World Animals v3.4
+# World Animals v3.5
 
 A cleaned-up rebuild of the World Animals add-on (originally by ArathNido): animals only, sorted by type, with
 smarter hunting, and tamed animals that fight on your side in [War Engine](https://github.com/Joeishelping/Minecraft-War-Mod).
 
-Install `dist/World_Animals_v3_4.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
+Install `dist/World_Animals_v3_5.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
 replaces the old version, because it keeps the same pack IDs. Remove the old **[Structure generation]** pack from
 the world: it's gone.
 
@@ -122,8 +122,8 @@ the bottom row).
 
 ## How they behave
 
-- **Dangerous predators** hunt prey **and** attack people (players, villagers, illagers) who come close. They
-  leave War Engine soldiers alone unless a soldier hurts them: Lion, Tiger, Hyena, Hippopotamus, Crocodile,
+- **Dangerous predators** hunt prey **and** attack people (players, villagers, illagers) **and War Engine
+  soldiers and war dogs** who come close (wild ones only; a tamed one never goes for your side): Lion, Tiger, Hyena, Hippopotamus, Crocodile,
   Komodo Dragon, Snake, Great White Shark, Tiger Shark.
 - **Hunters** go after their prey but leave people alone unless hurt: Cougar, Snow Leopard, Black Bear,
   Chimpanzee (hunts capuchins), Eagle, Pelican, Seagull, Seal, Orca, Hammerhead, Swordfish.

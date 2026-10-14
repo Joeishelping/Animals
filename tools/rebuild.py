@@ -81,7 +81,8 @@ def wild_targets(role, prey, humans):
     types = []
     adult = {"all_of": [t("is_baby", "self", False), t("has_component", "self", "minecraft:is_tamed", "!=")]}
     if role == "apex" and humans:
-        types.append({"filters": {"all_of": [adult, fam_any(HUMANS)]}, "max_dist": humans})
+        # people and War Engine soldiers / war dogs alike: a wild predator is a threat to an army too
+        types.append({"filters": {"all_of": [adult, fam_any(HUMANS + ["war_soldier", "war_hound"])]}, "max_dist": humans})
     if prey:
         types.append({"filters": {"all_of": [adult, fam_any(prey),
                                              t("has_component", "other", "minecraft:is_tamed", "!="),
