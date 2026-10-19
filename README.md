@@ -1,9 +1,9 @@
-# World Animals v3.6
+# World Animals v3.7
 
 A cleaned-up rebuild of the World Animals add-on (originally by ArathNido): animals only, sorted by type, with
 smarter hunting, and tamed animals that fight on your side in [War Engine](https://github.com/Joeishelping/Minecraft-War-Mod).
 
-Install `dist/World_Animals_v3_6.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
+Install `dist/World_Animals_v3_7.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
 replaces the old version, because it keeps the same pack IDs. Remove the old **[Structure generation]** pack from
 the world: it's gone.
 
@@ -25,8 +25,10 @@ the world: it's gone.
 | Snakes | King Cobra, Rattlesnake, Snake |
 | Sea Life | Crab, Hammerhead Shark, Jellyfish, Lobster, Manta Ray, Octopus, Seal, Stingray, Swordfish, Tiger Shark, Whale |
 
-**No natural spawning**: animals only come from eggs, breeding and hatching (`NATURAL_SPAWNING` in
-`tools/animals.py`).
+**Natural spawning is on**: every animal spawns where it really lives (lions, zebras and elephants on the savanna,
+gorillas and tigers in the jungle, moose in the taiga, mammoths on snowy plains, sharks and rays in warm seas, orcas
+in cold ones...), rarely and in small groups; man-eaters are the rarest. The odd stray dog turns up in the open on
+its own. The table is `SPAWN` in `tools/animals.py`; set `NATURAL_SPAWNING = False` there for eggs only.
 
 Blue Crab, Blue Iguana and the blue Lobster are color variants of the Crab and Iguana. Laid eggs (duck, turkey, ostrich, emperor penguin)
 still drop from the parents and hatch, but they aren't in the menu.
@@ -130,9 +132,9 @@ the bottom row).
 - **Defensive animals** fight back when hurt: elephants, mammoth, rhino, buffalo, giraffe, zebra, kangaroo, wild
   boar, ostrich, gorilla, moose, crab, lobster, octopus, stingray, jellyfish. Herd animals call the herd.
 - Everything else is passive.
-- **Soldiers fight back.** War Engine soldiers only react to mobs of the `monster` family, so an animal carries
-  `monster` while it is attacking something (and soldiers within 9 blocks of it shoot), and drops it once it has
-  no target. A tamed animal never has it, so your own soldiers never shoot your pets.
+- **Soldiers fight them** (War Engine v9.22 or newer): a wild man-eater is shot on sight (gunners from 40 blocks,
+  the rest once it's within 12), and any wild animal that is attacking (it carries the `monster` family while it
+  has a target) is fair game too. Deer, birds and the other harmless ones are never shot.
 - Prey is real prey: zebras, deer, buffalo, sheep, pigs, cows, horses, rabbits, chickens, fish, squid, seals... by
   predator. Predators never hunt anyone's **tamed** animals, and babies don't hunt.
 
@@ -168,8 +170,8 @@ are online):
 - It **never attacks** you, players of your faction, soldiers or war dogs of your faction, or soldiers of any
   faction that isn't hostile to yours. That holds even when one of them hits it by accident.
 - It defends you, attacks what you attack, fights monsters, and goes after soldiers of factions hostile to yours.
-- Your allied soldiers won't attack it. Enemy war dogs and melee soldiers count it as one of yours and may go for
-  it; enemy gunners shoot it once it attacks their men.
+- Your soldiers, and soldiers of factions at peace with yours, never attack it. Soldiers of a faction at war with
+  yours treat it as one of your fighters and shoot it like your men (a tamed duck or deer is left alone).
 
 ## Riding
 

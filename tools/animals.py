@@ -75,7 +75,7 @@ MENU_OF = {
 MENU_FOR = {"kiwi": "land_birds", "ostrich": "land_birds"}
 
 # natural spawning: off. Spawn them from the eggs.
-NATURAL_SPAWNING = False
+NATURAL_SPAWNING = True
 
 # id: (group, role, prey, humans range, attack damage, tame food, display name)
 ROSTER = {
@@ -252,4 +252,91 @@ ITEM_MAP = {
     "zebra_skin": "minecraft:leather",
     "shark_tooth": "minecraft:bone",
     "cheese": "minecraft:bread",
+}
+
+# ---- natural spawning: where each animal lives (Bedrock biome tags), how common, how many together
+# (place, any of these tags, all of these tags, none of these, weight, herd min, herd max)
+L, W = "land", "water"
+WARM_SEA = ["warm", "lukewarm"]
+DOG_LANDS = ["plains", "meadow", "forest", "birch"]
+SPAWN = {
+    # Africa and the savanna
+    "african_elephant": (L, ["savanna"], [], [], 6, 1, 3),
+    "giraffe": (L, ["savanna"], [], [], 6, 1, 3),
+    "zebra": (L, ["savanna"], [], [], 8, 3, 5),
+    "buffalo": (L, ["savanna"], [], [], 7, 2, 4),
+    "rhinoceros": (L, ["savanna"], [], [], 4, 1, 2),
+    "hippopotamus": (L, ["savanna", "swamp", "mangrove_swamp"], [], [], 3, 1, 2),
+    "lion": (L, ["savanna"], [], [], 5, 2, 3),
+    "hyenas": (L, ["savanna"], [], [], 4, 2, 3),
+    "ostrich": (L, ["savanna", "desert"], [], [], 5, 1, 3),
+    "vulture": (L, ["savanna", "desert", "mesa"], [], [], 4, 1, 2),
+    # jungle and India
+    "gorilla": (L, ["jungle"], [], [], 4, 1, 3),
+    "chimpanzee": (L, ["jungle"], [], [], 5, 2, 3),
+    "capuchin_monkeys": (L, ["jungle"], [], [], 8, 2, 4),
+    "tucan": (L, ["jungle"], [], [], 8, 1, 3),
+    "tiger": (L, ["jungle", "bamboo"], [], [], 3, 1, 1),
+    "indian_peafowl": (L, ["jungle", "bamboo"], [], [], 5, 1, 2),
+    "king_cobra": (L, ["jungle", "bamboo"], [], [], 3, 1, 1),
+    "iguana": (L, ["jungle", "mangrove_swamp"], [], [], 6, 1, 2),
+    "komodo_dragon": (L, ["jungle", "savanna"], [], [], 2, 1, 1),
+    # swamps and rivers
+    "crocodile": (L, ["swamp", "mangrove_swamp"], [], [], 5, 1, 2),
+    "american_alligator": (L, ["swamp"], [], [], 6, 1, 2),
+    "flamingo": (L, ["swamp", "mangrove_swamp"], [], [], 6, 2, 4),
+    "duck": (L, ["river", "swamp"], [], ["frozen"], 8, 2, 4),
+    # forests of Europe and North America
+    "deer": (L, ["forest", "birch", "taiga"], [], ["frozen"], 10, 2, 3),
+    "wild_boar": (L, ["forest", "roofed", "taiga"], [], [], 7, 2, 4),
+    "black_bear": (L, ["forest", "taiga", "birch"], [], [], 4, 1, 1),
+    "raccoon": (L, ["forest", "birch", "roofed", "swamp"], [], [], 6, 1, 2),
+    "opossum": (L, ["forest", "birch", "swamp"], [], [], 5, 1, 2),
+    "squirrel": (L, ["forest", "birch", "taiga", "roofed"], [], [], 10, 1, 2),
+    "rat": (L, ["plains", "forest", "swamp"], [], [], 5, 1, 3),
+    "snake": (L, ["forest", "plains", "swamp", "jungle"], [], [], 3, 1, 1),
+    "turkey": (L, ["forest", "plains"], [], [], 7, 2, 4),
+    "dove": (L, ["plains", "forest", "meadow"], [], [], 8, 1, 2),
+    "hermann_tortoise": (L, ["plains", "meadow"], [], [], 5, 1, 2),
+    # the north: Canada, Russia, Northern Europe
+    "moose": (L, ["taiga"], [], [], 5, 1, 1),
+    "mammoth": (L, ["ice_plains", "ice", "snowy_slopes", "frozen"], [], ["ocean", "beach", "river"], 3, 1, 2),
+    "emperor_penguin": (L, ["beach", "ocean"], ["frozen"], [], 8, 3, 6),
+    "seal": (L, ["beach"], ["cold"], [], 6, 2, 4),
+    "snow_leopard": (L, ["snowy_slopes", "frozen_peaks", "jagged_peaks", "grove"], [], [], 3, 1, 1),
+    # mountains, deserts and steppes
+    "cougar": (L, ["extreme_hills", "mountains", "mountain", "mesa", "taiga"], [], [], 3, 1, 1),
+    "eagle": (L, ["extreme_hills", "mountains", "mountain", "taiga", "meadow"], [], [], 4, 1, 1),
+    "saker_falcon": (L, ["plains", "savanna", "desert", "extreme_hills", "mountains", "mountain"], [], [], 3, 1, 1),
+    "rattlesnake": (L, ["desert", "mesa"], [], [], 4, 1, 1),
+    "kangaroo": (L, ["savanna", "mesa"], [], [], 5, 2, 4),
+    # coasts
+    "crab": (L, ["beach"], [], ["frozen"], 8, 1, 3),
+    "lobster": (L, ["beach", "stone_beach"], [], ["warm"], 4, 1, 2),
+    "pelican": (L, ["beach"], [], ["frozen", "cold"], 6, 1, 2),
+    "seagull": (L, ["beach"], [], [], 8, 2, 4),
+    # the sea
+    "ballena": (W, ["ocean"], ["deep"], ["frozen"], 2, 1, 1),
+    "orca": (W, ["cold", "frozen"], ["ocean"], [], 3, 2, 3),
+    "white_shark": (W, ["cold", "lukewarm", "ocean"], ["ocean", "deep"], ["frozen", "warm"], 2, 1, 1),
+    "tiger_shark": (W, WARM_SEA, ["ocean"], [], 2, 1, 1),
+    "hammerhead_shark": (W, WARM_SEA, ["ocean"], [], 3, 1, 2),
+    "swordfish": (W, WARM_SEA, ["ocean"], [], 4, 1, 2),
+    "manta_ray": (W, WARM_SEA, ["ocean"], [], 3, 1, 1),
+    "stingray": (W, WARM_SEA, ["ocean"], [], 5, 1, 2),
+    "jellyfish_wa": (W, WARM_SEA, ["ocean"], [], 6, 2, 4),
+    "octopus": (W, ["ocean"], [], ["frozen"], 4, 1, 1),
+    # strays: the odd dog out in the open, never more than one, never hostile (tame it with a bone)
+    "german_shepherd": (L, DOG_LANDS, [], [], 1, 1, 1),
+    "toy_poodle": (L, DOG_LANDS, [], [], 1, 1, 1),
+    "chihuahua": (L, ["desert", "savanna", "plains"], [], [], 1, 1, 1),
+    "shiba_inu": (L, DOG_LANDS + ["cherry_grove"], [], [], 1, 1, 1),
+    "airedale_terrier": (L, DOG_LANDS, [], [], 1, 1, 1),
+    "golden_retriever": (L, DOG_LANDS, [], [], 1, 1, 1),
+    "labrador": (L, DOG_LANDS, [], [], 1, 1, 1),
+    "siberian_husky": (L, ["taiga", "ice_plains", "snowy_slopes", "grove"], [], [], 1, 1, 1),
+    "beagle": (L, DOG_LANDS, [], [], 1, 1, 1),
+    "dachshund": (L, DOG_LANDS, [], [], 1, 1, 1),
+    "border_collie": (L, ["plains", "meadow"], [], [], 1, 1, 1),
+    "rottweiler": (L, DOG_LANDS, [], [], 1, 1, 1),
 }

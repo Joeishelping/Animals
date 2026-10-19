@@ -15,7 +15,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from wa_common import load, dump  # noqa: E402
-from animals import (NS, GROUPS, ROSTER, REMOVED_ENTITIES, LAID_EGGS, ITEM_MAP, HUMANS, CLONES, CUT, ESSENTIALS, NATURAL_SPAWNING, MENU_GROUPS, MENU_OF, MENU_FOR)  # noqa: E402
+from animals import (NS, GROUPS, ROSTER, REMOVED_ENTITIES, LAID_EGGS, ITEM_MAP, HUMANS, CLONES, CUT, ESSENTIALS, NATURAL_SPAWNING, MENU_GROUPS, MENU_OF, MENU_FOR, SPAWN)  # noqa: E402
 
 NF = 40  # War Engine factions: tags war_f1..war_f40 (member), war_h1..war_h40 (soldier is hostile to faction i)
 SRC_BP, SRC_RP, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
@@ -522,6 +522,26 @@ def rel(p, root):
     return os.path.relpath(p, root).replace(os.sep, "/")
 
 
+def spawn_rule(short, place, any_tags, all_tags, none_tags, weight, lo, hi):
+    tag = lambda v, op="==": {"test": "has_biome_tag", "operator": op, "value": v}
+    bf = {"any_of": [tag(v) for v in any_tags]}
+    if all_tags or none_tags:
+        bf = {"all_of": [bf] + [tag(v) for v in all_tags] + [tag(v, "!=") for v in none_tags]}
+    role = ROSTER[short][1] if short in ROSTER else "passive"
+    cond = {"minecraft:weight": {"default": weight}, "minecraft:herd": {"min_size": lo, "max_size": hi},
+            "minecraft:density_limit": {"surface": 2 if role == "apex" else 4, "underground": 0},
+            "minecraft:biome_filter": bf}
+    if place == "water":
+        cond = {"minecraft:spawns_underwater": {}, **cond}
+    else:
+        cond = {"minecraft:spawns_on_surface": {},
+                "minecraft:brightness_filter": {"min": 7, "max": 15, "adjust_for_weather": False}, **cond}
+    return {"format_version": "1.8.0", "minecraft:spawn_rules": {
+        "description": {"identifier": f"{NS}:{short}",
+                        "population_control": "water_animal" if place == "water" else "animal"},
+        "conditions": [cond]}}
+
+
 def main():
     # hand-written files (manifests, scripts) are kept; everything generated is rebuilt
     for p in (BP, RP):
@@ -560,22 +580,12 @@ def main():
         dump(os.path.join(BP, "entities", sub, f"{short}.json"), d)
     log.append("mounts: " + ", ".join(sorted(mounts)))
 
-    # ---- spawn rules (only when natural spawning is on)
+    # ---- spawn rules (only when natural spawning is on): one rule per animal, from SPAWN (where it really lives)
     os.makedirs(os.path.join(BP, "spawn_rules"))
-    for f in (sorted(os.listdir(os.path.join(SRC_BP, "spawn_rules"))) if NATURAL_SPAWNING else []):
-        d = load(os.path.join(SRC_BP, "spawn_rules", f))
-        ident = d["minecraft:spawn_rules"]["description"]["identifier"].split(":", 1)[1]
-        if ident == "ornitorrinco":            # the old rule named an entity that doesn't exist: platypus never spawned
-            ident = "ornitorrinco_original"
-            d["minecraft:spawn_rules"]["description"]["identifier"] = f"{NS}:{ident}"
-        if ident in KEPT:
-            dump(os.path.join(BP, "spawn_rules", f"{ident}.json"), d)
-            for clone, sibling in CLONES.items():
-                if sibling == ident and clone in KEPT:
-                    c = json.loads(json.dumps(d).replace(f'"{NS}:{sibling}"', f'"{NS}:{clone}"'))
-                    dump(os.path.join(BP, "spawn_rules", f"{clone}.json"), c)
-        else:
-            log.append(f"spawn rule dropped: {ident}")
+    for short, rule in (sorted(SPAWN.items()) if NATURAL_SPAWNING else []):
+        if short in KEPT:
+            dump(os.path.join(BP, "spawn_rules", f"{short}.json"), spawn_rule(short, *rule))
+    log.append("no spawn rule: " + ", ".join(sorted(k for k in KEPT if k not in SPAWN and ROSTER[k][1] != "egg")))
 
     # ---- loot tables actually used
     used = set()
