@@ -7,16 +7,17 @@
     },
     "conditions": [
       {
+        "minecraft:spawns_on_surface": {},
         "minecraft:spawns_underwater": {},
         "minecraft:weight": {
-          "default": 6
+          "default": 18
         },
         "minecraft:herd": {
           "min_size": 2,
           "max_size": 4
         },
         "minecraft:density_limit": {
-          "surface": 4,
+          "surface": 8,
           "underground": 0
         },
         "minecraft:biome_filter": {

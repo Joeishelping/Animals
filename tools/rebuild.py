@@ -528,11 +528,13 @@ def spawn_rule(short, place, any_tags, all_tags, none_tags, weight, lo, hi):
     if all_tags or none_tags:
         bf = {"all_of": [bf] + [tag(v) for v in all_tags] + [tag(v, "!=") for v in none_tags]}
     role = ROSTER[short][1] if short in ROSTER else "passive"
+    # weights at vanilla's level (cow 8, sheep 12, cod 15): the table's numbers are relative, scaled up here
+    weight = min(20, max(3, round(weight * (3 if place == "water" else 2))))
     cond = {"minecraft:weight": {"default": weight}, "minecraft:herd": {"min_size": lo, "max_size": hi},
-            "minecraft:density_limit": {"surface": 2 if role == "apex" else 4, "underground": 0},
+            "minecraft:density_limit": {"surface": 3 if role == "apex" else 8, "underground": 0},
             "minecraft:biome_filter": bf}
-    if place == "water":
-        cond = {"minecraft:spawns_underwater": {}, **cond}
+    if place == "water":                         # (like vanilla's fish: both, or nothing spawns in the sea)
+        cond = {"minecraft:spawns_on_surface": {}, "minecraft:spawns_underwater": {}, **cond}
     else:
         cond = {"minecraft:spawns_on_surface": {},
                 "minecraft:brightness_filter": {"min": 7, "max": 15, "adjust_for_weather": False}, **cond}

@@ -1,12 +1,12 @@
 {
   "format_version": 2,
   "header": {
-    "name": "World Animals BP v3.7",
+    "name": "World Animals BP v3.8",
     "description": "70 animals, 12 dog breeds, falconry, sorted by type in the creative menu. Works with War Engine factions.",
     "uuid": "e565160d-ee5d-7469-228c-898982013b1b",
     "version": [
       3,
-      7,
+      8,
       0
     ],
     "min_engine_version": [
@@ -21,7 +21,7 @@
       "uuid": "551968b1-9a7b-e763-70ef-e99d1f6d63eb",
       "version": [
         3,
-        7,
+        8,
         0
       ]
     },
@@ -31,7 +31,7 @@
       "uuid": "f190959b-4bd6-4f45-8c50-0f8917ece350",
       "version": [
         3,
-        7,
+        8,
         0
       ],
       "entry": "scripts/main.js"
@@ -42,7 +42,7 @@
       "uuid": "b32f7458-8e52-7d30-c73e-16c147890ca9",
       "version": [
         3,
-        7,
+        8,
         0
       ]
     },

@@ -1,9 +1,9 @@
-# World Animals v3.7
+# World Animals v3.8
 
 A cleaned-up rebuild of the World Animals add-on (originally by ArathNido): animals only, sorted by type, with
 smarter hunting, and tamed animals that fight on your side in [War Engine](https://github.com/Joeishelping/Minecraft-War-Mod).
 
-Install `dist/World_Animals_v3_7.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
+Install `dist/World_Animals_v3_8.mcaddon`. It needs Minecraft Bedrock 1.21.90 or newer. In an existing world it
 replaces the old version, because it keeps the same pack IDs. Remove the old **[Structure generation]** pack from
 the world: it's gone.
 
@@ -27,7 +27,7 @@ the world: it's gone.
 
 **Natural spawning is on**: every animal spawns where it really lives (lions, zebras and elephants on the savanna,
 gorillas and tigers in the jungle, moose in the taiga, mammoths on snowy plains, sharks and rays in warm seas, orcas
-in cold ones...), rarely and in small groups; man-eaters are the rarest. The odd stray dog turns up in the open on
+in cold ones...), about as often as vanilla animals, in small groups; man-eaters are the rarest. The odd stray dog turns up in the open on
 its own. The table is `SPAWN` in `tools/animals.py`; set `NATURAL_SPAWNING = False` there for eggs only.
 
 Blue Crab, Blue Iguana and the blue Lobster are color variants of the Crab and Iguana. Laid eggs (duck, turkey, ostrich, emperor penguin)

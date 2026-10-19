@@ -7,16 +7,17 @@
     },
     "conditions": [
       {
+        "minecraft:spawns_on_surface": {},
         "minecraft:spawns_underwater": {},
         "minecraft:weight": {
-          "default": 2
+          "default": 6
         },
         "minecraft:herd": {
           "min_size": 1,
           "max_size": 1
         },
         "minecraft:density_limit": {
-          "surface": 2,
+          "surface": 3,
           "underground": 0
         },
         "minecraft:biome_filter": {
@@ -36,7 +37,7 @@
                 {
                   "test": "has_biome_tag",
                   "operator": "==",
-                  "value": "ocean"
+                  "value": "deep"
                 }
               ]
             },
@@ -44,11 +45,6 @@
               "test": "has_biome_tag",
               "operator": "==",
               "value": "ocean"
-            },
-            {
-              "test": "has_biome_tag",
-              "operator": "==",
-              "value": "deep"
             },
             {
               "test": "has_biome_tag",

@@ -318,7 +318,7 @@ SPAWN = {
     # the sea
     "ballena": (W, ["ocean"], ["deep"], ["frozen"], 2, 1, 1),
     "orca": (W, ["cold", "frozen"], ["ocean"], [], 3, 2, 3),
-    "white_shark": (W, ["cold", "lukewarm", "ocean"], ["ocean", "deep"], ["frozen", "warm"], 2, 1, 1),
+    "white_shark": (W, ["cold", "lukewarm", "deep"], ["ocean"], ["frozen", "warm"], 2, 1, 1),
     "tiger_shark": (W, WARM_SEA, ["ocean"], [], 2, 1, 1),
     "hammerhead_shark": (W, WARM_SEA, ["ocean"], [], 3, 1, 2),
     "swordfish": (W, WARM_SEA, ["ocean"], [], 4, 1, 2),

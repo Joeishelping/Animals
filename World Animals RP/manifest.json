@@ -1,12 +1,12 @@
 {
   "format_version": 2,
   "header": {
-    "name": "World Animals RP v3.7",
+    "name": "World Animals RP v3.8",
     "description": "Models, textures and sounds for World Animals.",
     "uuid": "b32f7458-8e52-7d30-c73e-16c147890ca9",
     "version": [
       3,
-      7,
+      8,
       0
     ],
     "min_engine_version": [
@@ -21,7 +21,7 @@
       "uuid": "2ae9afaf-2c01-77f8-0b47-42b466fad8fd",
       "version": [
         3,
-        7,
+        8,
         0
       ]
     }
@@ -31,7 +31,7 @@
       "uuid": "e565160d-ee5d-7469-228c-898982013b1b",
       "version": [
         3,
-        7,
+        8,
         0
       ]
     }
